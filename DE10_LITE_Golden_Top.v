@@ -127,8 +127,9 @@ module DE10_LITE_Golden_Top(
 //  REG/WIRE declarations
 //=======================================================
 wire tRealClock;
-wire tRealClockCounter;
+wire [31:0]tRealClockCounter;
 wire sysRst;
+wire SPIData;
 
 
 
@@ -141,6 +142,23 @@ RealTimeGenerator RTG1(
 GlobalReset(
     .sysClk(MAX10_CLK1_50),
     .sysRst(sysRst));
+	 
+SPISlave(
+	.sysclk(MAX10_CLK1_50),
+	.nreset(sysRst),
+	.mosi(GPIO[0]),
+	.nss(GPIO[1]),
+	.miso(GPIO[2]),
+	.sclk(GPIO[3]),
+	.stsinkdata(SPIData));	
+
+SegDriver(
+    .data(tRealClockCounter[27:24]),
+    .SEG(HEX0));
+    
+
+
+
 
 
 

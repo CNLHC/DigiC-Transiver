@@ -1,0 +1,41 @@
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_TOOL_NAME "Qsys"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_TOOL_VERSION "18.0"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -library "SPISlave" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../SPISlave.sopcinfo"]
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name SLD_INFO "QSYS_NAME SPISlave HAS_SOPCINFO 1 GENERATION_ID 1542112565"
+set_global_assignment -library "SPISlave" -name MISC_FILE [file join $::quartus(qip_path) "../SPISlave.cmp"]
+set_global_assignment -library "SPISlave" -name SLD_FILE [file join $::quartus(qip_path) "SPISlave.debuginfo"]
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_TARGETED_DEVICE_FAMILY "MAX 10"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_GENERATED_DEVICE_FAMILY "{MAX 10}"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "SPISlave" -name MISC_FILE [file join $::quartus(qip_path) "../../SPISlave.qsys"]
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_NAME "U1BJU2xhdmU="
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_DISPLAY_NAME "U1BJU2xhdmU="
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTU0MjExMjU2NQ==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNNTBEQUY0ODRDNkdFUw==::QXV0byBERVZJQ0U="
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Ng==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_PARAMETER "QVVUT19DTE9DS19TSU5LX0NMT0NLX1JBVEU=::LTE=::QXV0byBDTE9DS19SQVRF"
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_PARAMETER "QVVUT19DTE9DS19TSU5LX0NMT0NLX0RPTUFJTg==::LTE=::QXV0byBDTE9DS19ET01BSU4="
+set_global_assignment -entity "SPISlave" -library "SPISlave" -name IP_COMPONENT_PARAMETER "QVVUT19DTE9DS19TSU5LX1JFU0VUX0RPTUFJTg==::LTE=::QXV0byBSRVNFVF9ET01BSU4="
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_NAME "U1BJUGh5"
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_DISPLAY_NAME "QXZhbG9uLVNUIFNlcmlhbCBQZXJpcGhlcmFsIEludGVyZmFjZSAoU1BJKSBJbnRlbCBGUEdBIElQ"
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_VERSION "MTguMA=="
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_DESCRIPTION "U1BJIHRvIEF2YWxvbiBTVCBCcmlkZ2U="
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_PARAMETER "U1lOQ19ERVBUSA==::NA==::RGVwdGg="
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_COMPONENT_PARAMETER "QVVUT19DTE9DS19TSU5LX0NMT0NLX1JBVEU=::MA==::QXV0byBDTE9DS19SQVRF"
+
+set_global_assignment -library "SPISlave" -name VERILOG_FILE [file join $::quartus(qip_path) "SPISlave.v"]
+set_global_assignment -library "SPISlave" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/spiphyslave.v"]
+
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_TOOL_NAME "spislave"
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_TOOL_VERSION "18.0"
+set_global_assignment -entity "SPIPhy" -library "SPISlave" -name IP_TOOL_ENV "Qsys"
