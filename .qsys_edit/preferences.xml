@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
  <debug showDebugMenu="0" />
- <systemtable filter="All Interfaces">
+ <systemtable filter="All Interfaces" showClockDomains="0" showResetDomains="0">
   <columns>
-   <connections preferredWidth="143" />
-   <irq preferredWidth="47" />
+   <connections preferredWidth="223" />
+   <irq preferredWidth="63" />
    <name preferredWidth="408" />
   </columns>
  </systemtable>
  <library
-   expandedCategories="Project,Library/Interface Protocols/PCI Express,Library/Interface Protocols/PCI Express/QSYS Example Designs,Library/Processors and Peripherals,Library,Library/Interface Protocols,Library/Processors and Peripherals/Peripherals" />
- <window width="2578" height="1420" x="-9" y="-9" />
+   expandedCategories="Library/Processors and Peripherals,Library/Processors and Peripherals/Hard Processor Components,Library/Basic Functions/Configuration and Programming,Library/Tri-State Components,Library/Processors and Peripherals/Peripherals,Library/Qsys Interconnect,Library/Interface Protocols/PCI Express/QSYS Example Designs,Library/University Program/Bridges,Library/Basic Functions,Library/Qsys Interconnect/Tri-State Components,Library/Basic Functions/Bridges and Adaptors/Reset,Library/University Program/Audio &amp; Video,Library/Basic Functions/Bridges and Adaptors/Clock,Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library/Interface Protocols/PCI Express,Project,Library/Basic Functions/Bridges and Adaptors,Library/Interface Protocols,Library,Library/Basic Functions/Bridges and Adaptors/Interrupt,Library/University Program,Library/University Program/Audio &amp; Video/Video" />
+ <window width="1100" height="800" x="601" y="237" />
+ <hdlexample language="VERILOG" />
 </preferences>
