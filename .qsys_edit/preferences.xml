@@ -3,10 +3,12 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="47" />
-   <irq preferredWidth="34" />
+   <connections preferredWidth="143" />
+   <irq preferredWidth="47" />
+   <name preferredWidth="408" />
   </columns>
  </systemtable>
- <library expandedCategories="Project,Library" />
- <window width="1100" height="800" x="0" y="0" />
+ <library
+   expandedCategories="Project,Library,Library/Processors and Peripherals/Hard Processor Systems,Library/Processors and Peripherals,Library/Processors and Peripherals/Hard Processor Components" />
+ <window width="2578" height="1420" x="-9" y="-9" />
 </preferences>
