@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element ButtonArray
@@ -26,13 +26,29 @@
    {
       datum _sortIndex
       {
-         value = "3";
+         value = "5";
          type = "int";
       }
       datum sopceditor_expanded
       {
          value = "1";
          type = "boolean";
+      }
+   }
+   element data_pattern_checker_0
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element data_pattern_generator_0
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
       }
    }
    element hps_0
@@ -83,7 +99,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="DigiCTransiver.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -142,6 +158,41 @@
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   name="data_pattern_checker_0"
+   kind="altera_avalon_data_pattern_checker"
+   version="18.0"
+   enabled="1">
+  <parameter name="AUTO_CSR_CLK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CSR_CLK_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_CSR_CLK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C6" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6_H6" />
+  <parameter name="AVALON_ENABLED" value="true" />
+  <parameter name="BYPASS_ENABLED" value="false" />
+  <parameter name="CROSS_CLK_SYNC_DEPTH" value="2" />
+  <parameter name="FREQ_CNTER_ENABLED" value="false" />
+  <parameter name="NUM_CYCLES_FOR_LOCK" value="40" />
+  <parameter name="ST_DATA_W" value="40" />
+ </module>
+ <module
+   name="data_pattern_generator_0"
+   kind="altera_avalon_data_pattern_generator"
+   version="18.0"
+   enabled="1">
+  <parameter name="AUTO_CSR_CLK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CSR_CLK_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_CSR_CLK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C6" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6_H6" />
+  <parameter name="AVALON_ENABLED" value="true" />
+  <parameter name="BYPASS_ENABLED" value="false" />
+  <parameter name="CROSS_CLK_SYNC_DEPTH" value="2" />
+  <parameter name="FREQ_CNTER_ENABLED" value="false" />
+  <parameter name="ST_DATA_W" value="40" />
  </module>
  <module name="hps_0" kind="altera_hps" version="18.0" enabled="1">
   <parameter name="ABSTRACT_REAL_COMPARE_TEST" value="false" />
@@ -700,8 +751,23 @@
   <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection
+   kind="avalon_streaming"
+   version="18.0"
+   start="data_pattern_generator_0.pattern_out"
+   end="data_pattern_checker_0.pattern_in" />
  <connection kind="clock" version="18.0" start="clk_0.clk" end="ButtonArray.clk" />
  <connection kind="clock" version="18.0" start="clk_0.clk" end="mm_bridge_0.clk" />
+ <connection
+   kind="clock"
+   version="18.0"
+   start="clk_0.clk"
+   end="data_pattern_generator_0.csr_clk" />
+ <connection
+   kind="clock"
+   version="18.0"
+   start="clk_0.clk"
+   end="data_pattern_checker_0.csr_clk" />
  <connection
    kind="clock"
    version="18.0"
@@ -723,6 +789,16 @@
    start="clk_0.clk"
    end="hps_0.h2f_lw_axi_clock" />
  <connection
+   kind="clock"
+   version="18.0"
+   start="clk_0.clk"
+   end="data_pattern_checker_0.pattern_in_clk" />
+ <connection
+   kind="clock"
+   version="18.0"
+   start="clk_0.clk"
+   end="data_pattern_generator_0.pattern_out_clk" />
+ <connection
    kind="interrupt"
    version="18.0"
    start="hps_0.f2h_irq0"
@@ -739,6 +815,16 @@
    version="18.0"
    start="clk_0.clk_reset"
    end="mm_bridge_0.reset" />
+ <connection
+   kind="reset"
+   version="18.0"
+   start="clk_0.clk_reset"
+   end="data_pattern_generator_0.reset" />
+ <connection
+   kind="reset"
+   version="18.0"
+   start="clk_0.clk_reset"
+   end="data_pattern_checker_0.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
