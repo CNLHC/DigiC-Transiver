@@ -6,41 +6,9 @@
    version="1.0"
    description=""
    tags=""
-   categories="System" />
+   categories="" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element OFDM_Cyclic_Prefix_Adder_0
-   {
-      datum _sortIndex
-      {
-         value = "2";
-         type = "int";
-      }
-   }
-   element OFDM_Modulation
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone V";
-         type = "String";
-      }
-   }
-   element OFDM_Modulation
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone V";
-         type = "String";
-      }
-   }
-   element OFDM_Modulation
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Cyclone V";
-         type = "String";
-      }
-   }
    element OFDM_Modulation
    {
       datum _originalDeviceFamily
@@ -101,14 +69,6 @@
    type="avalon_streaming"
    dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
- <module
-   name="OFDM_Cyclic_Prefix_Adder_0"
-   kind="OFDM_Cyclic_Prefix_Adder"
-   version="1.0"
-   enabled="1">
-  <parameter name="CP_Length" value="128" />
-  <parameter name="Packet_Length" value="1024" />
- </module>
  <module name="clk_0" kind="clock_source" version="18.0" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -133,22 +93,7 @@
   <parameter name="selected_device_family" value="Cyclone V" />
   <parameter name="twid_width" value="16" />
  </module>
- <connection
-   kind="avalon_streaming"
-   version="18.0"
-   start="fft_ii_0.source"
-   end="OFDM_Cyclic_Prefix_Adder_0.asi_in0" />
  <connection kind="clock" version="18.0" start="clk_0.clk" end="fft_ii_0.clk" />
- <connection
-   kind="clock"
-   version="18.0"
-   start="clk_0.clk"
-   end="OFDM_Cyclic_Prefix_Adder_0.clock" />
- <connection
-   kind="reset"
-   version="18.0"
-   start="clk_0.clk_reset"
-   end="OFDM_Cyclic_Prefix_Adder_0.reset" />
  <connection
    kind="reset"
    version="18.0"
