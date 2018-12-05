@@ -3,13 +3,13 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces" showClockDomains="0" showResetDomains="0">
   <columns>
-   <connections preferredWidth="30" />
+   <connections preferredWidth="143" />
    <irq preferredWidth="34" />
    <name preferredWidth="408" />
   </columns>
  </systemtable>
- <library expandedCategories="Project,Library,Project/DigiC" />
- <window width="2578" height="1420" x="-9" y="-9" />
+ <library expandedCategories="Project,Project/DigiC,Library" />
+ <window width="2560" height="1410" x="-9" y="-9" />
  <hdlexample language="VERILOG" />
  <generation greybox="1" simulation="VERILOG" />
 </preferences>

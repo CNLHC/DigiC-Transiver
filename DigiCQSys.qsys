@@ -13,12 +13,12 @@
    {
       datum _sortIndex
       {
-         value = "0";
+         value = "3";
          type = "int";
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -42,25 +42,20 @@
    {
       datum _sortIndex
       {
-         value = "3";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
          value = "0";
-         type = "boolean";
+         type = "int";
       }
    }
    element clk_0
    {
       datum _sortIndex
       {
-         value = "2";
+         value = "5";
          type = "int";
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -68,12 +63,12 @@
    {
       datum _sortIndex
       {
-         value = "1";
+         value = "4";
          type = "int";
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -89,12 +84,12 @@
    {
       datum _sortIndex
       {
-         value = "5";
+         value = "2";
          type = "int";
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -102,12 +97,12 @@
    {
       datum _sortIndex
       {
-         value = "4";
+         value = "1";
          type = "int";
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
