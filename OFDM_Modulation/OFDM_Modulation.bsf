@@ -91,7 +91,7 @@ refer to the applicable agreement for further details.
 		(text "data" (rect 149 187 322 384)(font "Arial" (color 0 0 0)))
 		(text "reset" (rect 115 203 260 419)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "reset_n" (rect 149 227 340 464)(font "Arial" (color 0 0 0)))
-		(text " system " (rect 333 248 714 506)(font "Arial" ))
+		(text " OFDM_Modulation " (rect 286 248 674 506)(font "Arial" ))
 		(line (pt 144 32)(pt 224 32)(line_width 1))
 		(line (pt 224 32)(pt 224 248)(line_width 1))
 		(line (pt 144 248)(pt 224 248)(line_width 1))
