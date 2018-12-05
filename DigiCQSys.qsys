@@ -9,19 +9,6 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element ButtonArray
-   {
-      datum _sortIndex
-      {
-         value = "3";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
-   }
    element DigiCQSys
    {
       datum _originalDeviceFamily
@@ -50,34 +37,13 @@
    {
       datum _sortIndex
       {
-         value = "5";
+         value = "3";
          type = "int";
       }
       datum sopceditor_expanded
       {
          value = "1";
          type = "boolean";
-      }
-   }
-   element mm_bridge_0
-   {
-      datum _sortIndex
-      {
-         value = "4";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
-   }
-   element mm_bridge_0.s0
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "String";
       }
    }
    element spislave_0
@@ -130,24 +96,6 @@
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <module
-   name="ButtonArray"
-   kind="altera_avalon_pio"
-   version="18.0"
-   enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="true" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="true" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="FALLING" />
-  <parameter name="generateIRQ" value="true" />
-  <parameter name="irqType" value="EDGE" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="4" />
- </module>
- <module
    name="QAM_Modulation_0"
    kind="QAM_Modulation"
    version="1.0"
@@ -159,24 +107,6 @@
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
- </module>
- <module
-   name="mm_bridge_0"
-   kind="altera_avalon_mm_bridge"
-   version="18.0"
-   enabled="1">
-  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
-  <parameter name="ADDRESS_WIDTH" value="10" />
-  <parameter name="DATA_WIDTH" value="32" />
-  <parameter name="LINEWRAPBURSTS" value="0" />
-  <parameter name="MAX_BURST_SIZE" value="1" />
-  <parameter name="MAX_PENDING_RESPONSES" value="4" />
-  <parameter name="PIPELINE_COMMAND" value="1" />
-  <parameter name="PIPELINE_RESPONSE" value="1" />
-  <parameter name="SYMBOL_WIDTH" value="8" />
-  <parameter name="SYSINFO_ADDR_WIDTH" value="10" />
-  <parameter name="USE_AUTO_ADDRESS_WIDTH" value="1" />
-  <parameter name="USE_RESPONSE" value="0" />
  </module>
  <module name="spislave_0" kind="spislave" version="18.0" enabled="1">
   <parameter name="AUTO_CLOCK_SINK_CLOCK_RATE" value="50000000" />
@@ -201,8 +131,6 @@
    version="18.0"
    start="st_bytes_to_packets_0.out_packets_stream"
    end="QAM_Modulation_0.asi_in0" />
- <connection kind="clock" version="18.0" start="clk_0.clk" end="ButtonArray.clk" />
- <connection kind="clock" version="18.0" start="clk_0.clk" end="mm_bridge_0.clk" />
  <connection
    kind="clock"
    version="18.0"
@@ -228,16 +156,6 @@
    version="18.0"
    start="clk_0.clk_reset"
    end="spislave_0.clock_sink_reset" />
- <connection
-   kind="reset"
-   version="18.0"
-   start="clk_0.clk_reset"
-   end="ButtonArray.reset" />
- <connection
-   kind="reset"
-   version="18.0"
-   start="clk_0.clk_reset"
-   end="mm_bridge_0.reset" />
  <connection
    kind="reset"
    version="18.0"

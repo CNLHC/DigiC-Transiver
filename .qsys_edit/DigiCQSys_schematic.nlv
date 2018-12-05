@@ -1,81 +1,17 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst DigiCQSys.hps_0.axi_ocram -pg 1 -lvl 4 -y 3460
-preplace inst DigiCQSys.hps_0.nand0 -pg 1 -lvl 4 -y 500
-preplace inst DigiCQSys.hps_0.wd_timer0 -pg 1 -lvl 4 -y 820
-preplace inst DigiCQSys.hps_0.eosc2 -pg 1 -lvl 2 -y 1740
 preplace inst DigiCQSys -pg 1 -lvl 1 -y 40 -regy -20
-preplace inst DigiCQSys.hps_0.gpio0 -pg 1 -lvl 4 -y 920
-preplace inst DigiCQSys.hps_0.wd_timer1 -pg 1 -lvl 4 -y 2000
-preplace inst DigiCQSys.data_pattern_checker_0 -pg 1 -lvl 3 -y 100
-preplace inst DigiCQSys.hps_0.spim0 -pg 1 -lvl 4 -y 300
-preplace inst DigiCQSys.hps_0.i2c0 -pg 1 -lvl 4 -y 2540
-preplace inst DigiCQSys.hps_0.gpio1 -pg 1 -lvl 4 -y 1020
-preplace inst DigiCQSys.hps_0.uart0 -pg 1 -lvl 4 -y 2940
-preplace inst DigiCQSys.hps_0.bridges -pg 1 -lvl 4 -y 4040
-preplace inst DigiCQSys.clk_0 -pg 1 -lvl 1 -y 240
-preplace inst DigiCQSys.hps_0.scu -pg 1 -lvl 4 -y 3780
-preplace inst DigiCQSys.hps_0.dcan0 -pg 1 -lvl 4 -y 1220
-preplace inst DigiCQSys.hps_0.spim1 -pg 1 -lvl 4 -y 400
-preplace inst DigiCQSys.hps_0.i2c1 -pg 1 -lvl 4 -y 2640
-preplace inst DigiCQSys.hps_0.gpio2 -pg 1 -lvl 4 -y 1120
-preplace inst DigiCQSys.hps_0.uart1 -pg 1 -lvl 4 -y 3040
-preplace inst DigiCQSys.hps_0.sysmgr -pg 1 -lvl 4 -y 3940
-preplace inst DigiCQSys.hps_0.arm_a9_0 -pg 1 -lvl 2 -y 2280
-preplace inst DigiCQSys.hps_0.hps_io -pg 1 -lvl 2 -y 4250
-preplace inst DigiCQSys.hps_0.dcan1 -pg 1 -lvl 4 -y 1340
-preplace inst DigiCQSys.hps_0.gmac0 -pg 1 -lvl 4 -y 1680
-preplace inst DigiCQSys.hps_0.usb0 -pg 1 -lvl 4 -y 2100
-preplace inst DigiCQSys.hps_0.sdmmc -pg 1 -lvl 4 -y 1460
-preplace inst DigiCQSys.hps_0.i2c2 -pg 1 -lvl 4 -y 2740
-preplace inst DigiCQSys.hps_0.arm_a9_1 -pg 1 -lvl 2 -y 2380
-preplace inst DigiCQSys.hps_0.f2s_periph_ref_clk -pg 1 -lvl 2 -y 1800
-preplace inst DigiCQSys.hps_0 -pg 1 -lvl 2 -y 480 -regy -20
-preplace inst DigiCQSys.mm_bridge_0 -pg 1 -lvl 2 -y 320
-preplace inst DigiCQSys.hps_0.gmac1 -pg 1 -lvl 4 -y 1780
-preplace inst DigiCQSys.hps_0.usb1 -pg 1 -lvl 4 -y 2200
-preplace inst DigiCQSys.hps_0.i2c3 -pg 1 -lvl 4 -y 2840
-preplace inst DigiCQSys.hps_0.fpgamgr -pg 1 -lvl 4 -y 3340
-preplace inst DigiCQSys.hps_0.dma -pg 1 -lvl 4 -y 1580
-preplace inst DigiCQSys.hps_0.arm_gic_0 -pg 1 -lvl 3 -y 2280
-preplace inst DigiCQSys.hps_0.f2s_sdram_ref_clk -pg 1 -lvl 2 -y 1860
-preplace inst DigiCQSys.hps_0.clk_0 -pg 1 -lvl 1 -y 2280
-preplace inst DigiCQSys.data_pattern_generator_0 -pg 1 -lvl 2 -y 50
-preplace inst DigiCQSys.data_pattern_checker_0.data_pattern_checker -pg 1
-preplace inst DigiCQSys.hps_0.timer -pg 1 -lvl 4 -y 2320
-preplace inst DigiCQSys.hps_0.axi_sdram -pg 1 -lvl 4 -y 3540
-preplace inst DigiCQSys.hps_0.timer0 -pg 1 -lvl 4 -y 3140
-preplace inst DigiCQSys.hps_0.clkmgr -pg 1 -lvl 3 -y 1660
-preplace inst DigiCQSys.hps_0.L2 -pg 1 -lvl 4 -y 2420
-preplace inst DigiCQSys.hps_0.timer1 -pg 1 -lvl 4 -y 3240
-preplace inst DigiCQSys.hps_0.l3regs -pg 1 -lvl 4 -y 3620
-preplace inst DigiCQSys.hps_0.qspi -pg 1 -lvl 4 -y 1880
-preplace inst DigiCQSys.hps_0.timer2 -pg 1 -lvl 4 -y 620
-preplace inst DigiCQSys.hps_0.rstmgr -pg 1 -lvl 4 -y 3700
-preplace inst DigiCQSys.hps_0.fpga_interfaces -pg 1 -lvl 2 -y 4020
-preplace inst DigiCQSys.hps_0.timer3 -pg 1 -lvl 4 -y 720
-preplace inst DigiCQSys.hps_0.sdrctl -pg 1 -lvl 4 -y 3860
-preplace inst DigiCQSys.hps_0.hps_io.border -pg 1
-preplace inst DigiCQSys.data_pattern_generator_0.data_pattern_generator -pg 1
-preplace inst DigiCQSys.hps_0.eosc1 -pg 1 -lvl 2 -y 860
-preplace inst DigiCQSys.ButtonArray -pg 1 -lvl 2 -y 200
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)ButtonArray.irq,(MASTER)hps_0.f2h_irq0) 1 1 2 480 780 890
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)DigiCQSys.hps_0_h2f_reset,(MASTER)hps_0.h2f_reset) 1 2 2 NJ 630 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.hps_io,(SLAVE)hps_0.hps_io) 1 0 2 NJ 4270 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.hps_0_f2h_debug_reset_req,(SLAVE)hps_0.f2h_debug_reset_req) 1 0 2 NJ 550 NJ
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(MASTER)clk_0.clk_reset,(SLAVE)ButtonArray.reset,(SLAVE)data_pattern_generator_0.reset,(SLAVE)mm_bridge_0.reset,(SLAVE)data_pattern_checker_0.reset) 1 1 2 420 190 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys.hps_0</net_container>(SLAVE)L2.interrupt_sender,(MASTER)arm_gic_0.irq_rx_offset_32) 1 3 1 1610
+preplace inst DigiCQSys.clk_0 -pg 1 -lvl 1 -y 210
+preplace inst DigiCQSys.st_bytes_to_packets_0 -pg 1 -lvl 3 -y 30
+preplace inst DigiCQSys.mm_bridge_0 -pg 1 -lvl 2 -y 290
+preplace inst DigiCQSys.QAM_Modulation_0 -pg 1 -lvl 4 -y 110
+preplace inst DigiCQSys.spislave_0 -pg 1 -lvl 2 -y 50
+preplace inst DigiCQSys.ButtonArray -pg 1 -lvl 2 -y 170
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(MASTER)clk_0.clk_reset,(SLAVE)spislave_0.clock_sink_reset,(SLAVE)QAM_Modulation_0.reset,(SLAVE)ButtonArray.reset,(SLAVE)st_bytes_to_packets_0.clk_reset,(SLAVE)mm_bridge_0.reset) 1 1 3 280 160 830 160 NJ
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)spislave_0.clock_sink,(SLAVE)ButtonArray.clk,(MASTER)clk_0.clk,(SLAVE)mm_bridge_0.clk,(SLAVE)QAM_Modulation_0.clock,(SLAVE)st_bytes_to_packets_0.clk) 1 1 3 260 40 810 140 NJ
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)QAM_Modulation_0.asi_in0,(MASTER)st_bytes_to_packets_0.out_packets_stream) 1 3 1 1090
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)DigiCQSys.reset) 1 0 1 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)data_pattern_checker_0.pattern_in,(MASTER)data_pattern_generator_0.pattern_out) 1 2 1 870
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.hps_0_f2h_cold_reset_req,(SLAVE)hps_0.f2h_cold_reset_req) 1 0 2 NJ 530 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.hps_0_f2h_stm_hw_events,(SLAVE)hps_0.f2h_stm_hw_events) 1 0 2 NJ 4230 NJ
-preplace netloc EXPORT<net_container>DigiCQSys.hps_0</net_container>(SLAVE)bridges.f2h_sdram0_data,(SLAVE)hps_0.f2h_sdram0_data) 1 0 4 NJ 4170 NJ 4170 NJ 4170 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.hps_0_f2h_warm_reset_req,(SLAVE)hps_0.f2h_warm_reset_req) 1 0 2 NJ 4250 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)hps_0.h2f_axi_master,(SLAVE)mm_bridge_0.s0) 1 1 2 500 760 870
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)hps_0.f2h_sdram0_clock,(SLAVE)data_pattern_generator_0.csr_clk,(SLAVE)data_pattern_checker_0.csr_clk,(MASTER)clk_0.clk,(SLAVE)hps_0.h2f_lw_axi_clock,(SLAVE)data_pattern_checker_0.pattern_in_clk,(SLAVE)ButtonArray.clk,(SLAVE)mm_bridge_0.clk,(SLAVE)hps_0.h2f_axi_clock,(SLAVE)hps_0.f2h_axi_clock,(SLAVE)data_pattern_generator_0.pattern_out_clk) 1 1 2 400 170 890
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.memory,(SLAVE)hps_0.memory) 1 0 2 NJ 4290 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys.hps_0</net_container>(SLAVE)dcan1.clock_sink,(MASTER)clkmgr.can1_clk) 1 3 1 1690
-levelinfo -pg 1 0 170 1260
-levelinfo -hier DigiCQSys 180 210 680 1000 1130
-levelinfo -hier DigiCQSys.hps_0 670 730 950 1260 1850 2060
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)st_bytes_to_packets_0.in_bytes_stream,(MASTER)spislave_0.avalon_streaming_source) 1 2 1 N
+levelinfo -pg 1 0 50 1270
+levelinfo -hier DigiCQSys 60 90 560 880 1120 1260
