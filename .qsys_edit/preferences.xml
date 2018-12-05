@@ -8,7 +8,7 @@
    <name preferredWidth="408" />
   </columns>
  </systemtable>
- <library expandedCategories="Project,Library,Project/DigiC" />
+ <library expandedCategories="Library,Project/DigiC,Project" />
  <window width="2578" height="1420" x="-9" y="-9" />
  <hdlexample language="VERILOG" />
  <generation greybox="1" simulation="VERILOG" />
