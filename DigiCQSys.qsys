@@ -125,7 +125,11 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
- <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface
+   name="global_reset"
+   internal="clk_0.clk_in_reset"
+   type="reset"
+   dir="end" />
  <interface name="pll_0_locked" internal="pll_0.locked" type="conduit" dir="end" />
  <interface
    name="pll_0_outclk_1"
@@ -138,16 +142,22 @@
    type="clock"
    dir="start" />
  <interface
+   name="pll_0_outclk_120"
+   internal="pll_0.outclk3"
+   type="clock"
+   dir="start" />
+ <interface
    name="pll_0_outclk_20"
    internal="pll_0.outclk2"
    type="clock"
    dir="start" />
+ <interface name="pll_0_refclk" internal="pll_0.refclk" type="clock" dir="end" />
  <interface
    name="qam_modulation_0_aso_out0"
    internal="QAM_Modulation_0.aso_out0"
    type="avalon_streaming"
    dir="start" />
- <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
+ <interface name="qsys_clkin" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
    name="spislave_0_export_0"
    internal="spislave_0.export_0"
@@ -164,7 +174,7 @@
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
-  <parameter name="resetSynchronousEdges" value="NONE" />
+  <parameter name="resetSynchronousEdges" value="BOTH" />
  </module>
  <module name="pll_0" kind="altera_pll" version="18.0" enabled="1">
   <parameter name="debug_print_output" value="false" />
@@ -201,7 +211,7 @@
   <parameter name="gui_actual_phase_shift16" value="0" />
   <parameter name="gui_actual_phase_shift17" value="0" />
   <parameter name="gui_actual_phase_shift2" value="0" />
-  <parameter name="gui_actual_phase_shift3" value="0" />
+  <parameter name="gui_actual_phase_shift3" value="45.0 deg" />
   <parameter name="gui_actual_phase_shift4" value="0" />
   <parameter name="gui_actual_phase_shift5" value="0" />
   <parameter name="gui_actual_phase_shift6" value="0" />
@@ -283,7 +293,7 @@
   <parameter name="gui_fractional_cout" value="32" />
   <parameter name="gui_mif_generate" value="false" />
   <parameter name="gui_multiply_factor" value="1" />
-  <parameter name="gui_number_of_clocks" value="3" />
+  <parameter name="gui_number_of_clocks" value="4" />
   <parameter name="gui_operation_mode" value="direct" />
   <parameter name="gui_output_clock_frequency0" value="1.0" />
   <parameter name="gui_output_clock_frequency1" value="10.0" />
@@ -296,7 +306,7 @@
   <parameter name="gui_output_clock_frequency16" value="100.0" />
   <parameter name="gui_output_clock_frequency17" value="100.0" />
   <parameter name="gui_output_clock_frequency2" value="20.0" />
-  <parameter name="gui_output_clock_frequency3" value="100.0" />
+  <parameter name="gui_output_clock_frequency3" value="120.0" />
   <parameter name="gui_output_clock_frequency4" value="100.0" />
   <parameter name="gui_output_clock_frequency5" value="100.0" />
   <parameter name="gui_output_clock_frequency6" value="100.0" />
@@ -355,7 +365,7 @@
   <parameter name="gui_ps_units16" value="ps" />
   <parameter name="gui_ps_units17" value="ps" />
   <parameter name="gui_ps_units2" value="ps" />
-  <parameter name="gui_ps_units3" value="ps" />
+  <parameter name="gui_ps_units3" value="degrees" />
   <parameter name="gui_ps_units4" value="ps" />
   <parameter name="gui_ps_units5" value="ps" />
   <parameter name="gui_ps_units6" value="ps" />
@@ -407,7 +417,6 @@
    version="18.0"
    start="clk_0.clk"
    end="spislave_0.clock_sink" />
- <connection kind="clock" version="18.0" start="clk_0.clk" end="pll_0.refclk" />
  <connection
    kind="reset"
    version="18.0"

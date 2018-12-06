@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="DigiCQSys" kind="DigiCQSys" version="1.0" fabric="QSYS">
  <!-- Format version 18.0 614 (Future versions may contain additional information.) -->
- <!-- 2018.12.06.21:33:58 -->
+ <!-- 2018.12.06.23:48:24 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1544103238</value>
+  <value>1544111304</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -48,7 +48,7 @@
   <valid>true</valid>
   <sysinfo_type>DEVICE_SPEEDGRADE</sysinfo_type>
  </parameter>
- <parameter name="AUTO_CLK_CLOCK_RATE">
+ <parameter name="AUTO_PLL_0_REFCLK_CLOCK_RATE">
   <type>java.lang.Long</type>
   <value>-1</value>
   <derived>false</derived>
@@ -56,9 +56,9 @@
   <visible>false</visible>
   <valid>true</valid>
   <sysinfo_type>CLOCK_RATE</sysinfo_type>
-  <sysinfo_arg>clk</sysinfo_arg>
+  <sysinfo_arg>pll_0_refclk</sysinfo_arg>
  </parameter>
- <parameter name="AUTO_CLK_CLOCK_DOMAIN">
+ <parameter name="AUTO_PLL_0_REFCLK_CLOCK_DOMAIN">
   <type>java.lang.Integer</type>
   <value>-1</value>
   <derived>false</derived>
@@ -66,9 +66,9 @@
   <visible>false</visible>
   <valid>true</valid>
   <sysinfo_type>CLOCK_DOMAIN</sysinfo_type>
-  <sysinfo_arg>clk</sysinfo_arg>
+  <sysinfo_arg>pll_0_refclk</sysinfo_arg>
  </parameter>
- <parameter name="AUTO_CLK_RESET_DOMAIN">
+ <parameter name="AUTO_PLL_0_REFCLK_RESET_DOMAIN">
   <type>java.lang.Integer</type>
   <value>-1</value>
   <derived>false</derived>
@@ -76,7 +76,37 @@
   <visible>false</visible>
   <valid>true</valid>
   <sysinfo_type>RESET_DOMAIN</sysinfo_type>
-  <sysinfo_arg>clk</sysinfo_arg>
+  <sysinfo_arg>pll_0_refclk</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_QSYS_CLKIN_CLOCK_RATE">
+  <type>java.lang.Long</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>CLOCK_RATE</sysinfo_type>
+  <sysinfo_arg>qsys_clkin</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_QSYS_CLKIN_CLOCK_DOMAIN">
+  <type>java.lang.Integer</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>CLOCK_DOMAIN</sysinfo_type>
+  <sysinfo_arg>qsys_clkin</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_QSYS_CLKIN_RESET_DOMAIN">
+  <type>java.lang.Integer</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>RESET_DOMAIN</sysinfo_type>
+  <sysinfo_arg>qsys_clkin</sysinfo_arg>
  </parameter>
  <parameter name="deviceFamily">
   <type>java.lang.String</type>
@@ -558,7 +588,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="resetSynchronousEdges">
    <type>com.altera.sopcmodel.reset.Reset$Edges</type>
-   <value>NONE</value>
+   <value>BOTH</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -655,7 +685,7 @@ parameters are a RESULT of the module parameters. -->
    </assignment>
    <parameter name="associatedClock">
     <type>java.lang.String</type>
-    <value></value>
+    <value>clk_in</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -663,7 +693,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="synchronousEdges">
     <type>com.altera.sopcmodel.reset.Reset$Edges</type>
-    <value>NONE</value>
+    <value>BOTH</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -780,12 +810,6 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>clock_sink</slaveName>
     <name>spislave_0.clock_sink</name>
    </clockDomainMember>
-   <clockDomainMember>
-    <isBridge>false</isBridge>
-    <moduleName>pll_0</moduleName>
-    <slaveName>refclk</slaveName>
-    <name>pll_0.refclk</name>
-   </clockDomainMember>
   </interface>
   <interface name="clk_reset" kind="reset_source" version="18.0">
    <!-- The connection points exposed by a module instance for the
@@ -793,7 +817,7 @@ particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
    <parameter name="associatedClock">
     <type>java.lang.String</type>
-    <value></value>
+    <value>clk</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -817,7 +841,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="synchronousEdges">
     <type>com.altera.sopcmodel.reset.Reset$Edges</type>
-    <value>NONE</value>
+    <value>BOTH</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -1008,7 +1032,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_number_of_clocks">
    <type>int</type>
-   <value>3</value>
+   <value>4</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1016,7 +1040,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="number_of_clocks">
    <type>int</type>
-   <value>3</value>
+   <value>4</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1080,7 +1104,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_multiply_factor0">
    <type>int</type>
-   <value>8</value>
+   <value>9</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1088,7 +1112,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_frac_multiply_factor0">
    <type>long</type>
-   <value>1</value>
+   <value>2576980378</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1096,7 +1120,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_divide_factor0">
    <type>int</type>
-   <value>400</value>
+   <value>480</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1176,7 +1200,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_multiply_factor1">
    <type>int</type>
-   <value>8</value>
+   <value>9</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1184,7 +1208,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_frac_multiply_factor1">
    <type>long</type>
-   <value>1</value>
+   <value>2576980378</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1192,7 +1216,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_divide_factor1">
    <type>int</type>
-   <value>40</value>
+   <value>48</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1272,7 +1296,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_multiply_factor2">
    <type>int</type>
-   <value>8</value>
+   <value>9</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1280,7 +1304,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_frac_multiply_factor2">
    <type>long</type>
-   <value>1</value>
+   <value>2576980378</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1288,7 +1312,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_divide_factor2">
    <type>int</type>
-   <value>20</value>
+   <value>24</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1352,10 +1376,10 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_output_clock_frequency3">
    <type>double</type>
-   <value>100.0</value>
+   <value>120.0</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>false</visible>
+   <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="gui_divide_factor_c3">
@@ -1368,7 +1392,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_multiply_factor3">
    <type>int</type>
-   <value>1</value>
+   <value>9</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1376,7 +1400,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_frac_multiply_factor3">
    <type>long</type>
-   <value>1</value>
+   <value>2576980378</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1384,7 +1408,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_actual_divide_factor3">
    <type>int</type>
-   <value>1</value>
+   <value>4</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1395,15 +1419,15 @@ the requested settings for a module instance. -->
    <value>0 MHz</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>false</visible>
+   <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="gui_ps_units3">
    <type>java.lang.String</type>
-   <value>ps</value>
+   <value>degrees</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>false</visible>
+   <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="gui_phase_shift3">
@@ -1419,15 +1443,15 @@ the requested settings for a module instance. -->
    <value>0.0</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>false</visible>
+   <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="gui_actual_phase_shift3">
    <type>java.lang.String</type>
-   <value>0</value>
+   <value>45.0 deg</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>false</visible>
+   <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="gui_duty_cycle3">
@@ -1435,7 +1459,7 @@ the requested settings for a module instance. -->
    <value>50</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>false</visible>
+   <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="gui_cascade_counter4">
@@ -2856,7 +2880,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="output_clock_frequency3">
    <type>java.lang.String</type>
-   <value>0 MHz</value>
+   <value>120.000000 MHz</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2864,7 +2888,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="phase_shift3">
    <type>java.lang.String</type>
-   <value>0 ps</value>
+   <value>1042 ps</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -3288,7 +3312,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="m_cnt_hi_div">
    <type>int</type>
-   <value>4</value>
+   <value>5</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3336,7 +3360,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="m_cnt_odd_div_duty_en">
    <type>java.lang.String</type>
-   <value>false</value>
+   <value>true</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3352,7 +3376,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_hi_div0">
    <type>int</type>
-   <value>200</value>
+   <value>240</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3360,7 +3384,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_lo_div0">
    <type>int</type>
-   <value>200</value>
+   <value>240</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3408,7 +3432,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_hi_div1">
    <type>int</type>
-   <value>20</value>
+   <value>24</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3416,7 +3440,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_lo_div1">
    <type>int</type>
-   <value>20</value>
+   <value>24</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3464,7 +3488,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_hi_div2">
    <type>int</type>
-   <value>10</value>
+   <value>12</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3472,7 +3496,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_lo_div2">
    <type>int</type>
-   <value>10</value>
+   <value>12</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3520,7 +3544,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_hi_div3">
    <type>int</type>
-   <value>1</value>
+   <value>2</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3528,7 +3552,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_lo_div3">
    <type>int</type>
-   <value>1</value>
+   <value>2</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3544,7 +3568,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_ph_mux_prst3">
    <type>int</type>
-   <value>0</value>
+   <value>4</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -3560,7 +3584,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_bypass_en3">
    <type>java.lang.String</type>
-   <value>true</value>
+   <value>false</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -4384,7 +4408,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="pll_output_clk_frequency">
    <type>java.lang.String</type>
-   <value>400.0 MHz</value>
+   <value>480.0 MHz</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -4392,7 +4416,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="pll_fractional_division">
    <type>java.lang.String</type>
-   <value>1</value>
+   <value>2576980378</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -4440,7 +4464,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_parameter_list">
    <type>[Ljava.lang.String;</type>
-   <value>M-Counter Hi Divide,M-Counter Low Divide,N-Counter Hi Divide,N-Counter Low Divide,M-Counter Bypass Enable,N-Counter Bypass Enable,M-Counter Odd Divide Enable,N-Counter Odd Divide Enable,C-Counter-0 Hi Divide,C-Counter-0 Low Divide,C-Counter-0 Coarse Phase Shift,C-Counter-0 VCO Phase Tap,C-Counter-0 Input Source,C-Counter-0 Bypass Enable,C-Counter-0 Odd Divide Enable,C-Counter-1 Hi Divide,C-Counter-1 Low Divide,C-Counter-1 Coarse Phase Shift,C-Counter-1 VCO Phase Tap,C-Counter-1 Input Source,C-Counter-1 Bypass Enable,C-Counter-1 Odd Divide Enable,C-Counter-2 Hi Divide,C-Counter-2 Low Divide,C-Counter-2 Coarse Phase Shift,C-Counter-2 VCO Phase Tap,C-Counter-2 Input Source,C-Counter-2 Bypass Enable,C-Counter-2 Odd Divide Enable,VCO Post Divide Counter Enable,Charge Pump current (uA),Loop Filter Bandwidth Resistor (Ohms) ,PLL Output VCO Frequency,K-Fractional Division Value (DSM),Feedback Clock Type,Feedback Clock MUX 1,Feedback Clock MUX 2,M Counter Source MUX,PLL Auto Reset</value>
+   <value>M-Counter Hi Divide,M-Counter Low Divide,N-Counter Hi Divide,N-Counter Low Divide,M-Counter Bypass Enable,N-Counter Bypass Enable,M-Counter Odd Divide Enable,N-Counter Odd Divide Enable,C-Counter-0 Hi Divide,C-Counter-0 Low Divide,C-Counter-0 Coarse Phase Shift,C-Counter-0 VCO Phase Tap,C-Counter-0 Input Source,C-Counter-0 Bypass Enable,C-Counter-0 Odd Divide Enable,C-Counter-1 Hi Divide,C-Counter-1 Low Divide,C-Counter-1 Coarse Phase Shift,C-Counter-1 VCO Phase Tap,C-Counter-1 Input Source,C-Counter-1 Bypass Enable,C-Counter-1 Odd Divide Enable,C-Counter-2 Hi Divide,C-Counter-2 Low Divide,C-Counter-2 Coarse Phase Shift,C-Counter-2 VCO Phase Tap,C-Counter-2 Input Source,C-Counter-2 Bypass Enable,C-Counter-2 Odd Divide Enable,C-Counter-3 Hi Divide,C-Counter-3 Low Divide,C-Counter-3 Coarse Phase Shift,C-Counter-3 VCO Phase Tap,C-Counter-3 Input Source,C-Counter-3 Bypass Enable,C-Counter-3 Odd Divide Enable,VCO Post Divide Counter Enable,Charge Pump current (uA),Loop Filter Bandwidth Resistor (Ohms) ,PLL Output VCO Frequency,K-Fractional Division Value (DSM),Feedback Clock Type,Feedback Clock MUX 1,Feedback Clock MUX 2,M Counter Source MUX,PLL Auto Reset</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -4448,7 +4472,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_parameter_values">
    <type>[Ljava.lang.String;</type>
-   <value>4,4,256,256,false,true,false,false,200,200,1,0,ph_mux_clk,false,false,20,20,1,0,ph_mux_clk,false,false,10,10,1,0,ph_mux_clk,false,false,2,20,4000,400.0 MHz,1,none,glb,m_cnt,ph_mux_clk,false</value>
+   <value>5,4,256,256,false,true,true,false,240,240,1,0,ph_mux_clk,false,false,24,24,1,0,ph_mux_clk,false,false,12,12,1,0,ph_mux_clk,false,false,2,2,1,4,ph_mux_clk,false,false,2,20,4000,480.0 MHz,2576980378,none,glb,m_cnt,ph_mux_clk,false</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -4938,6 +4962,75 @@ parameters are a RESULT of the module parameters. -->
    <isStart>true</isStart>
    <port>
     <name>outclk_2</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>clk</role>
+   </port>
+  </interface>
+  <interface name="outclk3" kind="clock_source" version="18.0">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="associatedDirectClock">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockRate">
+    <type>long</type>
+    <value>120000000</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockRateKnown">
+    <type>boolean</type>
+    <value>true</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="externallyDriven">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="ptfSchematicName">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>clock</type>
+   <isStart>true</isStart>
+   <port>
+    <name>outclk_3</name>
     <direction>Output</direction>
     <width>1</width>
     <role>clk</role>
@@ -6059,33 +6152,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>clock_sink</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk/pll_0.refclk"
-   kind="clock"
-   version="18.0"
-   start="clk_0.clk"
-   end="pll_0.refclk">
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>clk_0</startModule>
-  <startConnectionPoint>clk</startConnectionPoint>
-  <endModule>pll_0</endModule>
-  <endConnectionPoint>refclk</endConnectionPoint>
- </connection>
- <connection
    name="clk_0.clk_reset/st_bytes_to_packets_0.clk_reset"
    kind="reset"
    version="18.0"
@@ -6282,7 +6348,7 @@ parameters are a RESULT of the module parameters. -->
   <version>18.0</version>
  </plugin>
  <plugin>
-  <instanceCount>3</instanceCount>
+  <instanceCount>4</instanceCount>
   <name>clock_source</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -6322,7 +6388,7 @@ parameters are a RESULT of the module parameters. -->
   <version>18.0</version>
  </plugin>
  <plugin>
-  <instanceCount>4</instanceCount>
+  <instanceCount>3</instanceCount>
   <name>clock</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>
