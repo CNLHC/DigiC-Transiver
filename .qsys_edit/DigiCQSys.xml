@@ -866,7 +866,11 @@
 														</entry>
 													</placeholder-map>
 												</leaf>
+<<<<<<< HEAD
 												<leaf id="5" nodeId="1375985011087">
+=======
+												<leaf id="1" nodeId="1375985011087">
+>>>>>>> 2775667d38a84622a3a23420e71069c09f8e82a8
 													<placeholders>
 														<placeholder>dock.single.Hierarchy</placeholder>
 													</placeholders>
@@ -893,6 +897,7 @@
 											<node nodeId="1372710005725" orientation="VERTICAL" divider="0.75">
 												<node nodeId="1372710005727" orientation="HORIZONTAL" divider="0.6183193900785428">
 													<node nodeId="1372710005733" orientation="VERTICAL" divider="0.75">
+<<<<<<< HEAD
 														<node nodeId="1544106590498" orientation="VERTICAL" divider="0.25">
 															<leaf id="4" nodeId="1372710005735">
 																<placeholders>
@@ -938,6 +943,54 @@
 																</placeholders>
 															</leaf>
 														</node>
+=======
+														<leaf id="4" nodeId="1372710005735">
+															<placeholders>
+																<placeholder>dock.single.Connections</placeholder>
+																<placeholder>dock.single.System\ Contents</placeholder>
+																<placeholder>dock.single.Assignments</placeholder>
+																<placeholder>dock.single.Schematic</placeholder>
+																<placeholder>dock.single.Clocks</placeholder>
+																<placeholder>dock.single.Interface\ Requirements\ \-\ Alpha</placeholder>
+																<placeholder>dock.single.Generation</placeholder>
+																<placeholder>dock.single.Clock\ Settings</placeholder>
+																<placeholder>dock.single.Instrumentation\ \-\ Beta</placeholder>
+																<placeholder>dock.single.HDL\ Example</placeholder>
+																<placeholder>dock.single.Clock\ Domains</placeholder>
+																<placeholder>dock.single.Interface\ Requirements</placeholder>
+																<placeholder>dock.single.Interconnect\ Requirements</placeholder>
+																<placeholder>dock.single.Instrumentation</placeholder>
+																<placeholder>dock.single.Instance\ Parameters</placeholder>
+																<placeholder>dock.single.Address\ Map</placeholder>
+																<placeholder>dock.single.Domains</placeholder>
+															</placeholders>
+															<placeholder-map>
+																<version>0</version>
+																<format>dock.PlaceholderList</format>
+																<entry>
+																	<key shared="false">
+																		<placeholder>dock.single.System\ Contents</placeholder>
+																	</key>
+																	<item key="convert" type="b">true</item>
+																	<item key="convert-keys" type="a"/>
+																</entry>
+																<entry>
+																	<key shared="false">
+																		<placeholder>dock.single.Address\ Map</placeholder>
+																	</key>
+																	<item key="convert" type="b">true</item>
+																	<item key="convert-keys" type="a"/>
+																</entry>
+																<entry>
+																	<key shared="false">
+																		<placeholder>dock.single.Interconnect\ Requirements</placeholder>
+																	</key>
+																	<item key="convert" type="b">true</item>
+																	<item key="convert-keys" type="a"/>
+																</entry>
+															</placeholder-map>
+														</leaf>
+>>>>>>> 2775667d38a84622a3a23420e71069c09f8e82a8
 														<leaf id="-1" nodeId="1372710005737">
 															<placeholders>
 																<placeholder>dock.single.Parameter\ Editor</placeholder>
@@ -945,7 +998,11 @@
 														</leaf>
 													</node>
 													<node nodeId="1389812802503" orientation="VERTICAL" divider="0.6704331450094162">
+<<<<<<< HEAD
 														<leaf id="0" nodeId="1389812800464">
+=======
+														<leaf id="3" nodeId="1389812800464">
+>>>>>>> 2775667d38a84622a3a23420e71069c09f8e82a8
 															<placeholders>
 																<placeholder>dock.single.Details</placeholder>
 																<placeholder>dock.single.Block\ Symbol</placeholder>
@@ -987,7 +1044,11 @@
 														</leaf>
 													</node>
 												</node>
+<<<<<<< HEAD
 												<leaf id="1" nodeId="1372710005745">
+=======
+												<leaf id="0" nodeId="1372710005745">
+>>>>>>> 2775667d38a84622a3a23420e71069c09f8e82a8
 													<placeholders>
 														<placeholder>dock.single.Messages</placeholder>
 														<placeholder>dock.single.Generation\ Messages</placeholder>
@@ -1018,6 +1079,16 @@
 								</layout>
 							</adjacent>
 							<children ignore="false">
+								<child>
+									<layout factory="predefined" placeholder="dock.single.Messages">
+										<replacement id="dockablesingle Messages"/>
+										<delegate id="delegate_ccontrol backup factory id">
+											<id>Messages</id>
+											<area/>
+										</delegate>
+									</layout>
+									<children ignore="false"/>
+								</child>
 								<child>
 									<layout factory="delegate_StackDockStationFactory">
 										<selected>1</selected>
@@ -1088,16 +1159,95 @@
 									</children>
 								</child>
 								<child>
+<<<<<<< HEAD
 									<layout factory="predefined" placeholder="dock.single.Messages">
 										<replacement id="dockablesingle Messages"/>
 										<delegate id="delegate_ccontrol backup factory id">
 											<id>Messages</id>
+=======
+									<layout factory="predefined" placeholder="dock.single.IP\ Catalog">
+										<replacement id="dockablesingle IP Catalog"/>
+										<delegate id="delegate_ccontrol backup factory id">
+											<id>IP Catalog</id>
+>>>>>>> 2775667d38a84622a3a23420e71069c09f8e82a8
 											<area/>
 										</delegate>
 									</layout>
 									<children ignore="false"/>
 								</child>
 								<child>
+<<<<<<< HEAD
+=======
+									<layout factory="delegate_StackDockStationFactory">
+										<selected>1</selected>
+										<placeholders>
+											<version>0</version>
+											<format>dock.PlaceholderList</format>
+											<entry>
+												<key shared="false">
+													<placeholder>dock.single.Block\ Symbol</placeholder>
+												</key>
+												<item key="convert" type="b">true</item>
+												<item key="convert-keys" type="a">
+													<item type="s">index</item>
+													<item type="s">id</item>
+													<item type="s">placeholder</item>
+												</item>
+												<item key="dock.index" type="i">0</item>
+												<item key="dock.id" type="i">0</item>
+												<item key="dock.placeholder" type="s">dock.single.Block\ Symbol</item>
+											</entry>
+											<entry>
+												<key shared="false">
+													<placeholder>dock.single.Parameters</placeholder>
+												</key>
+												<item key="convert" type="b">true</item>
+												<item key="convert-keys" type="a">
+													<item type="s">index</item>
+													<item type="s">id</item>
+													<item type="s">placeholder</item>
+												</item>
+												<item key="dock.index" type="i">1</item>
+												<item key="dock.id" type="i">1</item>
+												<item key="dock.placeholder" type="s">dock.single.Parameters</item>
+											</entry>
+											<entry>
+												<key shared="false">
+													<placeholder>dock.single.Details</placeholder>
+												</key>
+											</entry>
+											<entry>
+												<key shared="false">
+													<placeholder>dock.single.Presets</placeholder>
+												</key>
+											</entry>
+										</placeholders>
+									</layout>
+									<children ignore="false">
+										<child>
+											<layout factory="predefined" placeholder="dock.single.Block\ Symbol">
+												<replacement id="dockablesingle Block Symbol"/>
+												<delegate id="delegate_ccontrol backup factory id">
+													<id>Block Symbol</id>
+													<area/>
+												</delegate>
+											</layout>
+											<children ignore="false"/>
+										</child>
+										<child>
+											<layout factory="predefined" placeholder="dock.single.Parameters">
+												<replacement id="dockablesingle Parameters"/>
+												<delegate id="delegate_ccontrol backup factory id">
+													<id>Parameters</id>
+													<area/>
+												</delegate>
+											</layout>
+											<children ignore="false"/>
+										</child>
+									</children>
+								</child>
+								<child>
+>>>>>>> 2775667d38a84622a3a23420e71069c09f8e82a8
 									<layout factory="delegate_StackDockStationFactory">
 										<selected>1</selected>
 										<placeholders>
@@ -1260,6 +1410,7 @@
 										</child>
 									</children>
 								</child>
+<<<<<<< HEAD
 								<child>
 									<layout factory="delegate_StackDockStationFactory">
 										<selected>0</selected>
@@ -1319,6 +1470,8 @@
 										</child>
 									</children>
 								</child>
+=======
+>>>>>>> 2775667d38a84622a3a23420e71069c09f8e82a8
 							</children>
 						</root>
 						<root name="ccontrol west">

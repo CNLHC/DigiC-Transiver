@@ -3,6 +3,7 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces" showClockDomains="0" showResetDomains="0">
   <columns>
+<<<<<<< HEAD
    <connections preferredWidth="175" />
    <irq preferredWidth="34" />
    <name preferredWidth="408" />
@@ -12,6 +13,17 @@
  </systemtable>
  <library expandedCategories="Library,Project" />
  <window width="2560" height="1402" x="0" y="0" />
+=======
+   <connections preferredWidth="159" />
+   <irq preferredWidth="34" />
+   <name preferredWidth="408" />
+   <export preferredWidth="126" />
+   <inputclock preferredWidth="249" />
+  </columns>
+ </systemtable>
+ <library expandedCategories="Project,Library" />
+ <window width="2560" height="1113" x="-515" y="213" />
+>>>>>>> 2775667d38a84622a3a23420e71069c09f8e82a8
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
 </preferences>
