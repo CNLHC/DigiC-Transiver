@@ -1,0 +1,31 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/modeltech64_10.4/examples
+vQAM_Modulation
+!s110 1544094003
+!i10b 1
+!s100 mFe5L;_1LhdmhA^Cmo`=?3
+Ii2o7`^@Z?LQfBSAZXYMUB1
+VDg1SIo80bB@j0V0VzS_@n1
+dC:/Users/cn/Desktop/Project/DigiC-Transiver/ip/QAM
+w1544092452
+8C:/Users/cn/Desktop/Project/DigiC-Transiver/ip/QAM/QAM_Modulation.v
+FC:/Users/cn/Desktop/Project/DigiC-Transiver/ip/QAM/QAM_Modulation.v
+L0 12
+OL;L;10.4;61
+r1
+!s85 0
+31
+!s108 1544094003.033000
+!s107 C:/Users/cn/Desktop/Project/DigiC-Transiver/ip/QAM/QAM_Modulation.v|
+!s90 -reportprogress|300|-work|QAM|-vopt|-stats=none|C:/Users/cn/Desktop/Project/DigiC-Transiver/ip/QAM/QAM_Modulation.v|
+!i113 0
+o-work QAM -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+n@q@a@m_@modulation

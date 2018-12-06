@@ -19,56 +19,60 @@ module QAM_Modulation #(
 		input  wire        asi_in0_endofpacket,   //         .endofpacket
 		input  wire        clock_clk,             //    clock.clk
 		input  wire        reset_reset,           //    reset.reset
-		output wire [31:0] aso_out0_data,         // aso_out0.data
+		output reg  [32:0] aso_out0_data,         // aso_out0.data
 		input  wire        aso_out0_ready,        //         .ready
-		output wire        aso_out0_valid,        //         .valid
-		output wire [31:0] aso_out1_data,         // aso_out1.data
-		input  wire        aso_out1_ready,        //         .ready
-		output wire        aso_out1_valid         //         .valid
+		output reg         aso_out0_valid,        //         .valid
+        output reg         aso_out0_endofpacket,
+        output reg         aso_out0_startofpacket 
 	);
-
-	// TODO: Auto-generated HDL template
-   
-
-	//assign asi_in0_ready = 1'b0;
-	//assign aso_out0_valid = 1'b0;
-	//assign aso_out0_data = 32'b00000000000000000000000000000000;
-	//assign aso_out1_valid = 1'b0;
-	//assign aso_out1_data = 32'b00000000000000000000000000000000;
     assign  asi_in0_ready= 1'b1;
-
     integer index;
+
     reg [1:0]tInnerStateFlag;//00-idle 01-reading packet
     always @(posedge asi_in0_startofpacket) begin
-        case tInnerStateFlag:
-            2'b00: tInnerStateFlag<=2'b01;
+        case (tInnerStateFlag)
+            2'b00: begin 
+                tInnerStateFlag<=2'b01;
+                aso_out0_valid<=1;
+            end
+        endcase
+    end
+    always @(posedge asi_in0_endofpacket) begin
+        case (tInnerStateFlag)
+            2'b01: begin 
+                tInnerStateFlag<=2'b00;
+                aso_out0_valid<=0;
+            end
         endcase
     end
     always @(posedge clock_clk) begin
-        case tInnerStateFlag:
-            2'b01:
-            if(asi_in0_valid) begin 
+        case (tInnerStateFlag)
+            2'b01: if(asi_in0_valid) begin 
                 for (index=1;index<=16;index=index+1) begin
-                    case asi_in0_data[2*index-1:2*(index-1)] 
+                    case (asi_in0_data[(2*index-1)-:2])
                         2'b00: 
                             begin 
-                                aso_out0_data[2*index-1:2*(index-1)]<=1;
-                                aso_out1_data[2*index-1:2*(index-1)]<=1;
+                                aso_out0_valid<=1;
+                                aso_out0_data[31:16]<=1;
+                                aso_out0_data[15:0]<=1;
                             end
                         2'b01:
                             begin 
-                                aso_out0_data[2*index-1:2*(index-1)]<=-1;
-                                aso_out1_data[2*index-1:2*(index-1)]<=1;
+                                aso_out0_valid<=1;
+                                aso_out0_data[31:16]<=-1;
+                                aso_out0_data[15:0]<=1;
                             end
                         2'b11:
                             begin 
-                                aso_out0_data[2*index-1:2*(index-1)]<=-1;
-                                aso_out1_data[2*index-1:2*(index-1)]<=-1;
+                                aso_out0_valid<=1;
+                                aso_out0_data[31:16]<=-1;
+                                aso_out0_data[15:0]<=-1;
                             end
                         2'b10:
                             begin 
-                                aso_out0_data[2*index-1:2*(index-1)]<=1;
-                                aso_out1_data[2*index-1:2*(index-1)]<=-1;
+                                aso_out0_valid<=1;
+                                aso_out0_data[31:16]<=1;
+                                aso_out0_data[15:0]<=-1;
                             end
                     endcase
                 end

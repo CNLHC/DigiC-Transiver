@@ -11,6 +11,11 @@ create_clock -period "50.000000 MHz" [get_ports CLOCK3_50]
 create_clock -period "50.000000 MHz" [get_ports CLOCK4_50]
 create_clock -period "50.000000 MHz" [get_ports CLOCK_50]
 
+create_clock -period "27 MHz"  -name tv_27m [get_ports TD_CLK27]
+# AUDIO : 48kHz 384fs 32-bit data
+create_clock -period "18.432 MHz" -name clk_audxck [get_ports AUD_XCK]
+create_clock -period "1.536 MH" -name clk_audbck [get_ports AUD_BCLK]
+
 # for enhancing USB BlasterII to be reliable, 25MHz
 create_clock -name {altera_reserved_tck} -period 40 {altera_reserved_tck}
 set_input_delay -clock altera_reserved_tck -clock_fall 3 [get_ports altera_reserved_tdi]

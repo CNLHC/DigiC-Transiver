@@ -19,7 +19,7 @@
 <br />
 <a href="#VGA"><li>VGA</li></a>
 <br />
-<a href="#HPS"><li>HPS</li></a>
+<a href="#GPIO"><li>GPIO</li></a>
 <br />
 <a href="#HSMC"><li>HSMC</li></a>
 <br />
@@ -933,8 +933,8 @@
    <td align="left">3.3-V LVTTL</td>
 </tr>
 </table>
-<h2><a name="HPS"></a></h2><table border="3">
-<caption  align="left">HPS</caption>
+<h2><a name="GPIO"></a></h2><table border="3">
+<caption  align="left">GPIO connect to GPIO Default</caption>
 <br />
 <br />
 <tr>
@@ -942,810 +942,259 @@
    <th align="left" bgcolor="Khaki">Location</th>
    <th align="left" bgcolor="Khaki">Direction</th>
    <th align="left" bgcolor="Khaki">Standard</th>
+   <th align="left" bgcolor="Khaki">GPIO Pin Index</th>
 </tr>
 <tr>
-   <td align="left">HPS_CONV_USB_N</td>
-   <td align="left"></td>
+   <td align="left">GPIO[0]</td>
+   <td align="left">W15</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">1</td>
 </tr>
 <tr>
-   <td align="left">HPS_DDR3_ADDR[0]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[1]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[2]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[3]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[4]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[5]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[6]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[7]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[8]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[9]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[10]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[11]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[12]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[13]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ADDR[14]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_BA[0]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_BA[1]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_BA[2]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_CAS_N</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_CKE</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_CK_N</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_CK_P</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_CS_N</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DM[0]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DM[1]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DM[2]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DM[3]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[0]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[1]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[2]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[3]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[4]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[5]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[6]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[7]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[8]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[9]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[10]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[11]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[12]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[13]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[14]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[15]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[16]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[17]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[18]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[19]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[20]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[21]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[22]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[23]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[24]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[25]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[26]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[27]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[28]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[29]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[30]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQ[31]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQS_N[0]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQS_N[1]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQS_N[2]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQS_N[3]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQS_P[0]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQS_P[1]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQS_P[2]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_DQS_P[3]</td>
-   <td align="left"></td>
-   <td align="left">inout </td>
-   <td align="left">Differential 1.5-V SSTL Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_ODT</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_RAS_N</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_RESET_N</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_RZQ</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_DDR3_WE_N</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">SSTL-15 Class I</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_GTX_CLK</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_INT_N</td>
-   <td align="left"></td>
+   <td align="left">GPIO[1]</td>
+   <td align="left">AK2</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">2</td>
 </tr>
 <tr>
-   <td align="left">HPS_ENET_MDC</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_MDIO</td>
-   <td align="left"></td>
+   <td align="left">GPIO[2]</td>
+   <td align="left">Y16</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">3</td>
 </tr>
 <tr>
-   <td align="left">HPS_ENET_RX_CLK</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_RX_DATA[0]</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_RX_DATA[1]</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_RX_DATA[2]</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_RX_DATA[3]</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_RX_DV</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_TX_DATA[0]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_TX_DATA[1]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_TX_DATA[2]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_TX_DATA[3]</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_ENET_TX_EN</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_FLASH_DATA[0]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[3]</td>
+   <td align="left">AK3</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">4</td>
 </tr>
 <tr>
-   <td align="left">HPS_FLASH_DATA[1]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[4]</td>
+   <td align="left">AJ1</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">5</td>
 </tr>
 <tr>
-   <td align="left">HPS_FLASH_DATA[2]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[5]</td>
+   <td align="left">AJ2</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">6</td>
 </tr>
 <tr>
-   <td align="left">HPS_FLASH_DATA[3]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[6]</td>
+   <td align="left">AH2</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">7</td>
 </tr>
 <tr>
-   <td align="left">HPS_FLASH_DCLK</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_FLASH_NCSO</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_GSENSOR_INT</td>
-   <td align="left"></td>
+   <td align="left">GPIO[7]</td>
+   <td align="left">AH3</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">8</td>
 </tr>
 <tr>
-   <td align="left">HPS_I2C1_SCLK</td>
-   <td align="left"></td>
+   <td align="left">GPIO[8]</td>
+   <td align="left">AH4</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">9</td>
 </tr>
 <tr>
-   <td align="left">HPS_I2C1_SDAT</td>
-   <td align="left"></td>
+   <td align="left">GPIO[9]</td>
+   <td align="left">AH5</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">10</td>
 </tr>
 <tr>
-   <td align="left">HPS_I2C2_SCLK</td>
-   <td align="left"></td>
+   <td align="left">GPIO[10]</td>
+   <td align="left">AG1</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">13</td>
 </tr>
 <tr>
-   <td align="left">HPS_I2C2_SDAT</td>
-   <td align="left"></td>
+   <td align="left">GPIO[11]</td>
+   <td align="left">AG2</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">14</td>
 </tr>
 <tr>
-   <td align="left">HPS_I2C_CONTROL</td>
-   <td align="left"></td>
+   <td align="left">GPIO[12]</td>
+   <td align="left">AG3</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">15</td>
 </tr>
 <tr>
-   <td align="left">HPS_KEY</td>
-   <td align="left"></td>
+   <td align="left">GPIO[13]</td>
+   <td align="left">AG5</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">16</td>
 </tr>
 <tr>
-   <td align="left">HPS_LCM_BK</td>
-   <td align="left"></td>
+   <td align="left">GPIO[14]</td>
+   <td align="left">AG6</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">17</td>
 </tr>
 <tr>
-   <td align="left">HPS_LCM_D_C</td>
-   <td align="left"></td>
+   <td align="left">GPIO[15]</td>
+   <td align="left">AG7</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">18</td>
 </tr>
 <tr>
-   <td align="left">HPS_LCM_RST_N</td>
-   <td align="left"></td>
+   <td align="left">GPIO[16]</td>
+   <td align="left">AG8</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">19</td>
 </tr>
 <tr>
-   <td align="left">HPS_LCM_SPIM_CLK</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_LCM_SPIM_MISO</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_LCM_SPIM_MOSI</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_LCM_SPIM_SS</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_LED</td>
-   <td align="left"></td>
+   <td align="left">GPIO[17]</td>
+   <td align="left">AF4</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">20</td>
 </tr>
 <tr>
-   <td align="left">HPS_LTC_GPIO</td>
-   <td align="left"></td>
+   <td align="left">GPIO[18]</td>
+   <td align="left">AF5</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">21</td>
 </tr>
 <tr>
-   <td align="left">HPS_SD_CLK</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_SD_CMD</td>
-   <td align="left"></td>
+   <td align="left">GPIO[19]</td>
+   <td align="left">AF6</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">22</td>
 </tr>
 <tr>
-   <td align="left">HPS_SD_DATA[0]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[20]</td>
+   <td align="left">AF8</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">23</td>
 </tr>
 <tr>
-   <td align="left">HPS_SD_DATA[1]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[21]</td>
+   <td align="left">AF9</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">24</td>
 </tr>
 <tr>
-   <td align="left">HPS_SD_DATA[2]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[22]</td>
+   <td align="left">AF10</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">25</td>
 </tr>
 <tr>
-   <td align="left">HPS_SD_DATA[3]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[23]</td>
+   <td align="left">AE7</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">26</td>
 </tr>
 <tr>
-   <td align="left">HPS_SPIM_CLK</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_SPIM_MISO</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_SPIM_MOSI</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_SPIM_SS</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_UART_RX</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_UART_TX</td>
-   <td align="left"></td>
-   <td align="left">output</td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_USB_CLKOUT</td>
-   <td align="left"></td>
-   <td align="left">input </td>
-   <td align="left">3.3-V LVTTL</td>
-</tr>
-<tr>
-   <td align="left">HPS_USB_DATA[0]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[24]</td>
+   <td align="left">AE9</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">27</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_DATA[1]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[25]</td>
+   <td align="left">AE11</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">28</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_DATA[2]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[26]</td>
+   <td align="left">AE12</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">31</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_DATA[3]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[27]</td>
+   <td align="left">AD7</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">32</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_DATA[4]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[28]</td>
+   <td align="left">AD9</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">33</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_DATA[5]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[29]</td>
+   <td align="left">AD10</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">34</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_DATA[6]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[30]</td>
+   <td align="left">AD11</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">35</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_DATA[7]</td>
-   <td align="left"></td>
+   <td align="left">GPIO[31]</td>
+   <td align="left">AD12</td>
    <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">36</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_DIR</td>
-   <td align="left"></td>
-   <td align="left">input </td>
+   <td align="left">GPIO[32]</td>
+   <td align="left">AC9</td>
+   <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">37</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_NXT</td>
-   <td align="left"></td>
-   <td align="left">input </td>
+   <td align="left">GPIO[33]</td>
+   <td align="left">AC12</td>
+   <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">38</td>
 </tr>
 <tr>
-   <td align="left">HPS_USB_STP</td>
-   <td align="left"></td>
-   <td align="left">output</td>
+   <td align="left">GPIO[34]</td>
+   <td align="left">AB12</td>
+   <td align="left">inout </td>
    <td align="left">3.3-V LVTTL</td>
+   <td align="left">39</td>
+</tr>
+<tr>
+   <td align="left">GPIO[35]</td>
+   <td align="left">AA12</td>
+   <td align="left">inout </td>
+   <td align="left">3.3-V LVTTL</td>
+   <td align="left">40</td>
 </tr>
 </table>
 <h2><a name="HSMC"></a></h2><table border="3">
