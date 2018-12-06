@@ -1,8 +1,14 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst unsaved.clk_0 -pg 1 -lvl 1 -y 30
-preplace inst unsaved -pg 1 -lvl 1 -y 40 -regy -20
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)clk_0.clk_in,(SLAVE)unsaved.clk) 1 0 1 NJ
-levelinfo -pg 1 0 50 270
-levelinfo -hier unsaved 60 90 260
+preplace inst OFDM_Modulation.fft_ii_0 -pg 1 -lvl 2 -y 50
+preplace inst OFDM_Modulation.OFDM_Cyclic_Prefix_Adder_0 -pg 1 -lvl 3 -y 110
+preplace inst OFDM_Modulation -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst OFDM_Modulation.clk_0 -pg 1 -lvl 1 -y 30
+preplace netloc EXPORT<net_container>OFDM_Modulation</net_container>(SLAVE)OFDM_Modulation.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>OFDM_Modulation</net_container>(SLAVE)fft_ii_0.clk,(SLAVE)OFDM_Cyclic_Prefix_Adder_0.clock,(MASTER)clk_0.clk) 1 1 2 320 140 N
+preplace netloc POINT_TO_POINT<net_container>OFDM_Modulation</net_container>(MASTER)fft_ii_0.source,(SLAVE)OFDM_Cyclic_Prefix_Adder_0.asi_in0) 1 2 1 450
+preplace netloc FAN_OUT<net_container>OFDM_Modulation</net_container>(SLAVE)OFDM_Cyclic_Prefix_Adder_0.reset,(SLAVE)fft_ii_0.rst,(MASTER)clk_0.clk_reset) 1 1 2 300 160 N
+preplace netloc EXPORT<net_container>OFDM_Modulation</net_container>(SLAVE)clk_0.clk_in,(SLAVE)OFDM_Modulation.clk) 1 0 1 NJ
+preplace netloc EXPORT<net_container>OFDM_Modulation</net_container>(SLAVE)OFDM_Modulation.fft_ii_0_sink,(SLAVE)fft_ii_0.sink) 1 0 2 NJ 100 NJ
+levelinfo -pg 1 0 90 670
+levelinfo -hier OFDM_Modulation 100 130 350 500 650
