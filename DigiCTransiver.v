@@ -90,8 +90,11 @@ module DigiCTransiver(
 );
 
     wire PLL_CLK_1M,PLL_CLK_10M,PLL_CLK_20M;
+<<<<<<< HEAD
     wire PLL_CLK_120M;
 	 wire BareMetalPLL100M;
+=======
+>>>>>>> 2775667d38a84622a3a23420e71069c09f8e82a8
 
 
 //=======================================================
@@ -119,6 +122,17 @@ module DigiCTransiver(
     
     
 
+
+	DigiCQSys u0 (
+		.clk_clk                                 (CLOCK_50),                                 //                       clk.clk
+		.spislave_0_export_0_mosi                (GPIO[0]),                //       spislave_0_export_0.mosi
+		.spislave_0_export_0_nss                 (GPIO[1]),                 //                          .nss
+		.spislave_0_export_0_miso                (GPIO[2]),                //                          .miso
+		.spislave_0_export_0_sclk                (GPIO[3]),              //                          .sclk
+		.pll_0_outclk_1_clk                      (PLL_CLK_1M),                      //            pll_0_outclk_1.clk
+		.pll_0_outclk_10_clk                     (PLL_CLK_10M),                      //            pll_0_outclk_1.clk
+		.pll_0_outclk_20_clk                     (PLL_CLK_20M)                      //           pll_0_outclk_20.clk
+	);
 
 
 
