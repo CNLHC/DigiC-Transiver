@@ -6,15 +6,17 @@ preplace inst DigiCQSys.st_bytes_to_packets_0 -pg 1 -lvl 3 -y 170
 preplace inst DigiCQSys.pll_0 -pg 1 -lvl 2 -y 30
 preplace inst DigiCQSys.QAM_Modulation_0 -pg 1 -lvl 4 -y 250
 preplace inst DigiCQSys.spislave_0 -pg 1 -lvl 2 -y 190
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)pll_0.outclk3,(MASTER)DigiCQSys.pll_0_outclk_120) 1 2 3 NJ 100 NJ 100 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.pll_0_locked,(SLAVE)pll_0.locked) 1 0 2 NJ 40 NJ
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.pll_0_refclk,(SLAVE)pll_0.refclk) 1 0 2 NJ 60 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)clk_0.clk_in,(SLAVE)DigiCQSys.qsys_clkin) 1 0 1 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)DigiCQSys.qam_modulation_0_aso_out0,(MASTER)QAM_Modulation_0.aso_out0) 1 4 1 NJ
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)pll_0.outclk2,(MASTER)DigiCQSys.pll_0_outclk_20) 1 2 3 NJ 80 NJ 80 NJ
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)QAM_Modulation_0.reset,(SLAVE)pll_0.reset,(MASTER)clk_0.clk_reset,(SLAVE)spislave_0.clock_sink_reset,(SLAVE)st_bytes_to_packets_0.clk_reset) 1 1 3 340 320 910 300 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.spislave_0_export_0,(SLAVE)spislave_0.export_0) 1 0 2 NJ 260 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)DigiCQSys.pll_0_outclk_20,(MASTER)pll_0.outclk2) 1 2 3 NJ 80 NJ 80 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)pll_0.outclk1,(MASTER)DigiCQSys.pll_0_outclk_10) 1 2 3 NJ 60 NJ 60 NJ
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)st_bytes_to_packets_0.clk_reset,(MASTER)clk_0.clk_reset,(SLAVE)pll_0.reset,(SLAVE)QAM_Modulation_0.reset,(SLAVE)spislave_0.clock_sink_reset) 1 1 3 360 320 910 300 NJ
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)pll_0.refclk,(MASTER)clk_0.clk,(SLAVE)QAM_Modulation_0.clock,(SLAVE)st_bytes_to_packets_0.clk,(SLAVE)spislave_0.clock_sink) 1 1 3 340 300 890 280 N
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.global_reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(MASTER)clk_0.clk,(SLAVE)st_bytes_to_packets_0.clk,(SLAVE)QAM_Modulation_0.clock,(SLAVE)spislave_0.clock_sink) 1 1 3 360 300 890 280 N
 preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)st_bytes_to_packets_0.in_bytes_stream,(MASTER)spislave_0.avalon_streaming_source) 1 2 1 N
 preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)st_bytes_to_packets_0.out_packets_stream,(SLAVE)QAM_Modulation_0.asi_in0) 1 3 1 1190
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)DigiCQSys.pll_0_outclk_1,(MASTER)pll_0.outclk0) 1 2 3 NJ 40 NJ 40 NJ

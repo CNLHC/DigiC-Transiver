@@ -99,11 +99,11 @@ module DigiCTransiver(
 //=======================================================
 	baremetal_pll pll0(
 		.refclk(CLOCK_50),   //  refclk.clk
-		.rst (KEY[0]),      //   reset.reset
+		.rst (~KEY[0]),      //   reset.reset
 		.outclk_0(BareMetalPLL100M)  // outclk0.clk
 	);
 
-	DigiCQSys u0 (
+	DigiCQSys u1 (
 		.qsys_clkin_clk                          (CLOCK2_50),                                 //                       clk.clk
 		.spislave_0_export_0_mosi                (GPIO[0]),                //       spislave_0_export_0.mosi
 		.spislave_0_export_0_nss                 (GPIO[1]),                 //                          .nss
@@ -113,7 +113,7 @@ module DigiCTransiver(
 		.pll_0_outclk_1_clk                      (PLL_CLK_1M),                      //            pll_0_outclk_1.clk
 		.pll_0_outclk_10_clk                     (PLL_CLK_10M),                      //            pll_0_outclk_1.clk
 		.pll_0_outclk_20_clk                     (PLL_CLK_20M),                      //           pll_0_outclk_20.clk
-      .global_reset_reset_n                    (KEY[0]),
+      .global_reset_reset_n                    (1),
 		.pll_0_outclk_120_clk                    (PLL_CLK_120M)                     //          pll_0_outclk_120.clk
 	);
     

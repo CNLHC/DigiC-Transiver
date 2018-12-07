@@ -3,15 +3,17 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces" showClockDomains="0" showResetDomains="0">
   <columns>
-   <connections preferredWidth="175" />
+   <connections preferredWidth="30" />
    <irq preferredWidth="34" />
    <name preferredWidth="408" />
    <export preferredWidth="219" />
    <inputclock preferredWidth="249" />
+   <description preferredWidth="341" />
   </columns>
  </systemtable>
- <library expandedCategories="Library,Project" />
- <window width="2560" height="1402" x="0" y="0" />
+ <library
+   expandedCategories="Library,Library/University Program/Clock,Library/Interface Protocols/PCI Express/QSYS Example Designs,Library/Qsys Interconnect/Memory-Mapped,Library/Basic Functions/Simulation; Debug and Verification/Debug and Performance,Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library/DSP/Video and Image Processing,Library/Basic Functions/Configuration and Programming,Library/Memory Interfaces and Controllers,Library/Basic Functions/Simulation; Debug and Verification/Verification,Library/University Program,Library/Basic Functions/DMA,Library/Basic Functions/Bridges and Adaptors,Library/Processors and Peripherals/Co-Processors/Nios II Custom Instructions,Library/Basic Functions,Library/Interface Protocols/PCI Express/Example Design Components,Library/Basic Functions/Simulation; Debug and Verification,Library/Qsys Interconnect/Memory-Mapped Alpha,Library/Interface Protocols/Serial,Library/Interface Protocols,Library/Processors and Peripherals/Hard Processor Components,Library/Basic Functions/Bridges and Adaptors/Streaming,Library/Basic Functions/DMA/mSGDMA Sub-core,Library/DSP,Library/University Program/Audio &amp; Video/Video,Library/Memory Interfaces and Controllers/SDRAM,Library/Processors and Peripherals/Co-Processors,Library/University Program/Audio &amp; Video,Library/Basic Functions/Simulation; Debug and Verification/Simulation,Library/Qsys Interconnect/Tri-State Components,Library/Interface Protocols/SerialLite,Project,Library/Qsys Interconnect,Library/Processors and Peripherals/Peripherals,Library/Basic Functions/On Chip Memory,Library/Tri-State Components,Library/DSP/Primitive DSP,Library/Processors and Peripherals,Library/Interface Protocols/PCI Express,Library/Processors and Peripherals/Hard Processor Systems,Library/Interface Protocols/Transceiver PHY" />
+ <window width="2578" height="1420" x="-9" y="-9" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
 </preferences>
