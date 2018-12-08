@@ -113,9 +113,8 @@ module DigiCTransiver(
 		.pll_0_outclk_1_clk                      (PLL_CLK_1M),                      
 		.pll_0_outclk_10_clk                     (PLL_CLK_10M),                      
 		.pll_0_outclk_20_clk                     (PLL_CLK_20M),                      
-        .global_reset_reset_n                    (1),
+      .global_reset_reset_n                    (1),
 		.pll_0_outclk_120_clk                    (PLL_CLK_120M),
-        .fix_length_bytes2packets_conduit_debug_status(LEDR[0])
 	);
     
     

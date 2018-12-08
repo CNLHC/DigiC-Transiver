@@ -11,8 +11,8 @@
    <description preferredWidth="341" />
   </columns>
  </systemtable>
- <library expandedCategories="Project/DigiC,Project,Library" />
- <window width="2578" height="1420" x="-9" y="-9" />
+ <library expandedCategories="Project,Project/DigiC,Library" />
+ <window width="2419" height="1314" x="-469" y="130" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
 </preferences>

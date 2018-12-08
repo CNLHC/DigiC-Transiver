@@ -39,14 +39,42 @@ module QAM_Modulation #(
         end
         else
             case (tInnerStateFlag)
-                0:if(asi_in0_startofpacket)// IDLE
-                begin 
+                0:if(asi_in0_startofpacket)begin // IDLE
                     tInnerStateFlag<=1;
                     aso_out0_valid<=1;
+                    if(asi_in0_valid) begin 
+                        for (index=1;index<=16;index=index+1) begin
+                            case (asi_in0_data[(2*index-1)-:2])
+                                2'b00: 
+                                    begin 
+                                        aso_out0_valid<=1;
+                                        aso_out0_data[31:16]<=1;
+                                        aso_out0_data[15:0]<=1;
+                                    end
+                                2'b01:
+                                    begin 
+                                        aso_out0_valid<=1;
+                                        aso_out0_data[31:16]<=-1;
+                                        aso_out0_data[15:0]<=1;
+                                    end
+                                2'b11:
+                                    begin 
+                                        aso_out0_valid<=1;
+                                        aso_out0_data[31:16]<=-1;
+                                        aso_out0_data[15:0]<=-1;
+                                    end
+                                2'b10:
+                                    begin 
+                                        aso_out0_valid<=1;
+                                        aso_out0_data[31:16]<=1;
+                                        aso_out0_data[15:0]<=-1;
+                                    end
+                            endcase
+                        end
+                    end
                 end
                 1: //SOP Asserted
                     tInnerStateFlag<=2;
-
                 2:begin // Mapping QAM Symbol
                     if(asi_in0_endofpacket) 
                         tInnerStateFlag<=3;

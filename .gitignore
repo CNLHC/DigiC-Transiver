@@ -51,4 +51,4 @@ PLLJ_PLLSPE_INFO.txt # The generated PLL specification file
 output_files/
 *.swp
 *.stp
-*.stp
+stp1.stp

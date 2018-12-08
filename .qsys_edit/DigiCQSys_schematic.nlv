@@ -6,20 +6,20 @@ preplace inst DigiCQSys.pll_0 -pg 1 -lvl 2 -y 40
 preplace inst DigiCQSys.QAM_Modulation_0 -pg 1 -lvl 5 -y 340
 preplace inst DigiCQSys.spislave_0 -pg 1 -lvl 2 -y 280
 preplace inst DigiCQSys.Fix_Length_Bytes2Packets_0 -pg 1 -lvl 3 -y 120
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)spislave_0.clock_sink_reset,(SLAVE)QAM_Modulation_0.reset,(MASTER)clk_0.clk_reset,(SLAVE)pll_0.reset,(SLAVE)Fix_Length_Bytes2Packets_0.reset) 1 1 4 410 410 1000 390 NJ 390 NJ
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)Fix_Length_Bytes2Packets_0.clock_1,(SLAVE)QAM_Modulation_0.clock,(MASTER)clk_0.clk,(SLAVE)spislave_0.clock_sink) 1 1 4 430 390 980 370 NJ 370 NJ
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)pll_0.refclk,(SLAVE)DigiCQSys.pll_0_refclk) 1 0 2 NJ 70 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)pll_0.outclk0,(MASTER)DigiCQSys.pll_0_outclk_1) 1 2 5 NJ 40 NJ 40 NJ 40 NJ 40 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)spislave_0.export_0,(SLAVE)DigiCQSys.spislave_0_export_0) 1 0 2 NJ 350 NJ
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.pll_0_locked,(SLAVE)pll_0.locked) 1 0 2 NJ 50 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.qsys_clkin,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.pll_0_refclk,(SLAVE)pll_0.refclk) 1 0 2 NJ 70 NJ
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(MASTER)clk_0.clk_reset,(SLAVE)Fix_Length_Bytes2Packets_0.reset,(SLAVE)spislave_0.clock_sink_reset,(SLAVE)pll_0.reset,(SLAVE)QAM_Modulation_0.reset) 1 1 4 410 410 1000 390 NJ 390 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)DigiCQSys.qam_modulation_0_aso_out0,(MASTER)QAM_Modulation_0.aso_out0) 1 5 2 NJ 370 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)pll_0.outclk2,(MASTER)DigiCQSys.pll_0_outclk_20) 1 2 5 NJ 90 NJ 90 NJ 80 NJ 160 NJ
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)Fix_Length_Bytes2Packets_0.asi_in0,(MASTER)spislave_0.avalon_streaming_source) 1 2 1 960
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)DigiCQSys.pll_0_outclk_10,(MASTER)pll_0.outclk1) 1 2 5 NJ 70 NJ 70 NJ 60 NJ 60 NJ
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.spislave_0_export_0,(SLAVE)spislave_0.export_0) 1 0 2 NJ 350 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)DigiCQSys.pll_0_outclk_120,(MASTER)pll_0.outclk3) 1 2 5 NJ 110 NJ 110 NJ 110 NJ 110 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)spislave_0.avalon_streaming_source,(SLAVE)Fix_Length_Bytes2Packets_0.asi_in0) 1 2 1 960
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(MASTER)pll_0.outclk1,(MASTER)DigiCQSys.pll_0_outclk_10) 1 2 5 NJ 70 NJ 70 NJ 60 NJ 60 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)Fix_Length_Bytes2Packets_0.conduit_debug,(SLAVE)DigiCQSys.fix_length_bytes2packets_conduit_debug) 1 0 3 NJ 170 NJ 170 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.global_reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)spislave_0.clock_sink,(SLAVE)Fix_Length_Bytes2Packets_0.clock_1,(SLAVE)QAM_Modulation_0.clock,(MASTER)clk_0.clk) 1 1 4 430 390 980 370 NJ 370 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)pll_0.locked,(SLAVE)DigiCQSys.pll_0_locked) 1 0 2 NJ 50 NJ
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.fix_length_bytes2packets_conduit_debug,(SLAVE)Fix_Length_Bytes2Packets_0.conduit_debug) 1 0 3 NJ 170 NJ 170 NJ
 preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)Fix_Length_Bytes2Packets_0.aso_out0,(SLAVE)QAM_Modulation_0.asi_in0) 1 3 2 1210 350 NJ
 levelinfo -pg 1 0 200 2130
 levelinfo -hier DigiCQSys 210 240 710 1060 1350 1680 1920 1940

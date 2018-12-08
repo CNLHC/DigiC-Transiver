@@ -1,77 +1,83 @@
-// Fix_Length_Bytes2Packets.v
-
-// This file was auto-generated as a prototype implementation of a module
-// created in component editor.  It ties off all outputs to ground and
-// ignores all inputs.  It needs to be edited to make it do something
-// useful.
-// 
-// This file will not be automatically regenerated.  You should check it in
-// to your version control system if you want to keep it.
-
 `timescale 1 ps / 1 ps
 module Fix_Length_Bytes2Packets (
-		input  wire [31:0] asi_in0_data,           //     asi_in0.data
+    // Clock and Reset
+		input  wire        clock_clk,              //     clock_1.clk
+		input  wire        reset_reset,            //       reset.reset
+    //Avalon-ST Sink
+		input  wire [7:0]  asi_in0_data,           //     asi_in0.data
 		output wire        asi_in0_ready,          //            .ready
 		input  wire        asi_in0_valid,          //            .valid
-		input  wire        reset_reset,            //       reset.reset
+    //Avalon-ST Source
 		output reg  [31:0] aso_out0_data,          //    aso_out0.data
 		input  wire        aso_out0_ready,         //            .ready
-		output wire        aso_out0_valid,         //            .valid
+		output reg         aso_out0_valid,         //            .valid
 		output reg         aso_out0_startofpacket, //            .startofpacket
 		output reg         aso_out0_endofpacket,   //            .endofpacket
-		output wire [1:0]  aso_out0_empty,         //            .empty
-		input  wire        clock_clk,              //     clock_1.clk
-		output wire        status,                  // conduit_end.new_signal
-        output wire [11:0] conduit_debug_packet_counter
+        output wire [3:0]  aso_out0_empty
 	);
-    reg [11:0]BytesCounter;
-    reg stateFlip;
+    reg [12:0]symbolCounter; 
     reg [1:0]packetState;//0:IDLE 1:start-assert 2:packeting 3:end-assert
-    assign status = stateFlip;
-    assign conduit_debug_packet_counter = BytesCounter;
-    assign aso_out0_valid = aso_out0_ready;
-    assign aso_out0_empty = 2'b00;
+    reg [2:0]BytesCounter;
 
-    always @(negedge reset_reset or posedge clock_clk) begin
-        if(!reset_reset) begin
-            stateFlip<=0;
+    assign aso_out0_empty = 2'b00;
+    assign asi_in0_ready =1 ;
+
+    always @(posedge reset_reset or posedge clock_clk) begin
+        if(reset_reset) begin
             packetState<=0;
+            symbolCounter<=0;
             BytesCounter<=0;
-            stateFlip<=1;
-            
         end
         else begin 
-            if(aso_out0_ready)begin
-                BytesCounter<=BytesCounter+1;
-                aso_out0_data<=aso_out0_valid;
-                case(packetState)
-                    0:begin 
+            case(packetState)
+                0:begin //IDLE
+                    if(asi_in0_valid)begin
                         packetState<=1;
+                        BytesCounter<=BytesCounter+1;
+                        symbolCounter<=symbolCounter+1;
+                        aso_out0_data[(4-BytesCounter)*8-1-:8]<=asi_in0_data;
                         aso_out0_startofpacket<=1;
                     end
-                    1:begin
-                        if(aso_out0_startofpacket) begin
-                            aso_out0_startofpacket<=0;
-                            packetState<=2;
-                        end
-                        else
-                            packetState<=0;
-                    end
-                    2:begin
-                        if(BytesCounter==256)begin //TODO:Hard-Coded Warning
-                            packetState<=3;
-                            aso_out0_endofpacket<=1;
-                            stateFlip<=~stateFlip;
+                end
+                1:begin //SOP asserted
+                    if(aso_out0_startofpacket) begin
+                        aso_out0_startofpacket<=0;
+                        packetState<=2;
+                        if(asi_in0_valid)begin
+                            BytesCounter<=BytesCounter+1;
+                            symbolCounter<=symbolCounter+1;
+                            aso_out0_data[(4-BytesCounter)*8-1-:8]<=asi_in0_data;
                         end
                     end
-                    3: begin
+                    else
                         packetState<=0;
-                        aso_out0_endofpacket<=0;
+                end
+                2:begin //Packeting
+                    if(asi_in0_valid)begin
+                        BytesCounter<=BytesCounter+1;
+                        symbolCounter<=symbolCounter+1;
+                        aso_out0_data[(4-BytesCounter)*8-1-:8]<=asi_in0_data;
                     end
-                endcase
-            end
+
+                    if(BytesCounter>3)begin
+                        BytesCounter<=0;
+                        aso_out0_valid<=1;
+                    end
+                    else
+                        aso_out0_valid<=0;
+
+                    if(symbolCounter>=256)begin //TODO:Hard-Coded Warning
+                        packetState<=3;
+                        aso_out0_endofpacket<=1;
+                    end
+                end
+                3: begin //EOP asserted
+                    packetState<=0;
+                    BytesCounter<=0;
+                    symbolCounter<=0;
+                    aso_out0_endofpacket<=0;
+                end
+            endcase
         end
     end
-
-
 endmodule

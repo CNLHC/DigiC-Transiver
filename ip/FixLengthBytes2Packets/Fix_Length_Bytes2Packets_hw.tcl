@@ -70,7 +70,7 @@ set_interface_property asi_in0 PORT_NAME_MAP ""
 set_interface_property asi_in0 CMSIS_SVD_VARIABLES ""
 set_interface_property asi_in0 SVD_ADDRESS_GROUP ""
 
-add_interface_port asi_in0 asi_in0_data data Input 32
+add_interface_port asi_in0 asi_in0_data data Input 8
 add_interface_port asi_in0 asi_in0_ready ready Output 1
 add_interface_port asi_in0 asi_in0_valid valid Input 1
 
@@ -96,7 +96,7 @@ add_interface_port reset reset_reset reset Input 1
 add_interface aso_out0 avalon_streaming start
 set_interface_property aso_out0 associatedClock clock_1
 set_interface_property aso_out0 associatedReset reset
-set_interface_property aso_out0 dataBitsPerSymbol 8
+set_interface_property aso_out0 dataBitsPerSymbol 2
 set_interface_property aso_out0 errorDescriptor ""
 set_interface_property aso_out0 firstSymbolInHighOrderBits true
 set_interface_property aso_out0 maxChannel 0
@@ -112,7 +112,7 @@ add_interface_port aso_out0 aso_out0_ready ready Input 1
 add_interface_port aso_out0 aso_out0_valid valid Output 1
 add_interface_port aso_out0 aso_out0_startofpacket startofpacket Output 1
 add_interface_port aso_out0 aso_out0_endofpacket endofpacket Output 1
-add_interface_port aso_out0 aso_out0_empty empty Output 2
+add_interface_port aso_out0 aso_out0_empty empty Output 4
 
 
 # 
@@ -129,18 +129,4 @@ set_interface_property clock_1 SVD_ADDRESS_GROUP ""
 add_interface_port clock_1 clock_clk clk Input 1
 
 
-# 
-# connection point conduit_debug
-# 
-add_interface conduit_debug conduit end
-set_interface_property conduit_debug associatedClock clock_1
-set_interface_property conduit_debug associatedReset ""
-set_interface_property conduit_debug ENABLED true
-set_interface_property conduit_debug EXPORT_OF ""
-set_interface_property conduit_debug PORT_NAME_MAP ""
-set_interface_property conduit_debug CMSIS_SVD_VARIABLES ""
-set_interface_property conduit_debug SVD_ADDRESS_GROUP ""
-
-add_interface_port conduit_debug status status Output 1
-add_interface_port conduit_debug conduit_debug_packet_counter packetcounter Output 12
 
