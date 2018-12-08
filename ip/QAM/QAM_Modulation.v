@@ -29,8 +29,8 @@ module QAM_Modulation #(
 	);
     assign  asi_in0_ready= 1'b1;
     integer index;
+    reg [1:0]tInnerStateFlag;//00-idle 01-start asserted 02: reading packet 03: end asserted
 
-    reg [1:0]tInnerStateFlag;//00-idle 01-reading packet
     always @(posedge asi_in0_endofpacket or posedge asi_in0_startofpacket or posedge clock_clk or negedge reset_reset) begin
         if(!reset_reset)begin
             aso_out0_valid<=0;
@@ -39,12 +39,17 @@ module QAM_Modulation #(
         end
         else
             case (tInnerStateFlag)
-                2'b01: 
-                begin
-                    if(asi_in0_endofpacket) begin 
-                        tInnerStateFlag<=2'b00;
-                        aso_out0_valid<=0;
-                    end
+                0:if(asi_in0_startofpacket)// IDLE
+                begin 
+                    tInnerStateFlag<=1;
+                    aso_out0_valid<=1;
+                end
+                1: //SOP Asserted
+                    tInnerStateFlag<=2;
+
+                2:begin // Mapping QAM Symbol
+                    if(asi_in0_endofpacket) 
+                        tInnerStateFlag<=3;
                     if(asi_in0_valid) begin 
                         for (index=1;index<=16;index=index+1) begin
                             case (asi_in0_data[(2*index-1)-:2])
@@ -76,12 +81,9 @@ module QAM_Modulation #(
                         end
                     end
                 end
-
-                2'b00:
-                if(asi_in0_startofpacket)
-                begin 
-                    tInnerStateFlag<=2'b01;
-                    aso_out0_valid<=1;
+                3:begin//EOP Asserted
+                    aso_out0_valid<=0;
+                    tInnerStateFlag<=0;
                 end
             endcase
     end
