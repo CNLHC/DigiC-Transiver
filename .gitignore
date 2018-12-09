@@ -43,7 +43,6 @@ timing
 *.sof
 *.sopc_builder
 *.summary
-*.tcl
 *.txt # Explicitly add any text files used
 *~
 *example*
@@ -51,3 +50,5 @@ timing
 PLLJ_PLLSPE_INFO.txt # The generated PLL specification file
 output_files/
 *.swp
+*.stp
+stp1.stp

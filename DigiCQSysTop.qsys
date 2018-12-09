@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags="INTERNAL_COMPONENT=true"
+   categories="" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element DigiCQSys_0
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="5CSXFC6D6F31C6" />
+ <parameter name="deviceFamily" value="Cyclone V" />
+ <parameter name="deviceSpeedGrade" value="6_H6" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="hideFromIPCatalog" value="true" />
+ <parameter name="lockedInterfaceDefinition" value="" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="0" />
+ <parameter name="testBenchDutName" value="" />
+ <parameter name="timeStamp" value="0" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface
+   name="global_reset"
+   internal="DigiCQSys_0.global_reset"
+   type="reset"
+   dir="end">
+  <port name="global_reset_reset_n" internal="global_reset_reset_n" />
+ </interface>
+ <interface
+   name="pll_0_locked"
+   internal="DigiCQSys_0.pll_0_locked"
+   type="conduit"
+   dir="end">
+  <port name="pll_0_locked_export" internal="pll_0_locked_export" />
+ </interface>
+ <interface
+   name="pll_0_outclk_1"
+   internal="DigiCQSys_0.pll_0_outclk_1"
+   type="clock"
+   dir="start">
+  <port name="pll_0_outclk_1_clk" internal="pll_0_outclk_1_clk" />
+ </interface>
+ <interface
+   name="pll_0_outclk_10"
+   internal="DigiCQSys_0.pll_0_outclk_10"
+   type="clock"
+   dir="start">
+  <port name="pll_0_outclk_10_clk" internal="pll_0_outclk_10_clk" />
+ </interface>
+ <interface
+   name="pll_0_outclk_120"
+   internal="DigiCQSys_0.pll_0_outclk_120"
+   type="clock"
+   dir="start">
+  <port name="pll_0_outclk_120_clk" internal="pll_0_outclk_120_clk" />
+ </interface>
+ <interface
+   name="pll_0_outclk_20"
+   internal="DigiCQSys_0.pll_0_outclk_20"
+   type="clock"
+   dir="start">
+  <port name="pll_0_outclk_20_clk" internal="pll_0_outclk_20_clk" />
+ </interface>
+ <interface
+   name="pll_0_refclk"
+   internal="DigiCQSys_0.pll_0_refclk"
+   type="clock"
+   dir="end">
+  <port name="pll_0_refclk_clk" internal="pll_0_refclk_clk" />
+ </interface>
+ <interface
+   name="qam_modulation_0_aso_out0"
+   internal="DigiCQSys_0.qam_modulation_0_aso_out0"
+   type="avalon_streaming"
+   dir="start">
+  <port
+     name="qam_modulation_0_aso_out0_data"
+     internal="qam_modulation_0_aso_out0_data" />
+  <port
+     name="qam_modulation_0_aso_out0_ready"
+     internal="qam_modulation_0_aso_out0_ready" />
+  <port
+     name="qam_modulation_0_aso_out0_valid"
+     internal="qam_modulation_0_aso_out0_valid" />
+  <port
+     name="qam_modulation_0_aso_out0_empty"
+     internal="qam_modulation_0_aso_out0_empty" />
+  <port
+     name="qam_modulation_0_aso_out0_endofpacket"
+     internal="qam_modulation_0_aso_out0_endofpacket" />
+  <port
+     name="qam_modulation_0_aso_out0_startofpacket"
+     internal="qam_modulation_0_aso_out0_startofpacket" />
+ </interface>
+ <interface
+   name="qsys_clkin"
+   internal="DigiCQSys_0.qsys_clkin"
+   type="clock"
+   dir="end">
+  <port name="qsys_clkin_clk" internal="qsys_clkin_clk" />
+ </interface>
+ <interface
+   name="spislave_0_export_0"
+   internal="DigiCQSys_0.spislave_0_export_0"
+   type="conduit"
+   dir="end">
+  <port name="spislave_0_export_0_mosi" internal="spislave_0_export_0_mosi" />
+  <port name="spislave_0_export_0_nss" internal="spislave_0_export_0_nss" />
+  <port name="spislave_0_export_0_miso" internal="spislave_0_export_0_miso" />
+  <port name="spislave_0_export_0_sclk" internal="spislave_0_export_0_sclk" />
+ </interface>
+ <module
+   name="DigiCQSys_0"
+   kind="DigiCQSys"
+   version="1.0"
+   enabled="1"
+   autoexport="1">
+  <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C6" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6_H6" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_PLL_0_REFCLK_CLOCK_DOMAIN" value="6" />
+  <parameter name="AUTO_PLL_0_REFCLK_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_PLL_0_REFCLK_RESET_DOMAIN" value="6" />
+  <parameter name="AUTO_QSYS_CLKIN_CLOCK_DOMAIN" value="7" />
+  <parameter name="AUTO_QSYS_CLKIN_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_QSYS_CLKIN_RESET_DOMAIN" value="7" />
+  <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_DigiCQSys_0</parameter>
+ </module>
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
+ <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
+</system>
