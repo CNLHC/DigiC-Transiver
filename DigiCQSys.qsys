@@ -49,6 +49,22 @@
          type = "String";
       }
    }
+   element DigiCQSys
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element DigiCQSys
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element Fix_Length_Bytes2Packets_0
    {
       datum _sortIndex
@@ -61,7 +77,7 @@
    {
       datum _sortIndex
       {
-         value = "2";
+         value = "3";
          type = "int";
       }
       datum sopceditor_expanded
@@ -74,7 +90,7 @@
    {
       datum _sortIndex
       {
-         value = "4";
+         value = "6";
          type = "int";
       }
       datum sopceditor_expanded
@@ -83,17 +99,33 @@
          type = "boolean";
       }
    }
+   element fft_ii_0
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
    element pll_0
    {
       datum _sortIndex
       {
-         value = "3";
+         value = "5";
          type = "int";
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
+      }
+   }
+   element sc_fifo_0
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
       }
    }
    element spislave_0
@@ -144,10 +176,13 @@
    internal="Fix_Length_Bytes2Packets_0.reset1" />
  <interface name="b2pstate" internal="Fix_Length_Bytes2Packets_0.conduit_end" />
  <interface
+   name="fft_ii_0_source"
+   internal="fft_ii_0.source"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
    name="fix_length_bytes2packets_conduit_debug"
-   internal="Fix_Length_Bytes2Packets_0.conduit_debug"
-   type="conduit"
-   dir="end" />
+   internal="Fix_Length_Bytes2Packets_0.conduit_debug" />
  <interface
    name="global_reset"
    internal="clk_0.clk_in_reset"
@@ -175,11 +210,6 @@
    type="clock"
    dir="start" />
  <interface name="pll_0_refclk" internal="pll_0.refclk" type="clock" dir="end" />
- <interface
-   name="qam_modulation_0_aso_out0"
-   internal="QAM_Modulation_0.aso_out0"
-   type="avalon_streaming"
-   dir="start" />
  <interface name="qsys_clkin" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
    name="spislave_0_export_0"
@@ -198,13 +228,31 @@
    enabled="1">
   <parameter name="PACKET_LENGTH" value="1024" />
  </module>
- <module name="clk_0" kind="clock_source" version="18.0" enabled="1">
+ <module name="clk_0" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module name="pll_0" kind="altera_pll" version="18.0" enabled="1">
+ <module name="fft_ii_0" kind="altera_fft_ii" version="16.1" enabled="1">
+  <parameter name="data_flow" value="Streaming" />
+  <parameter name="data_rep">Block Floating Point</parameter>
+  <parameter name="design_env" value="QSYS" />
+  <parameter name="direction" value="Bi-directional" />
+  <parameter name="dsp_resource_opt" value="false" />
+  <parameter name="engine_arch" value="Quad Output" />
+  <parameter name="hard_fp" value="false" />
+  <parameter name="hyper_opt" value="false" />
+  <parameter name="in_order" value="Natural" />
+  <parameter name="in_width" value="8" />
+  <parameter name="length" value="1024" />
+  <parameter name="num_engines" value="1" />
+  <parameter name="out_order" value="Natural" />
+  <parameter name="out_width" value="29" />
+  <parameter name="selected_device_family" value="Cyclone V" />
+  <parameter name="twid_width" value="8" />
+ </module>
+ <module name="pll_0" kind="altera_pll" version="16.1" enabled="1">
   <parameter name="debug_print_output" value="false" />
   <parameter name="debug_use_rbc_taf_method" value="false" />
   <parameter name="device" value="5CSXFC6D6F31C6" />
@@ -267,7 +315,7 @@
   <parameter name="gui_cascade_outclk_index" value="0" />
   <parameter name="gui_channel_spacing" value="0.0" />
   <parameter name="gui_clk_bad" value="false" />
-  <parameter name="gui_device_speed_grade" value="1" />
+  <parameter name="gui_device_speed_grade" value="2" />
   <parameter name="gui_divide_factor_c0" value="1" />
   <parameter name="gui_divide_factor_c1" value="1" />
   <parameter name="gui_divide_factor_c10" value="1" />
@@ -407,52 +455,94 @@
   <parameter name="gui_switchover_mode">Automatic Switchover</parameter>
   <parameter name="gui_use_locked" value="true" />
  </module>
- <module name="spislave_0" kind="spislave" version="18.0" enabled="1">
+ <module
+   name="sc_fifo_0"
+   kind="altera_avalon_sc_fifo"
+   version="16.1"
+   enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="32" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="EMPTY_LATENCY" value="3" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="8" />
+  <parameter name="SYMBOLS_PER_BEAT" value="1" />
+  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
+  <parameter name="USE_ALMOST_FULL_IF" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="0" />
+  <parameter name="USE_MEMORY_BLOCKS" value="1" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="USE_STORE_FORWARD" value="0" />
+ </module>
+ <module name="spislave_0" kind="spislave" version="16.1" enabled="1">
   <parameter name="AUTO_CLOCK_SINK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="SYNC_DEPTH" value="2" />
  </module>
  <connection
    kind="avalon_streaming"
-   version="18.0"
+   version="16.1"
    start="Fix_Length_Bytes2Packets_0.aso_out0"
-   end="QAM_Modulation_0.asi_in0" />
+   end="sc_fifo_0.in" />
  <connection
    kind="avalon_streaming"
-   version="18.0"
+   version="16.1"
+   start="QAM_Modulation_0.aso_out0"
+   end="fft_ii_0.sink" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
    start="spislave_0.avalon_streaming_source"
    end="Fix_Length_Bytes2Packets_0.asi_in0" />
  <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="sc_fifo_0.out"
+   end="QAM_Modulation_0.asi_in0" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="fft_ii_0.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="sc_fifo_0.clk" />
+ <connection
    kind="clock"
-   version="18.0"
+   version="16.1"
    start="clk_0.clk"
    end="QAM_Modulation_0.clock" />
  <connection
    kind="clock"
-   version="18.0"
+   version="16.1"
    start="clk_0.clk"
    end="Fix_Length_Bytes2Packets_0.clock_1" />
  <connection
    kind="clock"
-   version="18.0"
+   version="16.1"
    start="clk_0.clk"
    end="spislave_0.clock_sink" />
  <connection
    kind="reset"
-   version="18.0"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="sc_fifo_0.clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
    start="clk_0.clk_reset"
    end="spislave_0.clock_sink_reset" />
  <connection
    kind="reset"
-   version="18.0"
+   version="16.1"
    start="clk_0.clk_reset"
    end="QAM_Modulation_0.reset" />
- <connection kind="reset" version="18.0" start="clk_0.clk_reset" end="pll_0.reset" />
+ <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="pll_0.reset" />
  <connection
    kind="reset"
-   version="18.0"
+   version="16.1"
    start="clk_0.clk_reset"
    end="Fix_Length_Bytes2Packets_0.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="fft_ii_0.rst" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />

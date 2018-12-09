@@ -12,106 +12,136 @@
 module QAM_Modulation #(
 		parameter PACKET_LENGTH = 1024
 	) (
+    //Clock and Resource 
+		input  wire        clock_clk,             //    clock.clk
+		input  wire        reset_reset,           //    reset.reset
+    // Avalon Sink
 		input  wire [31:0] asi_in0_data,          //  asi_in0.data
-		output wire        asi_in0_ready,         //         .ready
+		output reg         asi_in0_ready,         //         .ready
 		input  wire        asi_in0_valid,         //         .valid
 		input  wire        asi_in0_empty,         //         .valid
 		input  wire        asi_in0_startofpacket, //         .startofpacket
 		input  wire        asi_in0_endofpacket,   //         .endofpacket
-		input  wire        clock_clk,             //    clock.clk
-		input  wire        reset_reset,           //    reset.reset
-		output reg  [32:0] aso_out0_data,         // aso_out0.data
+    // Avalon Source
+		output reg  [16:0] aso_out0_data,         // aso_out0.data
 		input  wire        aso_out0_ready,        //         .ready
 		output reg         aso_out0_valid,        //         .valid
         output reg         aso_out0_endofpacket,
         output reg         aso_out0_startofpacket,
-        output reg         aso_out0_empty 
-	);
-    assign  asi_in0_ready= 1'b1;
+        output reg         aso_out0_empty);
+
     integer index;
     reg [1:0]tInnerStateFlag;//00-idle 01-start asserted 02: reading packet 03: end asserted
+    reg [5:0]tBytesBuffer;
+    reg [31:0]tInputSymbolBuffer;
 
-    always @(posedge asi_in0_endofpacket or posedge asi_in0_startofpacket or posedge clock_clk or negedge reset_reset) begin
-        if(!reset_reset)begin
+    always @(posedge clock_clk or posedge reset_reset) begin
+        if(reset_reset)begin
             aso_out0_valid<=0;
-            aso_out0_empty<=1;
-            aso_out0_data<=33'h1ABCD4321;
+            asi_in0_ready<=1;
+            aso_out0_data<=0;
+            tInputSymbolBuffer<=0;
+            tBytesBuffer<=16;
         end
         else
             case (tInnerStateFlag)
-                0:if(asi_in0_startofpacket)begin // IDLE
+                0: begin
+                    if(asi_in0_startofpacket)begin // IDLE
                     tInnerStateFlag<=1;
-                    aso_out0_valid<=1;
-                    if(asi_in0_valid) begin 
-                        for (index=1;index<=16;index=index+1) begin
-                            case (asi_in0_data[(2*index-1)-:2])
-                                2'b00: 
-                                    begin 
-                                        aso_out0_valid<=1;
-                                        aso_out0_data[31:16]<=1;
-                                        aso_out0_data[15:0]<=1;
-                                    end
-                                2'b01:
-                                    begin 
-                                        aso_out0_valid<=1;
-                                        aso_out0_data[31:16]<=-1;
-                                        aso_out0_data[15:0]<=1;
-                                    end
-                                2'b11:
-                                    begin 
-                                        aso_out0_valid<=1;
-                                        aso_out0_data[31:16]<=-1;
-                                        aso_out0_data[15:0]<=-1;
-                                    end
-                                2'b10:
-                                    begin 
-                                        aso_out0_valid<=1;
-                                        aso_out0_data[31:16]<=1;
-                                        aso_out0_data[15:0]<=-1;
-                                    end
-                            endcase
-                        end
+                    tBytesBuffer<=16;
+                    aso_out0_startofpacket<=1;
+                    end
+                    asi_in0_ready<=1;
+                end
+
+                1:begin
+                    tInnerStateFlag<=2;             //SOP Asserted
+                    if(aso_out0_startofpacket)
+                        aso_out0_startofpacket<=0;
+
+                    //prefatch the Data
+                    if(asi_in0_ready && asi_in0_valid) begin 
+                        asi_in0_ready<=0;
+                        tInputSymbolBuffer<=asi_in0_data;
+                        tBytesBuffer<=0;
                     end
                 end
-                1: //SOP Asserted
-                    tInnerStateFlag<=2;
+
                 2:begin // Mapping QAM Symbol
-                    if(asi_in0_endofpacket) 
+                    if(asi_in0_endofpacket) begin
                         tInnerStateFlag<=3;
-                    if(asi_in0_valid) begin 
-                        for (index=1;index<=16;index=index+1) begin
-                            case (asi_in0_data[(2*index-1)-:2])
-                                2'b00: 
-                                    begin 
-                                        aso_out0_valid<=1;
-                                        aso_out0_data[31:16]<=1;
-                                        aso_out0_data[15:0]<=1;
-                                    end
-                                2'b01:
-                                    begin 
-                                        aso_out0_valid<=1;
-                                        aso_out0_data[31:16]<=-1;
-                                        aso_out0_data[15:0]<=1;
-                                    end
-                                2'b11:
-                                    begin 
-                                        aso_out0_valid<=1;
-                                        aso_out0_data[31:16]<=-1;
-                                        aso_out0_data[15:0]<=-1;
-                                    end
-                                2'b10:
-                                    begin 
-                                        aso_out0_valid<=1;
-                                        aso_out0_data[31:16]<=1;
-                                        aso_out0_data[15:0]<=-1;
-                                    end
-                            endcase
-                        end
+                        aso_out0_endofpacket<=0;
+                    end
+
+                    if(asi_in0_ready && asi_in0_valid) begin
+                        tInputSymbolBuffer<=asi_in0_data;
+                        tBytesBuffer<=0;
+                        asi_in0_ready<=0;
+                    end
+
+                    if(tBytesBuffer<16) begin
+                        asi_in0_ready<=0;
+                        aso_out0_valid<=1;
+                        aso_out0_data[0]<=1; //set IFFT
+                        tBytesBuffer<=tBytesBuffer+1;
+                        case(tInputSymbolBuffer[(16-tBytesBuffer)*2-1-:2])
+                            0: begin
+                                aso_out0_data[16:9]<=1;
+                                aso_out0_data[8:1]<=1;
+                            end
+                            1:begin
+                                aso_out0_data[16:9]<=-1;
+                                aso_out0_data[8:1]<=1;
+                            end
+                            2: begin
+                                aso_out0_data[16:9]<=-1;
+                                aso_out0_data[8:1]<=-1;
+                            end
+                            3: begin
+                                aso_out0_data[16:9]<=1;
+                                aso_out0_data[8:1]<=-1;
+                            end
+                        endcase
+                    end
+                    else begin
+                        asi_in0_ready<=1;
+                        aso_out0_valid<=0;
                     end
                 end
                 3:begin//EOP Asserted
-                    aso_out0_valid<=0;
-                    tInnerStateFlag<=0;
+                    if(aso_out0_endofpacket)
+                        aso_out0_endofpacket<=0;
+
+                    // handle the remain data
+                    if(tBytesBuffer<16) begin
+                        asi_in0_ready<=0;
+                        aso_out0_valid<=1;
+                        aso_out0_data[0]<=1; //set IFFT
+                        tBytesBuffer<=tBytesBuffer+1;
+                        case(tInputSymbolBuffer[(16-tBytesBuffer)*2-1-:2])
+                            0: begin
+                                aso_out0_data[16:9]<=1;
+                                aso_out0_data[8:1]<=1;
+                            end
+                            1:begin
+                                aso_out0_data[16:9]<=-1;
+                                aso_out0_data[8:1]<=1;
+                            end
+                            2: begin
+                                aso_out0_data[16:9]<=-1;
+                                aso_out0_data[8:1]<=-1;
+                            end
+                            3: begin
+                                aso_out0_data[16:9]<=1;
+                                aso_out0_data[8:1]<=-1;
+                            end
+                        endcase
+                    end
+                    else begin
+                        asi_in0_ready<=1;
+                        aso_out0_valid<=0;
+                        tInnerStateFlag<=0;
+                    end
                 end
             endcase
     end
