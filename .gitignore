@@ -51,4 +51,7 @@ PLLJ_PLLSPE_INFO.txt # The generated PLL specification file
 output_files/
 *.swp
 *.stp
+#maybe contain large amount of debug data
 stp1.stp
+#Generated DigiCQsys FIle
+DigiCQSys/ 
