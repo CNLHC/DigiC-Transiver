@@ -73,6 +73,22 @@
          type = "int";
       }
    }
+   element OFDMCPAdder_0
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element OFDM_DAC_Control_0
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
    element QAM_Modulation_0
    {
       datum _sortIndex
@@ -90,7 +106,7 @@
    {
       datum _sortIndex
       {
-         value = "6";
+         value = "8";
          type = "int";
       }
       datum sopceditor_expanded
@@ -174,12 +190,14 @@
  <interface
    name="Fix_Length_Bytes2Packets_0_reset"
    internal="Fix_Length_Bytes2Packets_0.reset1" />
- <interface name="b2pstate" internal="Fix_Length_Bytes2Packets_0.conduit_end" />
  <interface
-   name="fft_ii_0_source"
-   internal="fft_ii_0.source"
-   type="avalon_streaming"
-   dir="start" />
+   name="OFDM_DAC_Control_0_DAC_Control"
+   internal="OFDM_DAC_Control_0.DAC_Control1" />
+ <interface
+   name="OFDM_DAC_Control_0_asi_in0"
+   internal="OFDM_DAC_Control_0.asi_in01" />
+ <interface name="OFDM_DAC_Control_0_reset" internal="OFDM_DAC_Control_0.reset1" />
+ <interface name="b2pstate" internal="Fix_Length_Bytes2Packets_0.conduit_end" />
  <interface
    name="fix_length_bytes2packets_conduit_debug"
    internal="Fix_Length_Bytes2Packets_0.conduit_debug" />
@@ -188,6 +206,16 @@
    internal="clk_0.clk_in_reset"
    type="reset"
    dir="end" />
+ <interface
+   name="ofdm_dac_control_0_dac_control"
+   internal="OFDM_DAC_Control_0.DAC_Control"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="ofdmcpadder_0_multiplexer_0_out"
+   internal="OFDMCPAdder_0.multiplexer_0_out"
+   type="avalon_streaming"
+   dir="start" />
  <interface name="pll_0_locked" internal="pll_0.locked" type="conduit" dir="end" />
  <interface
    name="pll_0_outclk_1"
@@ -219,6 +247,21 @@
  <module
    name="Fix_Length_Bytes2Packets_0"
    kind="Fix_Length_Bytes2Packets"
+   version="1.0"
+   enabled="1" />
+ <module name="OFDMCPAdder_0" kind="OFDMCPAdder" version="1.0" enabled="1">
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="7" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="7" />
+  <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C6" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6_H6" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_OFDMCPAdder_0</parameter>
+ </module>
+ <module
+   name="OFDM_DAC_Control_0"
+   kind="OFDM_DAC_Control"
    version="1.0"
    enabled="1" />
  <module
@@ -466,7 +509,7 @@
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="8" />
+  <parameter name="FIFO_DEPTH" value="4096" />
   <parameter name="SYMBOLS_PER_BEAT" value="1" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="0" />
@@ -500,8 +543,14 @@
    version="18.0"
    start="sc_fifo_0.out"
    end="QAM_Modulation_0.asi_in0" />
+ <connection
+   kind="avalon_streaming"
+   version="18.0"
+   start="fft_ii_0.source"
+   end="OFDMCPAdder_0.cpadderrouter_0_asi_in0" />
  <connection kind="clock" version="18.0" start="clk_0.clk" end="fft_ii_0.clk" />
  <connection kind="clock" version="18.0" start="clk_0.clk" end="sc_fifo_0.clk" />
+ <connection kind="clock" version="18.0" start="clk_0.clk" end="OFDMCPAdder_0.clk" />
  <connection
    kind="clock"
    version="18.0"
@@ -512,6 +561,11 @@
    version="18.0"
    start="clk_0.clk"
    end="Fix_Length_Bytes2Packets_0.clock_1" />
+ <connection
+   kind="clock"
+   version="18.0"
+   start="clk_0.clk"
+   end="OFDM_DAC_Control_0.clock_1" />
  <connection
    kind="clock"
    version="18.0"
@@ -538,6 +592,16 @@
    version="18.0"
    start="clk_0.clk_reset"
    end="Fix_Length_Bytes2Packets_0.reset" />
+ <connection
+   kind="reset"
+   version="18.0"
+   start="clk_0.clk_reset"
+   end="OFDMCPAdder_0.reset" />
+ <connection
+   kind="reset"
+   version="18.0"
+   start="clk_0.clk_reset"
+   end="OFDM_DAC_Control_0.reset" />
  <connection
    kind="reset"
    version="18.0"

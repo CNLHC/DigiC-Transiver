@@ -3,7 +3,7 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces" showClockDomains="0" showResetDomains="0">
   <columns>
-   <connections preferredWidth="207" />
+   <connections preferredWidth="223" />
    <irq preferredWidth="34" />
    <name preferredWidth="408" />
    <export preferredWidth="219" />
@@ -11,8 +11,9 @@
    <description preferredWidth="341" />
   </columns>
  </systemtable>
- <library expandedCategories="Library,Project" />
- <window width="2419" height="1314" x="0" y="88" />
+ <library
+   expandedCategories="Library/Qsys Interconnect,Library/Basic Functions/On Chip Memory,Library,Project/DigiC,Project/System,Library/Qsys Interconnect/Memory-Mapped,Project/DigiC/OFDMCPAdder,Library/Basic Functions,Library/University Program/Audio &amp; Video,Library/Qsys Interconnect/Memory-Mapped Alpha,Library/University Program/Audio &amp; Video/Video,Library/University Program,Project" />
+ <window width="1920" height="1042" x="0" y="0" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
 </preferences>
