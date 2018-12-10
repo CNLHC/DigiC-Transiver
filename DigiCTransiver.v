@@ -115,6 +115,7 @@ module DigiCTransiver(
 		.pll_0_outclk_20_clk                     (PLL_CLK_20M),                      
       .global_reset_reset_n                    (1),
 		.pll_0_outclk_120_clk                    (PLL_CLK_120M),
+		.fft_ii_0_source_ready						  (1)
 	);
     
     

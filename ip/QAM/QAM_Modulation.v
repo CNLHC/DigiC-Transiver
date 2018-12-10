@@ -28,12 +28,12 @@ module QAM_Modulation #(
 		output reg         aso_out0_valid,        //         .valid
         output reg         aso_out0_endofpacket,
         output reg         aso_out0_startofpacket,
-        output reg         aso_out0_empty);
-
-    integer index;
+        output wire        aso_out0_empty);
+    assign aso_out0_empty=0;
     reg [1:0]tInnerStateFlag;//00-idle 01-start asserted 02: reading packet 03: end asserted
     reg [5:0]tBytesBuffer;
     reg [31:0]tInputSymbolBuffer;
+    reg tPacketState;
 
     always @(posedge clock_clk or posedge reset_reset) begin
         if(reset_reset)begin
@@ -42,36 +42,29 @@ module QAM_Modulation #(
             aso_out0_data<=0;
             tInputSymbolBuffer<=0;
             tBytesBuffer<=16;
+            tPacketState<=0;
         end
         else
             case (tInnerStateFlag)
                 0: begin
-                    if(asi_in0_startofpacket)begin // IDLE
-                    tInnerStateFlag<=1;
-                    tBytesBuffer<=16;
-                    aso_out0_startofpacket<=1;
-                    end
                     asi_in0_ready<=1;
+                    if(asi_in0_startofpacket)begin // IDLE
+                        tInnerStateFlag<=1;
+                        if(asi_in0_ready && asi_in0_valid) begin
+                            tInputSymbolBuffer<=asi_in0_data;
+                            tBytesBuffer<=0;
+                            asi_in0_ready<=0;
+                        end
+                        else
+                            tBytesBuffer<=16;
+                    end
                 end
+                1:begin // Mapping QAM Symbol
+                    if(asi_in0_endofpacket)
+                        tInnerStateFlag<=2;
 
-                1:begin
-                    tInnerStateFlag<=2;             //SOP Asserted
                     if(aso_out0_startofpacket)
                         aso_out0_startofpacket<=0;
-
-                    //prefatch the Data
-                    if(asi_in0_ready && asi_in0_valid) begin 
-                        asi_in0_ready<=0;
-                        tInputSymbolBuffer<=asi_in0_data;
-                        tBytesBuffer<=0;
-                    end
-                end
-
-                2:begin // Mapping QAM Symbol
-                    if(asi_in0_endofpacket) begin
-                        tInnerStateFlag<=3;
-                        aso_out0_endofpacket<=0;
-                    end
 
                     if(asi_in0_ready && asi_in0_valid) begin
                         tInputSymbolBuffer<=asi_in0_data;
@@ -81,6 +74,10 @@ module QAM_Modulation #(
 
                     if(tBytesBuffer<16) begin
                         asi_in0_ready<=0;
+                        if(!tPacketState)begin
+                            aso_out0_startofpacket<=1;
+                            tPacketState<=1;
+                        end
                         aso_out0_valid<=1;
                         aso_out0_data[0]<=1; //set IFFT
                         tBytesBuffer<=tBytesBuffer+1;
@@ -108,11 +105,7 @@ module QAM_Modulation #(
                         aso_out0_valid<=0;
                     end
                 end
-                3:begin//EOP Asserted
-                    if(aso_out0_endofpacket)
-                        aso_out0_endofpacket<=0;
-
-                    // handle the remain data
+                2:begin
                     if(tBytesBuffer<16) begin
                         asi_in0_ready<=0;
                         aso_out0_valid<=1;
@@ -136,11 +129,15 @@ module QAM_Modulation #(
                                 aso_out0_data[8:1]<=-1;
                             end
                         endcase
+                        if(tBytesBuffer==15)
+                            aso_out0_endofpacket<=1;
                     end
                     else begin
                         asi_in0_ready<=1;
-                        aso_out0_valid<=0;
+                        aso_out0_endofpacket<=0;
                         tInnerStateFlag<=0;
+                        aso_out0_valid<=0;
+                        tPacketState<=0;
                     end
                 end
             endcase

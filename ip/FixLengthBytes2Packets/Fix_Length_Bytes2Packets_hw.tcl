@@ -112,7 +112,7 @@ add_interface_port aso_out0 aso_out0_ready ready Input 1
 add_interface_port aso_out0 aso_out0_valid valid Output 1
 add_interface_port aso_out0 aso_out0_startofpacket startofpacket Output 1
 add_interface_port aso_out0 aso_out0_endofpacket endofpacket Output 1
-add_interface_port aso_out0 aso_out0_empty empty Output 4
+add_interface_port aso_out0 aso_out0_empty empty Output 1
 
 
 # 
