@@ -83,20 +83,20 @@ module QAM_Modulation #(
                         tBytesBuffer<=tBytesBuffer+1;
                         case(tInputSymbolBuffer[(16-tBytesBuffer)*2-1-:2])
                             0: begin
-                                aso_out0_data[16:9]<=1;
-                                aso_out0_data[8:1]<=1;
+                                aso_out0_data[16:9]<=7;
+                                aso_out0_data[8:1]<=7;
                             end
                             1:begin
-                                aso_out0_data[16:9]<=-1;
-                                aso_out0_data[8:1]<=1;
+                                aso_out0_data[16:9]<=-7;
+                                aso_out0_data[8:1]<=7;
                             end
                             2: begin
-                                aso_out0_data[16:9]<=-1;
-                                aso_out0_data[8:1]<=-1;
+                                aso_out0_data[16:9]<=-7;
+                                aso_out0_data[8:1]<=-7;
                             end
                             3: begin
-                                aso_out0_data[16:9]<=1;
-                                aso_out0_data[8:1]<=-1;
+                                aso_out0_data[16:9]<=7;
+                                aso_out0_data[8:1]<=-7;
                             end
                         endcase
                     end

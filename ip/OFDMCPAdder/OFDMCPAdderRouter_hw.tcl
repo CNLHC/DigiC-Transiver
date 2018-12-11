@@ -145,8 +145,6 @@ set_interface_property dataSource SVD_ADDRESS_GROUP ""
 
 add_interface_port dataSource aso_out0_data data Output 22
 add_interface_port dataSource aso_out0_valid valid Output 1
-add_interface_port dataSource aso_out0_endofpacket endofpacket Output 1
-add_interface_port dataSource aso_out0_startofpacket startofpacket Output 1
 
 
 # 
@@ -168,6 +166,4 @@ set_interface_property CPSource SVD_ADDRESS_GROUP ""
 
 add_interface_port CPSource CPSource_data data Output 22
 add_interface_port CPSource CPSource_valid valid Output 1
-add_interface_port CPSource CPSource_endofpacket endofpacket Output 1
-add_interface_port CPSource CPSource_startofpacket startofpacket Output 1
 

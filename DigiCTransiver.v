@@ -110,11 +110,12 @@ module DigiCTransiver(
 		.spislave_0_export_0_miso                (GPIO[2]),                
 		.spislave_0_export_0_sclk                (GPIO[3]),              
 		.pll_0_refclk_clk                        (CLOCK_50),                                       
-      .global_reset_reset_n                    (1),
+        .global_reset_reset_n                    (1),
+		.ofdm_dac_control_0_dac_control_chadata    (DA),
+        .ofdm_dac_control_0_dac_control_chbdata  (DB)
 	);
     
     
-
 
 
 

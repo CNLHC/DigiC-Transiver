@@ -4,32 +4,36 @@ preplace inst DigiCQSys -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst DigiCQSys.fft_ii_0 -pg 1 -lvl 13 -y 260
 preplace inst DigiCQSys.clk_0 -pg 1 -lvl 1 -y 430
 preplace inst DigiCQSys.OFDMCPAdder_0.CPAdderRouter_0 -pg 1
-preplace inst DigiCQSys.dc_fifo_0 -pg 1 -lvl 8 -y 310
-preplace inst DigiCQSys.OFDM_DAC_Control_0 -pg 1 -lvl 9 -y 330
+preplace inst DigiCQSys.DAC_Tester_0 -pg 1 -lvl 11 -y 190
+preplace inst DigiCQSys.dc_fifo_0 -pg 1 -lvl 8 -y 270
+preplace inst DigiCQSys.OFDM_DAC_Control_0 -pg 1 -lvl 9 -y 290
 preplace inst DigiCQSys.OFDMCPAdder_0.sc_fifo_0 -pg 1
 preplace inst DigiCQSys.OFDMCPAdder_0.multiplexer_0 -pg 1
 preplace inst DigiCQSys.OFDMCPAdder_0 -pg 1 -lvl 14 -y 280
+preplace inst DigiCQSys.nco_ii_0 -pg 1 -lvl 10 -y 340
 preplace inst DigiCQSys.pll_0 -pg 1 -lvl 9 -y 30
 preplace inst DigiCQSys.QAM_Modulation_0 -pg 1 -lvl 12 -y 330
 preplace inst DigiCQSys.OFDMCPAdder_0.clk_0 -pg 1
-preplace inst DigiCQSys.spislave_0 -pg 1 -lvl 9 -y 190
+preplace inst DigiCQSys.spislave_0 -pg 1 -lvl 9 -y 130
 preplace inst DigiCQSys.sc_fifo_0 -pg 1 -lvl 11 -y 310
 preplace inst DigiCQSys.Fix_Length_Bytes2Packets_0 -pg 1 -lvl 10 -y 130
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)dc_fifo_0.out,(SLAVE)OFDM_DAC_Control_0.asi_in0) 1 8 1 N
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)spislave_0.export_0,(SLAVE)DigiCQSys.spislave_0_export_0) 1 0 9 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ 260 NJ
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DAC_Tester_0.DAC_Test,(SLAVE)DigiCQSys.dac_tester_0_dac_test) 1 0 11 NJ 420 NJ 420 NJ 420 NJ 420 NJ 420 NJ 420 NJ 420 NJ 460 NJ 460 NJ 460 NJ
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)fft_ii_0.source,(SLAVE)OFDMCPAdder_0.cpadderrouter_0_asi_in0) 1 13 1 3810
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.pll_0_locked,(SLAVE)pll_0.locked) 1 0 9 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.qsys_clkin,(SLAVE)clk_0.clk_in) 1 0 1 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.pll_0_refclk,(SLAVE)pll_0.refclk) 1 0 9 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ 60 NJ
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)dc_fifo_0.in_clk_reset,(SLAVE)sc_fifo_0.clk_reset,(SLAVE)OFDMCPAdder_0.reset,(SLAVE)pll_0.reset,(SLAVE)OFDM_DAC_Control_0.reset,(SLAVE)QAM_Modulation_0.reset,(SLAVE)dc_fifo_0.out_clk_reset,(SLAVE)fft_ii_0.rst,(SLAVE)spislave_0.clock_sink_reset,(SLAVE)Fix_Length_Bytes2Packets_0.reset,(MASTER)clk_0.clk_reset) 1 1 13 NJ 460 NJ 460 NJ 460 NJ 460 NJ 460 NJ 460 2260 300 2550 320 2960 340 3170 400 3340 420 3580 370 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)fft_ii_0.sink,(MASTER)QAM_Modulation_0.aso_out0) 1 12 1 3560
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)Fix_Length_Bytes2Packets_0.asi_in0,(MASTER)spislave_0.avalon_streaming_source) 1 9 1 2920
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)OFDM_DAC_Control_0.sample_clock,(MASTER)pll_0.outclk0,(SLAVE)dc_fifo_0.out_clk) 1 7 3 2300 560 2590 500 2900
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(MASTER)clk_0.clk,(SLAVE)OFDMCPAdder_0.clk,(SLAVE)dc_fifo_0.in_clk,(SLAVE)sc_fifo_0.clk,(SLAVE)QAM_Modulation_0.clock,(SLAVE)fft_ii_0.clk,(SLAVE)Fix_Length_Bytes2Packets_0.clock_1,(SLAVE)spislave_0.clock_sink) 1 1 13 NJ 440 NJ 440 NJ 440 NJ 440 NJ 440 NJ 440 2240 280 2570 300 2940 300 3170 300 3340 320 3540 350 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)OFDMCPAdder_0.cpadderrouter_0_asi_in0,(MASTER)fft_ii_0.source) 1 13 1 3730
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)pll_0.locked,(SLAVE)DigiCQSys.pll_0_locked) 1 0 9 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ 40 NJ
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)fft_ii_0.sink,(MASTER)QAM_Modulation_0.aso_out0) 1 12 1 3640
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)sc_fifo_0.clk,(MASTER)clk_0.clk,(SLAVE)QAM_Modulation_0.clock,(SLAVE)dc_fifo_0.in_clk,(SLAVE)Fix_Length_Bytes2Packets_0.clock_1,(SLAVE)fft_ii_0.clk,(SLAVE)OFDMCPAdder_0.clk,(SLAVE)spislave_0.clock_sink) 1 1 13 NJ 440 NJ 440 NJ 440 NJ 440 NJ 440 NJ 440 2240 400 2570 400 2940 320 3210 400 3420 260 3660 370 NJ
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)Fix_Length_Bytes2Packets_0.asi_in0,(MASTER)spislave_0.avalon_streaming_source) 1 9 1 2900
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)nco_ii_0.clk,(SLAVE)OFDM_DAC_Control_0.sample_clock,(SLAVE)DAC_Tester_0.clock,(SLAVE)dc_fifo_0.out_clk,(MASTER)pll_0.outclk0) 1 7 4 2300 440 2610 440 2920 240 NJ
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)DAC_Tester_0.asi_in0,(MASTER)nco_ii_0.out) 1 10 1 3170
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.spislave_0_export_0,(SLAVE)spislave_0.export_0) 1 0 9 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ 200 NJ
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)OFDM_DAC_Control_0.asi_in0,(MASTER)dc_fifo_0.out) 1 8 1 N
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)QAM_Modulation_0.asi_in0,(MASTER)sc_fifo_0.out) 1 11 1 N
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(MASTER)clk_0.clk_reset,(SLAVE)OFDMCPAdder_0.reset,(SLAVE)DAC_Tester_0.reset,(SLAVE)pll_0.reset,(SLAVE)sc_fifo_0.clk_reset,(SLAVE)nco_ii_0.rst,(SLAVE)dc_fifo_0.in_clk_reset,(SLAVE)fft_ii_0.rst,(SLAVE)OFDM_DAC_Control_0.reset,(SLAVE)QAM_Modulation_0.reset,(SLAVE)Fix_Length_Bytes2Packets_0.reset,(SLAVE)spislave_0.clock_sink_reset,(SLAVE)dc_fifo_0.out_clk_reset) 1 1 13 NJ 460 NJ 460 NJ 460 NJ 460 NJ 460 NJ 460 2280 420 2550 420 2960 260 3230 420 3440 280 3620 390 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)DigiCQSys.global_reset) 1 0 1 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)Fix_Length_Bytes2Packets_0.aso_out0,(SLAVE)sc_fifo_0.in) 1 10 1 3150
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)Fix_Length_Bytes2Packets_0.aso_out0,(SLAVE)sc_fifo_0.in) 1 10 1 3190
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)OFDM_DAC_Control_0.DAC_Control,(SLAVE)DigiCQSys.ofdm_dac_control_0_dac_control) 1 0 9 NJ 500 NJ 500 NJ 500 NJ 500 NJ 500 NJ 500 NJ 500 NJ 500 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)sc_fifo_0.out,(SLAVE)QAM_Modulation_0.asi_in0) 1 11 1 N
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(MASTER)OFDMCPAdder_0.multiplexer_0_out,(SLAVE)dc_fifo_0.in) 1 7 8 2280 440 NJ 440 NJ 440 NJ 440 NJ 440 NJ 440 NJ 440 4120
-levelinfo -pg 1 0 200 4160
-levelinfo -hier DigiCQSys 210 240 710 1060 1350 1680 1920 2220 2410 2650 3000 3220 3410 3630 3930 4140
+preplace netloc POINT_TO_POINT<net_container>DigiCQSys</net_container>(SLAVE)dc_fifo_0.in,(MASTER)OFDMCPAdder_0.multiplexer_0_out) 1 7 8 2240 260 NJ 280 NJ 280 NJ 300 NJ 300 NJ 350 NJ 240 4200
+levelinfo -pg 1 0 200 4240
+levelinfo -hier DigiCQSys 210 240 710 1060 1350 1680 1920 2220 2410 2650 3000 3300 3470 3690 4010 4220
