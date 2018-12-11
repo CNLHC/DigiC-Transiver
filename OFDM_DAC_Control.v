@@ -10,20 +10,23 @@
 
 `timescale 1 ps / 1 ps
 module OFDM_DAC_Control (
-		input  wire [21:0] asi_in0_data,          //     asi_in0.data
-		output wire        asi_in0_ready,         //            .ready
-		input  wire        asi_in0_valid,         //            .valid
-		input  wire        asi_in0_endofpacket,   //            .endofpacket
-		input  wire        asi_in0_startofpacket, //            .startofpacket
-		input  wire        reset_reset,           //       reset.reset
-		output wire [13:0] DAC_Control_Data,      // DAC_Control.data
-		input  wire        clock_clk              //     clock_1.clk
+		input  wire [21:0] asi_in0_data,          //      asi_in0.data
+		output wire        asi_in0_ready,         //             .ready
+		input  wire        asi_in0_valid,         //             .valid
+		input  wire        asi_in0_endofpacket,   //             .endofpacket
+		input  wire        asi_in0_startofpacket, //             .startofpacket
+		input  wire        reset_reset,           //        reset.reset
+		output wire [13:0] DAC_Control_ChA_Data,  //  DAC_Control.chadata
+		output wire [13:0] DAC_Control_ChB_Data,  //             .chbdata
+		input  wire        sample_clock_dac       // sample_clock.clk
 	);
 
 	// TODO: Auto-generated HDL template
 
 	assign asi_in0_ready = 1'b0;
 
-	assign DAC_Control_Data = 14'b00000000000000;
+	assign DAC_Control_ChA_Data = 14'b00000000000000;
+
+	assign DAC_Control_ChB_Data = 14'b00000000000000;
 
 endmodule

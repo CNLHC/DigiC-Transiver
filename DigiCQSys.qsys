@@ -255,7 +255,7 @@
    enabled="1">
   <parameter name="PACKET_LENGTH" value="1024" />
  </module>
- <module name="clk_0" kind="clock_source" version="16.1" enabled="1">
+ <module name="clk_0" kind="clock_source" version="18.0" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
@@ -264,7 +264,7 @@
  <module
    name="dc_fifo_0"
    kind="altera_avalon_dc_fifo"
-   version="16.1"
+   version="18.0"
    enabled="1">
   <parameter name="BITS_PER_SYMBOL" value="22" />
   <parameter name="CHANNEL_WIDTH" value="0" />
@@ -279,7 +279,7 @@
   <parameter name="USE_PACKETS" value="1" />
   <parameter name="WR_SYNC_DEPTH" value="3" />
  </module>
- <module name="fft_ii_0" kind="altera_fft_ii" version="16.1" enabled="1">
+ <module name="fft_ii_0" kind="altera_fft_ii" version="18.0" enabled="1">
   <parameter name="data_flow" value="Streaming" />
   <parameter name="data_rep">Block Floating Point</parameter>
   <parameter name="design_env" value="QSYS" />
@@ -297,7 +297,7 @@
   <parameter name="selected_device_family" value="Cyclone V" />
   <parameter name="twid_width" value="8" />
  </module>
- <module name="pll_0" kind="altera_pll" version="16.1" enabled="1">
+ <module name="pll_0" kind="altera_pll" version="18.0" enabled="1">
   <parameter name="debug_print_output" value="false" />
   <parameter name="debug_use_rbc_taf_method" value="false" />
   <parameter name="device" value="5CSXFC6D6F31C6" />
@@ -503,7 +503,7 @@
  <module
    name="sc_fifo_0"
    kind="altera_avalon_sc_fifo"
-   version="16.1"
+   version="18.0"
    enabled="1">
   <parameter name="BITS_PER_SYMBOL" value="32" />
   <parameter name="CHANNEL_WIDTH" value="0" />
@@ -520,119 +520,119 @@
   <parameter name="USE_PACKETS" value="1" />
   <parameter name="USE_STORE_FORWARD" value="0" />
  </module>
- <module name="spislave_0" kind="spislave" version="16.1" enabled="1">
+ <module name="spislave_0" kind="spislave" version="18.0" enabled="1">
   <parameter name="AUTO_CLOCK_SINK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="SYNC_DEPTH" value="2" />
  </module>
  <connection
    kind="avalon_streaming"
-   version="16.1"
+   version="18.0"
    start="Fix_Length_Bytes2Packets_0.aso_out0"
    end="sc_fifo_0.in" />
  <connection
    kind="avalon_streaming"
-   version="16.1"
+   version="18.0"
    start="QAM_Modulation_0.aso_out0"
    end="fft_ii_0.sink" />
  <connection
    kind="avalon_streaming"
-   version="16.1"
+   version="18.0"
    start="spislave_0.avalon_streaming_source"
    end="Fix_Length_Bytes2Packets_0.asi_in0" />
  <connection
    kind="avalon_streaming"
-   version="16.1"
+   version="18.0"
    start="OFDMCPAdder_0.multiplexer_0_out"
    end="dc_fifo_0.in" />
  <connection
    kind="avalon_streaming"
-   version="16.1"
+   version="18.0"
    start="sc_fifo_0.out"
    end="QAM_Modulation_0.asi_in0" />
  <connection
    kind="avalon_streaming"
-   version="16.1"
+   version="18.0"
    start="dc_fifo_0.out"
    end="OFDM_DAC_Control_0.asi_in0" />
  <connection
    kind="avalon_streaming"
-   version="16.1"
+   version="18.0"
    start="fft_ii_0.source"
    end="OFDMCPAdder_0.cpadderrouter_0_asi_in0" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="fft_ii_0.clk" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="sc_fifo_0.clk" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="OFDMCPAdder_0.clk" />
+ <connection kind="clock" version="18.0" start="clk_0.clk" end="fft_ii_0.clk" />
+ <connection kind="clock" version="18.0" start="clk_0.clk" end="sc_fifo_0.clk" />
+ <connection kind="clock" version="18.0" start="clk_0.clk" end="OFDMCPAdder_0.clk" />
  <connection
    kind="clock"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk"
    end="QAM_Modulation_0.clock" />
  <connection
    kind="clock"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk"
    end="Fix_Length_Bytes2Packets_0.clock_1" />
  <connection
    kind="clock"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk"
    end="spislave_0.clock_sink" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="dc_fifo_0.in_clk" />
+ <connection kind="clock" version="18.0" start="clk_0.clk" end="dc_fifo_0.in_clk" />
  <connection
    kind="clock"
-   version="16.1"
+   version="18.0"
    start="pll_0.outclk0"
    end="dc_fifo_0.out_clk" />
  <connection
    kind="clock"
-   version="16.1"
+   version="18.0"
    start="pll_0.outclk0"
    end="OFDM_DAC_Control_0.sample_clock" />
  <connection
    kind="reset"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk_reset"
    end="sc_fifo_0.clk_reset" />
  <connection
    kind="reset"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk_reset"
    end="spislave_0.clock_sink_reset" />
  <connection
    kind="reset"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk_reset"
    end="dc_fifo_0.in_clk_reset" />
  <connection
    kind="reset"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk_reset"
    end="dc_fifo_0.out_clk_reset" />
  <connection
    kind="reset"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk_reset"
    end="QAM_Modulation_0.reset" />
- <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="pll_0.reset" />
+ <connection kind="reset" version="18.0" start="clk_0.clk_reset" end="pll_0.reset" />
  <connection
    kind="reset"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk_reset"
    end="Fix_Length_Bytes2Packets_0.reset" />
  <connection
    kind="reset"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk_reset"
    end="OFDMCPAdder_0.reset" />
  <connection
    kind="reset"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk_reset"
    end="OFDM_DAC_Control_0.reset" />
  <connection
    kind="reset"
-   version="16.1"
+   version="18.0"
    start="clk_0.clk_reset"
    end="fft_ii_0.rst" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
