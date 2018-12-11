@@ -104,18 +104,13 @@ module DigiCTransiver(
 	);
 
 	DigiCQSys u1 (
-		.qsys_clkin_clk                          (CLOCK2_50),                                 
+		.qsys_clkin_clk                          (BareMetalPLL100M),                                 
 		.spislave_0_export_0_mosi                (GPIO[0]),                
 		.spislave_0_export_0_nss                 (GPIO[1]),                 
 		.spislave_0_export_0_miso                (GPIO[2]),                
 		.spislave_0_export_0_sclk                (GPIO[3]),              
-		.pll_0_refclk_clk                        (CLOCK_50),                         
-		.pll_0_outclk_1_clk                      (PLL_CLK_1M),                      
-		.pll_0_outclk_10_clk                     (PLL_CLK_10M),                      
-		.pll_0_outclk_20_clk                     (PLL_CLK_20M),                      
+		.pll_0_refclk_clk                        (CLOCK_50),                                       
       .global_reset_reset_n                    (1),
-		.pll_0_outclk_120_clk                    (PLL_CLK_120M),
-		.fft_ii_0_source_ready						  (1)
 	);
     
     
