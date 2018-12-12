@@ -89,6 +89,14 @@
          type = "String";
       }
    }
+   element DigiCQSys
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element Fix_Length_Bytes2Packets_0
    {
       datum _sortIndex
@@ -300,7 +308,7 @@
   <parameter name="SYMBOLS_PER_BEAT" value="1" />
   <parameter name="USE_IN_FILL_LEVEL" value="0" />
   <parameter name="USE_OUT_FILL_LEVEL" value="0" />
-  <parameter name="USE_PACKETS" value="0" />
+  <parameter name="USE_PACKETS" value="1" />
   <parameter name="WR_SYNC_DEPTH" value="3" />
  </module>
  <module name="fft_ii_0" kind="altera_fft_ii" version="16.1" enabled="1">
@@ -567,7 +575,7 @@
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="OFDMCPAdder_0.multiplexer_0_out"
+   start="OFDMCPAdder_0.cpadderrouter_0_data_out"
    end="dc_fifo_0.in" />
  <connection
    kind="avalon_streaming"
@@ -583,7 +591,7 @@
    kind="avalon_streaming"
    version="16.1"
    start="fft_ii_0.source"
-   end="OFDMCPAdder_0.cpadderrouter_0_asi_in0" />
+   end="OFDMCPAdder_0.demultiplexer_0_in" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="fft_ii_0.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="sc_fifo_0.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="OFDMCPAdder_0.clk" />

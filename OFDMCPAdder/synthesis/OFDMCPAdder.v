@@ -4,71 +4,78 @@
 
 `timescale 1 ps / 1 ps
 module OFDMCPAdder (
-		input  wire        clk_clk,                               //                     clk.clk
-		input  wire [21:0] cpadderrouter_0_asi_in0_data,          // cpadderrouter_0_asi_in0.data
-		input  wire        cpadderrouter_0_asi_in0_valid,         //                        .valid
-		input  wire        cpadderrouter_0_asi_in0_endofpacket,   //                        .endofpacket
-		input  wire        cpadderrouter_0_asi_in0_startofpacket, //                        .startofpacket
-		output wire        cpadderrouter_0_asi_in0_ready,         //                        .ready
-		output wire [21:0] multiplexer_0_out_data,                //       multiplexer_0_out.data
-		output wire        multiplexer_0_out_valid,               //                        .valid
-		input  wire        multiplexer_0_out_ready,               //                        .ready
-		output wire [1:0]  multiplexer_0_out_channel,             //                        .channel
-		input  wire        reset_reset_n                          //                   reset.reset_n
+		input  wire        clk_clk,                                //                      clk.clk
+		output wire [21:0] cpadderrouter_0_data_out_data,          // cpadderrouter_0_data_out.data
+		output wire        cpadderrouter_0_data_out_valid,         //                         .valid
+		output wire        cpadderrouter_0_data_out_endofpacket,   //                         .endofpacket
+		output wire        cpadderrouter_0_data_out_startofpacket, //                         .startofpacket
+		input  wire [21:0] demultiplexer_0_in_data,                //       demultiplexer_0_in.data
+		input  wire        demultiplexer_0_in_valid,               //                         .valid
+		output wire        demultiplexer_0_in_ready,               //                         .ready
+		input  wire        demultiplexer_0_in_startofpacket,       //                         .startofpacket
+		input  wire        demultiplexer_0_in_endofpacket,         //                         .endofpacket
+		input  wire        demultiplexer_0_in_channel,             //                         .channel
+		input  wire        reset_reset_n                           //                    reset.reset_n
 	);
 
-	wire         cpadderrouter_0_cpsource_valid;      // CPAdderRouter_0:CPSource_valid -> avalon_st_adapter:in_0_valid
-	wire  [21:0] cpadderrouter_0_cpsource_data;       // CPAdderRouter_0:CPSource_data -> avalon_st_adapter:in_0_data
-	wire         avalon_st_adapter_out_0_valid;       // avalon_st_adapter:out_0_valid -> multiplexer_0:in1_valid
-	wire  [21:0] avalon_st_adapter_out_0_data;        // avalon_st_adapter:out_0_data -> multiplexer_0:in1_data
-	wire         avalon_st_adapter_out_0_ready;       // multiplexer_0:in1_ready -> avalon_st_adapter:out_0_ready
-	wire         avalon_st_adapter_out_0_channel;     // avalon_st_adapter:out_0_channel -> multiplexer_0:in1_channel
-	wire         cpadderrouter_0_datasource_valid;    // CPAdderRouter_0:aso_out0_valid -> avalon_st_adapter_001:in_0_valid
-	wire  [21:0] cpadderrouter_0_datasource_data;     // CPAdderRouter_0:aso_out0_data -> avalon_st_adapter_001:in_0_data
-	wire         avalon_st_adapter_001_out_0_valid;   // avalon_st_adapter_001:out_0_valid -> sc_fifo_0:in_valid
-	wire  [21:0] avalon_st_adapter_001_out_0_data;    // avalon_st_adapter_001:out_0_data -> sc_fifo_0:in_data
-	wire         avalon_st_adapter_001_out_0_ready;   // sc_fifo_0:in_ready -> avalon_st_adapter_001:out_0_ready
-	wire         sc_fifo_0_out_valid;                 // sc_fifo_0:out_valid -> avalon_st_adapter_002:in_0_valid
-	wire  [21:0] sc_fifo_0_out_data;                  // sc_fifo_0:out_data -> avalon_st_adapter_002:in_0_data
-	wire         sc_fifo_0_out_ready;                 // avalon_st_adapter_002:in_0_ready -> sc_fifo_0:out_ready
-	wire         avalon_st_adapter_002_out_0_valid;   // avalon_st_adapter_002:out_0_valid -> multiplexer_0:in0_valid
-	wire  [21:0] avalon_st_adapter_002_out_0_data;    // avalon_st_adapter_002:out_0_data -> multiplexer_0:in0_data
-	wire         avalon_st_adapter_002_out_0_ready;   // multiplexer_0:in0_ready -> avalon_st_adapter_002:out_0_ready
-	wire         avalon_st_adapter_002_out_0_channel; // avalon_st_adapter_002:out_0_channel -> multiplexer_0:in0_channel
-	wire         rst_controller_reset_out_reset;      // rst_controller:reset_out -> [CPAdderRouter_0:reset_reset, avalon_st_adapter:in_rst_0_reset, avalon_st_adapter_001:in_rst_0_reset, avalon_st_adapter_002:in_rst_0_reset, multiplexer_0:reset_n, sc_fifo_0:reset]
+	wire         sc_fifo_0_out_valid;                // sc_fifo_0:out_valid -> CPAdderRouter_0:buffer_in_valid
+	wire  [21:0] sc_fifo_0_out_data;                 // sc_fifo_0:out_data -> CPAdderRouter_0:buffer_in_data
+	wire         sc_fifo_0_out_ready;                // CPAdderRouter_0:buffer_in_ready -> sc_fifo_0:out_ready
+	wire         sc_fifo_0_out_startofpacket;        // sc_fifo_0:out_startofpacket -> CPAdderRouter_0:buffer_in_startofpacket
+	wire         sc_fifo_0_out_endofpacket;          // sc_fifo_0:out_endofpacket -> CPAdderRouter_0:buffer_in_endofpacket
+	wire         demultiplexer_0_out0_valid;         // demultiplexer_0:out0_valid -> CPAdderRouter_0:asi_in0_valid
+	wire  [21:0] demultiplexer_0_out0_data;          // demultiplexer_0:out0_data -> CPAdderRouter_0:asi_in0_data
+	wire         demultiplexer_0_out0_ready;         // CPAdderRouter_0:asi_in0_ready -> demultiplexer_0:out0_ready
+	wire         demultiplexer_0_out0_startofpacket; // demultiplexer_0:out0_startofpacket -> CPAdderRouter_0:asi_in0_startofpacket
+	wire         demultiplexer_0_out0_endofpacket;   // demultiplexer_0:out0_endofpacket -> CPAdderRouter_0:asi_in0_endofpacket
+	wire         demultiplexer_0_out1_valid;         // demultiplexer_0:out1_valid -> sc_fifo_0:in_valid
+	wire  [21:0] demultiplexer_0_out1_data;          // demultiplexer_0:out1_data -> sc_fifo_0:in_data
+	wire         demultiplexer_0_out1_ready;         // sc_fifo_0:in_ready -> demultiplexer_0:out1_ready
+	wire         demultiplexer_0_out1_startofpacket; // demultiplexer_0:out1_startofpacket -> sc_fifo_0:in_startofpacket
+	wire         demultiplexer_0_out1_endofpacket;   // demultiplexer_0:out1_endofpacket -> sc_fifo_0:in_endofpacket
+	wire         rst_controller_reset_out_reset;     // rst_controller:reset_out -> [CPAdderRouter_0:reset_reset, demultiplexer_0:reset_n, sc_fifo_0:reset]
 
 	OFDM_Cyclic_Prefix_Adder #(
 		.Packet_Length (1024),
 		.CP_Length     (128)
 	) cpadderrouter_0 (
-		.asi_in0_data          (cpadderrouter_0_asi_in0_data),          //    asi_in0.data
-		.asi_in0_valid         (cpadderrouter_0_asi_in0_valid),         //           .valid
-		.asi_in0_endofpacket   (cpadderrouter_0_asi_in0_endofpacket),   //           .endofpacket
-		.asi_in0_startofpacket (cpadderrouter_0_asi_in0_startofpacket), //           .startofpacket
-		.asi_in0_ready         (cpadderrouter_0_asi_in0_ready),         //           .ready
-		.clock_clk             (clk_clk),                               //      clock.clk
-		.reset_reset           (rst_controller_reset_out_reset),        //      reset.reset
-		.aso_out0_data         (cpadderrouter_0_datasource_data),       // dataSource.data
-		.aso_out0_valid        (cpadderrouter_0_datasource_valid),      //           .valid
-		.CPSource_data         (cpadderrouter_0_cpsource_data),         //   CPSource.data
-		.CPSource_valid        (cpadderrouter_0_cpsource_valid)         //           .valid
+		.asi_in0_data            (demultiplexer_0_out0_data),              //   asi_in0.data
+		.asi_in0_valid           (demultiplexer_0_out0_valid),             //          .valid
+		.asi_in0_endofpacket     (demultiplexer_0_out0_endofpacket),       //          .endofpacket
+		.asi_in0_startofpacket   (demultiplexer_0_out0_startofpacket),     //          .startofpacket
+		.asi_in0_ready           (demultiplexer_0_out0_ready),             //          .ready
+		.clock_clk               (clk_clk),                                //     clock.clk
+		.reset_reset             (rst_controller_reset_out_reset),         //     reset.reset
+		.buffer_in_data          (sc_fifo_0_out_data),                     // buffer_in.data
+		.buffer_in_ready         (sc_fifo_0_out_ready),                    //          .ready
+		.buffer_in_valid         (sc_fifo_0_out_valid),                    //          .valid
+		.buffer_in_startofpacket (sc_fifo_0_out_startofpacket),            //          .startofpacket
+		.buffer_in_endofpacket   (sc_fifo_0_out_endofpacket),              //          .endofpacket
+		.data_out_data           (cpadderrouter_0_data_out_data),          //  data_out.data
+		.data_out_valid          (cpadderrouter_0_data_out_valid),         //          .valid
+		.data_out_endofpacket    (cpadderrouter_0_data_out_endofpacket),   //          .endofpacket
+		.data_out_startofpacket  (cpadderrouter_0_data_out_startofpacket)  //          .startofpacket
 	);
 
-	OFDMCPAdder_multiplexer_0 multiplexer_0 (
-		.clk         (clk_clk),                             //   clk.clk
-		.reset_n     (~rst_controller_reset_out_reset),     // reset.reset_n
-		.out_data    (multiplexer_0_out_data),              //   out.data
-		.out_valid   (multiplexer_0_out_valid),             //      .valid
-		.out_ready   (multiplexer_0_out_ready),             //      .ready
-		.out_channel (multiplexer_0_out_channel),           //      .channel
-		.in0_data    (avalon_st_adapter_002_out_0_data),    //   in0.data
-		.in0_valid   (avalon_st_adapter_002_out_0_valid),   //      .valid
-		.in0_ready   (avalon_st_adapter_002_out_0_ready),   //      .ready
-		.in0_channel (avalon_st_adapter_002_out_0_channel), //      .channel
-		.in1_data    (avalon_st_adapter_out_0_data),        //   in1.data
-		.in1_valid   (avalon_st_adapter_out_0_valid),       //      .valid
-		.in1_ready   (avalon_st_adapter_out_0_ready),       //      .ready
-		.in1_channel (avalon_st_adapter_out_0_channel)      //      .channel
+	OFDMCPAdder_demultiplexer_0 demultiplexer_0 (
+		.clk                (clk_clk),                            //   clk.clk
+		.reset_n            (~rst_controller_reset_out_reset),    // reset.reset_n
+		.in_data            (demultiplexer_0_in_data),            //    in.data
+		.in_valid           (demultiplexer_0_in_valid),           //      .valid
+		.in_ready           (demultiplexer_0_in_ready),           //      .ready
+		.in_startofpacket   (demultiplexer_0_in_startofpacket),   //      .startofpacket
+		.in_endofpacket     (demultiplexer_0_in_endofpacket),     //      .endofpacket
+		.in_channel         (demultiplexer_0_in_channel),         //      .channel
+		.out0_data          (demultiplexer_0_out0_data),          //  out0.data
+		.out0_valid         (demultiplexer_0_out0_valid),         //      .valid
+		.out0_ready         (demultiplexer_0_out0_ready),         //      .ready
+		.out0_startofpacket (demultiplexer_0_out0_startofpacket), //      .startofpacket
+		.out0_endofpacket   (demultiplexer_0_out0_endofpacket),   //      .endofpacket
+		.out1_data          (demultiplexer_0_out1_data),          //  out1.data
+		.out1_valid         (demultiplexer_0_out1_valid),         //      .valid
+		.out1_ready         (demultiplexer_0_out1_ready),         //      .ready
+		.out1_startofpacket (demultiplexer_0_out1_startofpacket), //      .startofpacket
+		.out1_endofpacket   (demultiplexer_0_out1_endofpacket)    //      .endofpacket
 	);
 
 	altera_avalon_sc_fifo #(
@@ -77,7 +84,7 @@ module OFDMCPAdder (
 		.FIFO_DEPTH          (2048),
 		.CHANNEL_WIDTH       (0),
 		.ERROR_WIDTH         (0),
-		.USE_PACKETS         (0),
+		.USE_PACKETS         (1),
 		.USE_FILL_LEVEL      (0),
 		.EMPTY_LATENCY       (3),
 		.USE_MEMORY_BLOCKS   (1),
@@ -87,12 +94,16 @@ module OFDMCPAdder (
 	) sc_fifo_0 (
 		.clk               (clk_clk),                              //       clk.clk
 		.reset             (rst_controller_reset_out_reset),       // clk_reset.reset
-		.in_data           (avalon_st_adapter_001_out_0_data),     //        in.data
-		.in_valid          (avalon_st_adapter_001_out_0_valid),    //          .valid
-		.in_ready          (avalon_st_adapter_001_out_0_ready),    //          .ready
+		.in_data           (demultiplexer_0_out1_data),            //        in.data
+		.in_valid          (demultiplexer_0_out1_valid),           //          .valid
+		.in_ready          (demultiplexer_0_out1_ready),           //          .ready
+		.in_startofpacket  (demultiplexer_0_out1_startofpacket),   //          .startofpacket
+		.in_endofpacket    (demultiplexer_0_out1_endofpacket),     //          .endofpacket
 		.out_data          (sc_fifo_0_out_data),                   //       out.data
 		.out_valid         (sc_fifo_0_out_valid),                  //          .valid
 		.out_ready         (sc_fifo_0_out_ready),                  //          .ready
+		.out_startofpacket (sc_fifo_0_out_startofpacket),          //          .startofpacket
+		.out_endofpacket   (sc_fifo_0_out_endofpacket),            //          .endofpacket
 		.csr_address       (2'b00),                                // (terminated)
 		.csr_read          (1'b0),                                 // (terminated)
 		.csr_write         (1'b0),                                 // (terminated)
@@ -100,100 +111,12 @@ module OFDMCPAdder (
 		.csr_writedata     (32'b00000000000000000000000000000000), // (terminated)
 		.almost_full_data  (),                                     // (terminated)
 		.almost_empty_data (),                                     // (terminated)
-		.in_startofpacket  (1'b0),                                 // (terminated)
-		.in_endofpacket    (1'b0),                                 // (terminated)
-		.out_startofpacket (),                                     // (terminated)
-		.out_endofpacket   (),                                     // (terminated)
 		.in_empty          (1'b0),                                 // (terminated)
 		.out_empty         (),                                     // (terminated)
 		.in_error          (1'b0),                                 // (terminated)
 		.out_error         (),                                     // (terminated)
 		.in_channel        (1'b0),                                 // (terminated)
 		.out_channel       ()                                      // (terminated)
-	);
-
-	OFDMCPAdder_avalon_st_adapter #(
-		.inBitsPerSymbol (22),
-		.inUsePackets    (0),
-		.inDataWidth     (22),
-		.inChannelWidth  (0),
-		.inErrorWidth    (0),
-		.inUseEmptyPort  (0),
-		.inUseValid      (1),
-		.inUseReady      (0),
-		.inReadyLatency  (0),
-		.outDataWidth    (22),
-		.outChannelWidth (1),
-		.outErrorWidth   (0),
-		.outUseEmptyPort (0),
-		.outUseValid     (1),
-		.outUseReady     (1),
-		.outReadyLatency (0)
-	) avalon_st_adapter (
-		.in_clk_0_clk   (clk_clk),                         // in_clk_0.clk
-		.in_rst_0_reset (rst_controller_reset_out_reset),  // in_rst_0.reset
-		.in_0_data      (cpadderrouter_0_cpsource_data),   //     in_0.data
-		.in_0_valid     (cpadderrouter_0_cpsource_valid),  //         .valid
-		.out_0_data     (avalon_st_adapter_out_0_data),    //    out_0.data
-		.out_0_valid    (avalon_st_adapter_out_0_valid),   //         .valid
-		.out_0_ready    (avalon_st_adapter_out_0_ready),   //         .ready
-		.out_0_channel  (avalon_st_adapter_out_0_channel)  //         .channel
-	);
-
-	OFDMCPAdder_avalon_st_adapter_001 #(
-		.inBitsPerSymbol (22),
-		.inUsePackets    (0),
-		.inDataWidth     (22),
-		.inChannelWidth  (0),
-		.inErrorWidth    (0),
-		.inUseEmptyPort  (0),
-		.inUseValid      (1),
-		.inUseReady      (0),
-		.inReadyLatency  (0),
-		.outDataWidth    (22),
-		.outChannelWidth (0),
-		.outErrorWidth   (0),
-		.outUseEmptyPort (0),
-		.outUseValid     (1),
-		.outUseReady     (1),
-		.outReadyLatency (0)
-	) avalon_st_adapter_001 (
-		.in_clk_0_clk   (clk_clk),                           // in_clk_0.clk
-		.in_rst_0_reset (rst_controller_reset_out_reset),    // in_rst_0.reset
-		.in_0_data      (cpadderrouter_0_datasource_data),   //     in_0.data
-		.in_0_valid     (cpadderrouter_0_datasource_valid),  //         .valid
-		.out_0_data     (avalon_st_adapter_001_out_0_data),  //    out_0.data
-		.out_0_valid    (avalon_st_adapter_001_out_0_valid), //         .valid
-		.out_0_ready    (avalon_st_adapter_001_out_0_ready)  //         .ready
-	);
-
-	OFDMCPAdder_avalon_st_adapter_002 #(
-		.inBitsPerSymbol (22),
-		.inUsePackets    (0),
-		.inDataWidth     (22),
-		.inChannelWidth  (0),
-		.inErrorWidth    (0),
-		.inUseEmptyPort  (0),
-		.inUseValid      (1),
-		.inUseReady      (1),
-		.inReadyLatency  (0),
-		.outDataWidth    (22),
-		.outChannelWidth (1),
-		.outErrorWidth   (0),
-		.outUseEmptyPort (0),
-		.outUseValid     (1),
-		.outUseReady     (1),
-		.outReadyLatency (0)
-	) avalon_st_adapter_002 (
-		.in_clk_0_clk   (clk_clk),                             // in_clk_0.clk
-		.in_rst_0_reset (rst_controller_reset_out_reset),      // in_rst_0.reset
-		.in_0_data      (sc_fifo_0_out_data),                  //     in_0.data
-		.in_0_valid     (sc_fifo_0_out_valid),                 //         .valid
-		.in_0_ready     (sc_fifo_0_out_ready),                 //         .ready
-		.out_0_data     (avalon_st_adapter_002_out_0_data),    //    out_0.data
-		.out_0_valid    (avalon_st_adapter_002_out_0_valid),   //         .valid
-		.out_0_ready    (avalon_st_adapter_002_out_0_ready),   //         .ready
-		.out_0_channel  (avalon_st_adapter_002_out_0_channel)  //         .channel
 	);
 
 	altera_reset_controller #(

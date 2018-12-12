@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="OFDMCPAdder" kind="OFDMCPAdder" version="1.0" fabric="QSYS">
  <!-- Format version 16.1 196 (Future versions may contain additional information.) -->
- <!-- 2018.12.11.23:26:09 -->
+ <!-- 2018.12.12.18:48:33 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1544541969</value>
+  <value>1544611713</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -373,7 +373,7 @@ parameters are a RESULT of the module parameters. -->
     <role>reset</role>
    </port>
   </interface>
-  <interface name="dataSource" kind="avalon_streaming_source" version="16.1">
+  <interface name="buffer_in" kind="avalon_streaming_sink" version="16.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -490,21 +490,39 @@ parameters are a RESULT of the module parameters. -->
     <valid>true</valid>
    </parameter>
    <type>avalon_streaming</type>
-   <isStart>true</isStart>
+   <isStart>false</isStart>
    <port>
-    <name>aso_out0_data</name>
-    <direction>Output</direction>
+    <name>buffer_in_data</name>
+    <direction>Input</direction>
     <width>22</width>
     <role>data</role>
    </port>
    <port>
-    <name>aso_out0_valid</name>
+    <name>buffer_in_ready</name>
     <direction>Output</direction>
     <width>1</width>
+    <role>ready</role>
+   </port>
+   <port>
+    <name>buffer_in_valid</name>
+    <direction>Input</direction>
+    <width>1</width>
     <role>valid</role>
+   </port>
+   <port>
+    <name>buffer_in_startofpacket</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>startofpacket</role>
+   </port>
+   <port>
+    <name>buffer_in_endofpacket</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>endofpacket</role>
    </port>
   </interface>
-  <interface name="CPSource" kind="avalon_streaming_source" version="16.1">
+  <interface name="data_out" kind="avalon_streaming_source" version="16.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -623,16 +641,28 @@ parameters are a RESULT of the module parameters. -->
    <type>avalon_streaming</type>
    <isStart>true</isStart>
    <port>
-    <name>CPSource_data</name>
+    <name>data_out_data</name>
     <direction>Output</direction>
     <width>22</width>
     <role>data</role>
    </port>
    <port>
-    <name>CPSource_valid</name>
+    <name>data_out_valid</name>
     <direction>Output</direction>
     <width>1</width>
     <role>valid</role>
+   </port>
+   <port>
+    <name>data_out_endofpacket</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>endofpacket</role>
+   </port>
+   <port>
+    <name>data_out_startofpacket</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>startofpacket</role>
    </port>
   </interface>
  </module>
@@ -879,9 +909,9 @@ parameters are a RESULT of the module parameters. -->
    </clockDomainMember>
    <clockDomainMember>
     <isBridge>false</isBridge>
-    <moduleName>multiplexer_0</moduleName>
+    <moduleName>demultiplexer_0</moduleName>
     <slaveName>clk</slaveName>
-    <name>multiplexer_0.clk</name>
+    <name>demultiplexer_0.clk</name>
    </clockDomainMember>
    <clockDomainMember>
     <isBridge>false</isBridge>
@@ -953,15 +983,15 @@ parameters are a RESULT of the module parameters. -->
   </interface>
  </module>
  <module
-   name="multiplexer_0"
-   kind="multiplexer"
+   name="demultiplexer_0"
+   kind="demultiplexer"
    version="16.1"
-   path="multiplexer_0">
+   path="demultiplexer_0">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
-  <parameter name="outChannelWidth">
+  <parameter name="inChannelWidth">
    <type>int</type>
-   <value>2</value>
+   <value>1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -977,7 +1007,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="usePackets">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -985,7 +1015,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="inUsePackets">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1007,25 +1037,9 @@ the requested settings for a module instance. -->
    <visible>false</visible>
    <valid>true</valid>
   </parameter>
-  <parameter name="numInputInterfaces">
+  <parameter name="numOutputInterfaces">
    <type>int</type>
    <value>2</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="schedulingSize">
-   <type>int</type>
-   <value>2</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="packetScheduling">
-   <type>boolean</type>
-   <value>false</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1169,7 +1183,7 @@ parameters are a RESULT of the module parameters. -->
     <role>reset_n</role>
    </port>
   </interface>
-  <interface name="out" kind="avalon_streaming_source" version="16.1">
+  <interface name="in" kind="avalon_streaming_sink" version="16.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -1239,7 +1253,162 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="maxChannel">
     <type>int</type>
-    <value>3</value>
+    <value>1</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="packetDescription">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="readyLatency">
+    <type>int</type>
+    <value>0</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="symbolsPerBeat">
+    <type>int</type>
+    <value>1</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>avalon_streaming</type>
+   <isStart>false</isStart>
+   <port>
+    <name>in_data</name>
+    <direction>Input</direction>
+    <width>22</width>
+    <role>data</role>
+   </port>
+   <port>
+    <name>in_valid</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>valid</role>
+   </port>
+   <port>
+    <name>in_ready</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>ready</role>
+   </port>
+   <port>
+    <name>in_startofpacket</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>startofpacket</role>
+   </port>
+   <port>
+    <name>in_endofpacket</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>endofpacket</role>
+   </port>
+   <port>
+    <name>in_channel</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>channel</role>
+   </port>
+  </interface>
+  <interface name="out0" kind="avalon_streaming_source" version="16.1">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="associatedClock">
+    <type>java.lang.String</type>
+    <value>clk</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="associatedReset">
+    <type>java.lang.String</type>
+    <value>reset</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="beatsPerCycle">
+    <type>int</type>
+    <value>1</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="dataBitsPerSymbol">
+    <type>int</type>
+    <value>22</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="emptyWithinPacket">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="errorDescriptor">
+    <type>[Ljava.lang.String;</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="firstSymbolInHighOrderBits">
+    <type>boolean</type>
+    <value>true</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="highOrderSymbolAtMSB">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="maxChannel">
+    <type>int</type>
+    <value>0</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -1288,31 +1457,37 @@ parameters are a RESULT of the module parameters. -->
    <type>avalon_streaming</type>
    <isStart>true</isStart>
    <port>
-    <name>out_data</name>
+    <name>out0_data</name>
     <direction>Output</direction>
     <width>22</width>
     <role>data</role>
    </port>
    <port>
-    <name>out_valid</name>
+    <name>out0_valid</name>
     <direction>Output</direction>
     <width>1</width>
     <role>valid</role>
    </port>
    <port>
-    <name>out_ready</name>
+    <name>out0_ready</name>
     <direction>Input</direction>
     <width>1</width>
     <role>ready</role>
    </port>
    <port>
-    <name>out_channel</name>
+    <name>out0_startofpacket</name>
     <direction>Output</direction>
-    <width>2</width>
-    <role>channel</role>
+    <width>1</width>
+    <role>startofpacket</role>
+   </port>
+   <port>
+    <name>out0_endofpacket</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>endofpacket</role>
    </port>
   </interface>
-  <interface name="in0" kind="avalon_streaming_sink" version="16.1">
+  <interface name="out1" kind="avalon_streaming_source" version="16.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -1382,7 +1557,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="maxChannel">
     <type>int</type>
-    <value>1</value>
+    <value>0</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -1429,173 +1604,36 @@ parameters are a RESULT of the module parameters. -->
     <valid>true</valid>
    </parameter>
    <type>avalon_streaming</type>
-   <isStart>false</isStart>
+   <isStart>true</isStart>
    <port>
-    <name>in0_data</name>
-    <direction>Input</direction>
+    <name>out1_data</name>
+    <direction>Output</direction>
     <width>22</width>
     <role>data</role>
    </port>
    <port>
-    <name>in0_valid</name>
-    <direction>Input</direction>
+    <name>out1_valid</name>
+    <direction>Output</direction>
     <width>1</width>
     <role>valid</role>
    </port>
    <port>
-    <name>in0_ready</name>
-    <direction>Output</direction>
+    <name>out1_ready</name>
+    <direction>Input</direction>
     <width>1</width>
     <role>ready</role>
    </port>
    <port>
-    <name>in0_channel</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>channel</role>
-   </port>
-  </interface>
-  <interface name="in1" kind="avalon_streaming_sink" version="16.1">
-   <!-- The connection points exposed by a module instance for the
-particular module parameters. Connection points and their
-parameters are a RESULT of the module parameters. -->
-   <parameter name="associatedClock">
-    <type>java.lang.String</type>
-    <value>clk</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="associatedReset">
-    <type>java.lang.String</type>
-    <value>reset</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="beatsPerCycle">
-    <type>int</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="dataBitsPerSymbol">
-    <type>int</type>
-    <value>22</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="emptyWithinPacket">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="errorDescriptor">
-    <type>[Ljava.lang.String;</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="firstSymbolInHighOrderBits">
-    <type>boolean</type>
-    <value>true</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="highOrderSymbolAtMSB">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="maxChannel">
-    <type>int</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="packetDescription">
-    <type>java.lang.String</type>
-    <value></value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="readyLatency">
-    <type>int</type>
-    <value>0</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="symbolsPerBeat">
-    <type>int</type>
-    <value>1</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>false</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="deviceFamily">
-    <type>java.lang.String</type>
-    <value>UNKNOWN</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <parameter name="generateLegacySim">
-    <type>boolean</type>
-    <value>false</value>
-    <derived>false</derived>
-    <enabled>true</enabled>
-    <visible>true</visible>
-    <valid>true</valid>
-   </parameter>
-   <type>avalon_streaming</type>
-   <isStart>false</isStart>
-   <port>
-    <name>in1_data</name>
-    <direction>Input</direction>
-    <width>22</width>
-    <role>data</role>
-   </port>
-   <port>
-    <name>in1_valid</name>
-    <direction>Input</direction>
-    <width>1</width>
-    <role>valid</role>
-   </port>
-   <port>
-    <name>in1_ready</name>
+    <name>out1_startofpacket</name>
     <direction>Output</direction>
     <width>1</width>
-    <role>ready</role>
+    <role>startofpacket</role>
    </port>
    <port>
-    <name>in1_channel</name>
-    <direction>Input</direction>
+    <name>out1_endofpacket</name>
+    <direction>Output</direction>
     <width>1</width>
-    <role>channel</role>
+    <role>endofpacket</role>
    </port>
   </interface>
  </module>
@@ -1652,7 +1690,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="USE_PACKETS">
    <type>int</type>
-   <value>0</value>
+   <value>1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1964,6 +2002,18 @@ parameters are a RESULT of the module parameters. -->
     <width>1</width>
     <role>ready</role>
    </port>
+   <port>
+    <name>in_startofpacket</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>startofpacket</role>
+   </port>
+   <port>
+    <name>in_endofpacket</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>endofpacket</role>
+   </port>
   </interface>
   <interface name="out" kind="avalon_streaming_source" version="16.1">
    <!-- The connection points exposed by a module instance for the
@@ -2105,68 +2155,26 @@ parameters are a RESULT of the module parameters. -->
     <width>1</width>
     <role>ready</role>
    </port>
+   <port>
+    <name>out_startofpacket</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>startofpacket</role>
+   </port>
+   <port>
+    <name>out_endofpacket</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>endofpacket</role>
+   </port>
   </interface>
  </module>
  <connection
-   name="CPAdderRouter_0.CPSource/multiplexer_0.in1"
-   kind="avalon_streaming"
-   version="16.1"
-   start="CPAdderRouter_0.CPSource"
-   end="multiplexer_0.in1">
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>CPAdderRouter_0</startModule>
-  <startConnectionPoint>CPSource</startConnectionPoint>
-  <endModule>multiplexer_0</endModule>
-  <endConnectionPoint>in1</endConnectionPoint>
- </connection>
- <connection
-   name="CPAdderRouter_0.dataSource/sc_fifo_0.in"
-   kind="avalon_streaming"
-   version="16.1"
-   start="CPAdderRouter_0.dataSource"
-   end="sc_fifo_0.in">
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>CPAdderRouter_0</startModule>
-  <startConnectionPoint>dataSource</startConnectionPoint>
-  <endModule>sc_fifo_0</endModule>
-  <endConnectionPoint>in</endConnectionPoint>
- </connection>
- <connection
-   name="sc_fifo_0.out/multiplexer_0.in0"
+   name="sc_fifo_0.out/CPAdderRouter_0.buffer_in"
    kind="avalon_streaming"
    version="16.1"
    start="sc_fifo_0.out"
-   end="multiplexer_0.in0">
+   end="CPAdderRouter_0.buffer_in">
   <parameter name="deviceFamily">
    <type>java.lang.String</type>
    <value>UNKNOWN</value>
@@ -2185,8 +2193,62 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <startModule>sc_fifo_0</startModule>
   <startConnectionPoint>out</startConnectionPoint>
-  <endModule>multiplexer_0</endModule>
-  <endConnectionPoint>in0</endConnectionPoint>
+  <endModule>CPAdderRouter_0</endModule>
+  <endConnectionPoint>buffer_in</endConnectionPoint>
+ </connection>
+ <connection
+   name="demultiplexer_0.out0/CPAdderRouter_0.asi_in0"
+   kind="avalon_streaming"
+   version="16.1"
+   start="demultiplexer_0.out0"
+   end="CPAdderRouter_0.asi_in0">
+  <parameter name="deviceFamily">
+   <type>java.lang.String</type>
+   <value>UNKNOWN</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="generateLegacySim">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <startModule>demultiplexer_0</startModule>
+  <startConnectionPoint>out0</startConnectionPoint>
+  <endModule>CPAdderRouter_0</endModule>
+  <endConnectionPoint>asi_in0</endConnectionPoint>
+ </connection>
+ <connection
+   name="demultiplexer_0.out1/sc_fifo_0.in"
+   kind="avalon_streaming"
+   version="16.1"
+   start="demultiplexer_0.out1"
+   end="sc_fifo_0.in">
+  <parameter name="deviceFamily">
+   <type>java.lang.String</type>
+   <value>UNKNOWN</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="generateLegacySim">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <startModule>demultiplexer_0</startModule>
+  <startConnectionPoint>out1</startConnectionPoint>
+  <endModule>sc_fifo_0</endModule>
+  <endConnectionPoint>in</endConnectionPoint>
  </connection>
  <connection
    name="clk_0.clk/sc_fifo_0.clk"
@@ -2216,11 +2278,11 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>clk</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk/multiplexer_0.clk"
+   name="clk_0.clk/demultiplexer_0.clk"
    kind="clock"
    version="16.1"
    start="clk_0.clk"
-   end="multiplexer_0.clk">
+   end="demultiplexer_0.clk">
   <parameter name="deviceFamily">
    <type>java.lang.String</type>
    <value>UNKNOWN</value>
@@ -2239,7 +2301,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <startModule>clk_0</startModule>
   <startConnectionPoint>clk</startConnectionPoint>
-  <endModule>multiplexer_0</endModule>
+  <endModule>demultiplexer_0</endModule>
   <endConnectionPoint>clk</endConnectionPoint>
  </connection>
  <connection
@@ -2324,11 +2386,11 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>reset</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk_reset/multiplexer_0.reset"
+   name="clk_0.clk_reset/demultiplexer_0.reset"
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
-   end="multiplexer_0.reset">
+   end="demultiplexer_0.reset">
   <parameter name="deviceFamily">
    <type>java.lang.String</type>
    <value>UNKNOWN</value>
@@ -2347,7 +2409,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <startModule>clk_0</startModule>
   <startConnectionPoint>clk_reset</startConnectionPoint>
-  <endModule>multiplexer_0</endModule>
+  <endModule>demultiplexer_0</endModule>
   <endConnectionPoint>reset</endConnectionPoint>
  </connection>
  <plugin>
@@ -2432,10 +2494,10 @@ parameters are a RESULT of the module parameters. -->
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
-  <name>multiplexer</name>
+  <name>demultiplexer</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Avalon-ST Multiplexer</displayName>
+  <displayName>Avalon-ST Demultiplexer</displayName>
   <version>16.1</version>
  </plugin>
  <plugin>
