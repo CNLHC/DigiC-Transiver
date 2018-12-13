@@ -16,7 +16,6 @@ module Fix_Length_Bytes2Packets (
         output wire        aso_out0_empty
 	);
     reg [12:0]tSymbolCounter; 
-    reg [1:0]tInnerState;//0:IDLE 1:start-assert 2:packeting 3:end-assert
     reg [2:0]tBytesCounter;
     reg tPacketState;
 
@@ -25,7 +24,6 @@ module Fix_Length_Bytes2Packets (
 
     always @(posedge reset_reset or posedge clock_clk) begin
         if(reset_reset) begin
-            tInnerState<=0;
             tSymbolCounter<=0;
             tBytesCounter<=0;
             tPacketState<=0;
@@ -50,7 +48,7 @@ module Fix_Length_Bytes2Packets (
                 tSymbolCounter<=tSymbolCounter+1;
                 tBytesCounter<=0;
                 aso_out0_valid<=1;
-                if(tSymbolCounter>=63)begin //TODO:Hard-Coded Warning
+                if(tSymbolCounter>63)begin //TODO:Hard-Coded Warning
                     tSymbolCounter<=0;
                     tPacketState<=0;
                     aso_out0_endofpacket<=1;
