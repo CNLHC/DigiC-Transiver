@@ -11,9 +11,8 @@
    <description preferredWidth="341" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/Qsys Interconnect/Memory-Mapped,Library/Basic Functions/On Chip Memory,Library/University Program/Audio &amp; Video/Video,Library/University Program/Audio &amp; Video,Library/Qsys Interconnect/Memory-Mapped Alpha,Project,Library/Basic Functions,Library/University Program,Library/Qsys Interconnect,Library" />
- <window width="2578" height="1420" x="-9" y="-9" />
+ <library expandedCategories="Project,Library" />
+ <window width="2560" height="1402" x="-277" y="57" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
 </preferences>
