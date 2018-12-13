@@ -97,11 +97,19 @@
          type = "String";
       }
    }
+   element DigiCQSys
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element Fix_Length_Bytes2Packets_0
    {
       datum _sortIndex
       {
-         value = "1";
+         value = "2";
          type = "int";
       }
    }
@@ -109,7 +117,7 @@
    {
       datum _sortIndex
       {
-         value = "5";
+         value = "6";
          type = "int";
       }
    }
@@ -117,7 +125,7 @@
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "8";
          type = "int";
       }
    }
@@ -125,7 +133,7 @@
    {
       datum _sortIndex
       {
-         value = "3";
+         value = "4";
          type = "int";
       }
       datum sopceditor_expanded
@@ -138,7 +146,7 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "10";
          type = "int";
       }
       datum sopceditor_expanded
@@ -151,7 +159,7 @@
    {
       datum _sortIndex
       {
-         value = "6";
+         value = "7";
          type = "int";
       }
       datum sopceditor_expanded
@@ -164,7 +172,7 @@
    {
       datum _sortIndex
       {
-         value = "4";
+         value = "5";
          type = "int";
       }
    }
@@ -172,7 +180,7 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "9";
          type = "int";
       }
       datum sopceditor_expanded
@@ -185,7 +193,15 @@
    {
       datum _sortIndex
       {
-         value = "2";
+         value = "1";
+         type = "int";
+      }
+   }
+   element sc_fifo_1
+   {
+      datum _sortIndex
+      {
+         value = "3";
          type = "int";
       }
    }
@@ -250,11 +266,15 @@
    type="conduit"
    dir="end" />
  <interface name="pll_0_locked" internal="pll_0.locked" type="conduit" dir="end" />
- <interface name="pll_0_outclk_10" internal="pll_0.outclk1" />
  <interface name="pll_0_outclk_120" internal="pll_0.outclk3" />
  <interface name="pll_0_outclk_20" internal="pll_0.outclk2" />
  <interface name="pll_0_refclk" internal="pll_0.refclk" type="clock" dir="end" />
  <interface name="qsys_clkin" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface
+   name="signal_tap_clock"
+   internal="pll_0.outclk1"
+   type="clock"
+   dir="start" />
  <interface
    name="spislave_0_export_0"
    internal="spislave_0.export_0"
@@ -303,7 +323,7 @@
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="2048" />
+  <parameter name="FIFO_DEPTH" value="4096" />
   <parameter name="RD_SYNC_DEPTH" value="3" />
   <parameter name="SYMBOLS_PER_BEAT" value="1" />
   <parameter name="USE_IN_FILL_LEVEL" value="0" />
@@ -446,10 +466,10 @@
   <parameter name="gui_fractional_cout" value="32" />
   <parameter name="gui_mif_generate" value="false" />
   <parameter name="gui_multiply_factor" value="1" />
-  <parameter name="gui_number_of_clocks" value="1" />
+  <parameter name="gui_number_of_clocks" value="2" />
   <parameter name="gui_operation_mode" value="direct" />
   <parameter name="gui_output_clock_frequency0" value="40.0" />
-  <parameter name="gui_output_clock_frequency1" value="10.0" />
+  <parameter name="gui_output_clock_frequency1" value="200.0" />
   <parameter name="gui_output_clock_frequency10" value="100.0" />
   <parameter name="gui_output_clock_frequency11" value="100.0" />
   <parameter name="gui_output_clock_frequency12" value="100.0" />
@@ -537,20 +557,40 @@
    kind="altera_avalon_sc_fifo"
    version="16.1"
    enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="8" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="EMPTY_LATENCY" value="3" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="32768" />
+  <parameter name="SYMBOLS_PER_BEAT" value="1" />
+  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
+  <parameter name="USE_ALMOST_FULL_IF" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="0" />
+  <parameter name="USE_MEMORY_BLOCKS" value="1" />
+  <parameter name="USE_PACKETS" value="0" />
+  <parameter name="USE_STORE_FORWARD" value="0" />
+ </module>
+ <module
+   name="sc_fifo_1"
+   kind="altera_avalon_sc_fifo"
+   version="16.1"
+   enabled="1">
   <parameter name="BITS_PER_SYMBOL" value="32" />
   <parameter name="CHANNEL_WIDTH" value="0" />
   <parameter name="EMPTY_LATENCY" value="3" />
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="4096" />
+  <parameter name="FIFO_DEPTH" value="1024" />
   <parameter name="SYMBOLS_PER_BEAT" value="1" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="0" />
-  <parameter name="USE_FILL_LEVEL" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="1" />
   <parameter name="USE_MEMORY_BLOCKS" value="1" />
   <parameter name="USE_PACKETS" value="1" />
-  <parameter name="USE_STORE_FORWARD" value="0" />
+  <parameter name="USE_STORE_FORWARD" value="1" />
  </module>
  <module name="spislave_0" kind="spislave" version="16.1" enabled="1">
   <parameter name="AUTO_CLOCK_SINK_CLOCK_RATE" value="50000000" />
@@ -561,7 +601,7 @@
    kind="avalon_streaming"
    version="16.1"
    start="Fix_Length_Bytes2Packets_0.aso_out0"
-   end="sc_fifo_0.in" />
+   end="sc_fifo_1.in" />
  <connection
    kind="avalon_streaming"
    version="16.1"
@@ -571,7 +611,7 @@
    kind="avalon_streaming"
    version="16.1"
    start="spislave_0.avalon_streaming_source"
-   end="Fix_Length_Bytes2Packets_0.asi_in0" />
+   end="sc_fifo_0.in" />
  <connection
    kind="avalon_streaming"
    version="16.1"
@@ -580,21 +620,27 @@
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="sc_fifo_0.out"
-   end="QAM_Modulation_0.asi_in0" />
- <connection
-   kind="avalon_streaming"
-   version="16.1"
    start="dc_fifo_0.out"
    end="OFDM_DAC_Control_0.asi_in0" />
  <connection
    kind="avalon_streaming"
    version="16.1"
+   start="sc_fifo_0.out"
+   end="Fix_Length_Bytes2Packets_0.asi_in0" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="sc_fifo_1.out"
+   end="QAM_Modulation_0.asi_in0" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
    start="fft_ii_0.source"
-   end="OFDMCPAdder_0.demultiplexer_0_in" />
+   end="OFDMCPAdder_0.avalon_st_demux_0_asi_in0" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="fft_ii_0.clk" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="sc_fifo_0.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="OFDMCPAdder_0.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="sc_fifo_0.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="sc_fifo_1.clk" />
  <connection
    kind="clock"
    version="16.1"
@@ -626,6 +672,11 @@
    version="16.1"
    start="clk_0.clk_reset"
    end="sc_fifo_0.clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="sc_fifo_1.clk_reset" />
  <connection
    kind="reset"
    version="16.1"

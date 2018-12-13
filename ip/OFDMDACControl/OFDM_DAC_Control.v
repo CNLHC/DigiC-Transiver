@@ -13,6 +13,8 @@ module OFDM_DAC_Control (
 		input  wire [21:0] asi_in0_data,          //      asi_in0.data
 		output wire        asi_in0_ready,         //             .ready
 		input  wire        asi_in0_valid,         //             .valid
+        input  wire        asi_in0_startofpacket,
+        input wire         asi_in0_endofpacket,
 		input  wire        reset_reset,           //        reset.reset
 
 		output reg  [13:0] DAC_Control_ChA_Data,  //  DAC_Control.chadata

@@ -48,9 +48,9 @@ module QAM_Modulation #(
             case (tInnerStateFlag)
                 0: begin
                     asi_in0_ready<=1;
-                    if(asi_in0_startofpacket)begin // IDLE
+                    if(asi_in0_startofpacket&&asi_in0_valid)begin // IDLE
                         tInnerStateFlag<=1;
-                        if(asi_in0_ready && asi_in0_valid) begin
+                        if(asi_in0_ready) begin
                             tInputSymbolBuffer<=asi_in0_data;
                             tBytesBuffer<=0;
                             asi_in0_ready<=0;
@@ -67,20 +67,20 @@ module QAM_Modulation #(
                         aso_out0_startofpacket<=0;
 
                     if(asi_in0_ready && asi_in0_valid) begin
-                        tInputSymbolBuffer<=asi_in0_data;
-                        tBytesBuffer<=0;
                         asi_in0_ready<=0;
+                        tBytesBuffer<=0;
+                        tInputSymbolBuffer<=asi_in0_data;
                     end
 
                     if(tBytesBuffer<16) begin
-                        asi_in0_ready<=0;
                         if(!tPacketState)begin
                             aso_out0_startofpacket<=1;
                             tPacketState<=1;
                         end
-                        aso_out0_valid<=1;
                         aso_out0_data[0]<=1; //set IFFT
+                        aso_out0_valid<=1;
                         tBytesBuffer<=tBytesBuffer+1;
+                        asi_in0_ready<=0;
                         case(tInputSymbolBuffer[(16-tBytesBuffer)*2-1-:2])
                             0: begin
                                 aso_out0_data[16:9]<=7;
@@ -101,8 +101,12 @@ module QAM_Modulation #(
                         endcase
                     end
                     else begin
-                        asi_in0_ready<=1;
                         aso_out0_valid<=0;
+                        if(asi_in0_ready)
+                            asi_in0_ready<=0;
+
+                        else
+                            asi_in0_ready<=1;
                     end
                 end
                 2:begin
@@ -142,4 +146,5 @@ module QAM_Modulation #(
                 end
             endcase
     end
+
 endmodule

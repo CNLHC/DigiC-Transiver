@@ -2,7 +2,7 @@ set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_TOOL
 set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_TOOL_VERSION "16.1"
 set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "OFDMCPAdder" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../OFDMCPAdder.sopcinfo"]
-set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name SLD_INFO "QSYS_NAME OFDMCPAdder HAS_SOPCINFO 1 GENERATION_ID 1544611713"
+set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name SLD_INFO "QSYS_NAME OFDMCPAdder HAS_SOPCINFO 1 GENERATION_ID 1544678729"
 set_global_assignment -library "OFDMCPAdder" -name MISC_FILE [file join $::quartus(qip_path) "../OFDMCPAdder.cmp"]
 set_global_assignment -library "OFDMCPAdder" -name SLD_FILE [file join $::quartus(qip_path) "OFDMCPAdder.debuginfo"]
 set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_TARGETED_DEVICE_FAMILY "Cyclone V"
@@ -15,7 +15,7 @@ set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_COMP
 set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTU0NDYxMTcxMw==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTU0NDY3ODcyOQ==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::Q3ljbG9uZSBW::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::NUNTWEZDNkQ2RjMxQzY=::QXV0byBERVZJQ0U="
 set_global_assignment -entity "OFDMCPAdder" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Nl9INg==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -62,35 +62,18 @@ set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -na
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_VERSION "MTYuMQ=="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "U1lNQk9MU19QRVJfQkVBVA==::MQ==::U3ltYm9scyBwZXIgYmVhdA=="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "QklUU19QRVJfU1lNQk9M::MjI=::Qml0cyBwZXIgc3ltYm9s"
-set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "RklGT19ERVBUSA==::MjA0OA==::RklGTyBkZXB0aA=="
+set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "RklGT19ERVBUSA==::MzI3Njg=::RklGTyBkZXB0aA=="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "Q0hBTk5FTF9XSURUSA==::MA==::Q2hhbm5lbCB3aWR0aA=="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "RVJST1JfV0lEVEg=::MA==::RXJyb3Igd2lkdGg="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "VVNFX1BBQ0tFVFM=::MQ==::VXNlIHBhY2tldHM="
-set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "VVNFX0ZJTExfTEVWRUw=::MA==::VXNlIGZpbGwgbGV2ZWw="
+set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "VVNFX0ZJTExfTEVWRUw=::MQ==::VXNlIGZpbGwgbGV2ZWw="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "RU1QVFlfTEFURU5DWQ==::Mw==::TGF0ZW5jeQ=="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "VVNFX01FTU9SWV9CTE9DS1M=::MQ==::VXNlIG1lbW9yeSBibG9ja3M="
-set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "VVNFX1NUT1JFX0ZPUldBUkQ=::MA==::VXNlIHN0b3JlIGFuZCBmb3J3YXJk"
+set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "VVNFX1NUT1JFX0ZPUldBUkQ=::MQ==::VXNlIHN0b3JlIGFuZCBmb3J3YXJk"
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "VVNFX0FMTU9TVF9GVUxMX0lG::MA==::VXNlIGFsbW9zdCBmdWxsIHN0YXR1cw=="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "VVNFX0FMTU9TVF9FTVBUWV9JRg==::MA==::VXNlIGFsbW9zdCBlbXB0eSBzdGF0dXM="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "RU5BQkxFX0VYUExJQ0lUX01BWENIQU5ORUw=::ZmFsc2U=::RW5hYmxlIGV4cGxpY2l0IG1heENoYW5uZWw="
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "RVhQTElDSVRfTUFYQ0hBTk5FTA==::MA==::RXhwbGljaXQgbWF4Q2hhbm5lbA=="
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_NAME "T0ZETUNQQWRkZXJfZGVtdWx0aXBsZXhlcl8w"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_DISPLAY_NAME "QXZhbG9uLVNUIERlbXVsdGlwbGV4ZXI="
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_INTERNAL "Off"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_AUTHOR "QWx0ZXJhIENvcnBvcmF0aW9u"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_VERSION "MTYuMQ=="
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "aW5DaGFubmVsV2lkdGg=::MQ==::Q2hhbm5lbCBTaWduYWwgV2lkdGggKGJpdHMp"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "Yml0c1BlclN5bWJvbA==::MjI=::RGF0YSBCaXRzIFBlciBTeW1ib2w="
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "dXNlUGFja2V0cw==::dHJ1ZQ==::SW5jbHVkZSBQYWNrZXQgU3VwcG9ydA=="
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "aW5Vc2VQYWNrZXRz::dHJ1ZQ==::aW5Vc2VQYWNrZXRz"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "aW5Vc2VFbXB0eVBvcnQ=::QVVUTw==::aW5Vc2VFbXB0eVBvcnQ="
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "aW5Vc2VFbXB0eQ==::ZmFsc2U=::aW5Vc2VFbXB0eQ=="
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "bnVtT3V0cHV0SW50ZXJmYWNlcw==::Mg==::TnVtYmVyIG9mIE91dHB1dCBQb3J0cw=="
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "dXNlSGlnaEJpdHNPZkNoYW5uZWw=::dHJ1ZQ==::VXNlIEhpZ2ggQ2hhbm5lbCBCaXRz"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "c3ltYm9sc1BlckJlYXQ=::MQ==::RGF0YSBTeW1ib2xzIFBlciBCZWF0"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "ZXJyb3JXaWR0aA==::MA==::RXJyb3IgU2lnbmFsIFdpZHRoIChiaXRzKQ=="
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "aW5FcnJvcldpZHRo::MA==::aW5FcnJvcldpZHRo"
 set_global_assignment -entity "OFDM_Cyclic_Prefix_Adder" -library "OFDMCPAdder" -name IP_COMPONENT_NAME "T0ZETV9DeWNsaWNfUHJlZml4X0FkZGVy"
 set_global_assignment -entity "OFDM_Cyclic_Prefix_Adder" -library "OFDMCPAdder" -name IP_COMPONENT_DISPLAY_NAME "Q1BBZGRlclJvdXRlcg=="
 set_global_assignment -entity "OFDM_Cyclic_Prefix_Adder" -library "OFDMCPAdder" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
@@ -98,15 +81,21 @@ set_global_assignment -entity "OFDM_Cyclic_Prefix_Adder" -library "OFDMCPAdder" 
 set_global_assignment -entity "OFDM_Cyclic_Prefix_Adder" -library "OFDMCPAdder" -name IP_COMPONENT_AUTHOR "Q05MSEM="
 set_global_assignment -entity "OFDM_Cyclic_Prefix_Adder" -library "OFDMCPAdder" -name IP_COMPONENT_VERSION "MS4w"
 set_global_assignment -entity "OFDM_Cyclic_Prefix_Adder" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "UGFja2V0X0xlbmd0aA==::MTAyNA==::UGFja2V0X0xlbmd0aA=="
-set_global_assignment -entity "OFDM_Cyclic_Prefix_Adder" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "Q1BfTGVuZ3Ro::MTI4::Q1BfTGVuZ3Ro"
+set_global_assignment -entity "OFDM_Cyclic_Prefix_Adder" -library "OFDMCPAdder" -name IP_COMPONENT_PARAMETER "Q1BfTGVuZ3Ro::MjU2::Q1BfTGVuZ3Ro"
+set_global_assignment -entity "Avalon_ST_Demux" -library "OFDMCPAdder" -name IP_COMPONENT_NAME "QXZhbG9uX1NUX0RlbXV4"
+set_global_assignment -entity "Avalon_ST_Demux" -library "OFDMCPAdder" -name IP_COMPONENT_DISPLAY_NAME "QXZhbG9uIFNUIERlbXV4"
+set_global_assignment -entity "Avalon_ST_Demux" -library "OFDMCPAdder" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "Avalon_ST_Demux" -library "OFDMCPAdder" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "Avalon_ST_Demux" -library "OFDMCPAdder" -name IP_COMPONENT_AUTHOR "Q05MSEM="
+set_global_assignment -entity "Avalon_ST_Demux" -library "OFDMCPAdder" -name IP_COMPONENT_VERSION "MS4w"
 
 set_global_assignment -library "OFDMCPAdder" -name VERILOG_FILE [file join $::quartus(qip_path) "OFDMCPAdder.v"]
 set_global_assignment -library "OFDMCPAdder" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_reset_controller.v"]
 set_global_assignment -library "OFDMCPAdder" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_reset_synchronizer.v"]
 set_global_assignment -library "OFDMCPAdder" -name SDC_FILE [file join $::quartus(qip_path) "submodules/altera_reset_controller.sdc"]
 set_global_assignment -library "OFDMCPAdder" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_avalon_sc_fifo.v"]
-set_global_assignment -library "OFDMCPAdder" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/OFDMCPAdder_demultiplexer_0.sv"]
 set_global_assignment -library "OFDMCPAdder" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/OFDM_Cyclic_Prefix_Adder.v"]
+set_global_assignment -library "OFDMCPAdder" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Avalon_ST_Demux.v"]
 
 set_global_assignment -entity "altera_reset_controller" -library "OFDMCPAdder" -name IP_TOOL_NAME "altera_reset_controller"
 set_global_assignment -entity "altera_reset_controller" -library "OFDMCPAdder" -name IP_TOOL_VERSION "16.1"
@@ -114,6 +103,3 @@ set_global_assignment -entity "altera_reset_controller" -library "OFDMCPAdder" -
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_TOOL_NAME "altera_avalon_sc_fifo"
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_TOOL_VERSION "16.1"
 set_global_assignment -entity "altera_avalon_sc_fifo" -library "OFDMCPAdder" -name IP_TOOL_ENV "Qsys"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_TOOL_NAME "demultiplexer"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_TOOL_VERSION "16.1"
-set_global_assignment -entity "OFDMCPAdder_demultiplexer_0" -library "OFDMCPAdder" -name IP_TOOL_ENV "Qsys"

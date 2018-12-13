@@ -37,6 +37,7 @@ module OFDM_Cyclic_Prefix_Adder #(
     reg [12:0]tDataSymbolCounter;
     reg [3:0]tInnerState;
     reg tCheckDataInputAlignFlag;
+    reg tWatchDog;
     always @(posedge reset_reset or posedge clock_clk)begin 
         if(reset_reset)begin
             tDataSymbolCounter<=0;
@@ -48,10 +49,9 @@ module OFDM_Cyclic_Prefix_Adder #(
                     asi_in0_ready<=1;
                     buffer_in_ready<=0;
                     data_out_valid<=0;
-                    if(asi_in0_startofpacket) begin
+                    if(asi_in0_startofpacket&&asi_in0_valid) begin
                         tInnerState<=1;
-                        if(asi_in0_valid)
-                            tDataSymbolCounter<=tDataSymbolCounter+1;
+                        tDataSymbolCounter<=tDataSymbolCounter+1;
                     end
                     else 
                         tDataSymbolCounter<=0;
@@ -95,21 +95,22 @@ module OFDM_Cyclic_Prefix_Adder #(
                 3:begin
                     buffer_in_ready<=1;
                     asi_in0_ready<=0;
+                    tWatchDog<=tWatchDog+1;
                     if(!tCheckDataInputAlignFlag)begin
                         tCheckDataInputAlignFlag<=1;
                         data_out_valid<=0;
                         if(!asi_in0_endofpacket)begin //此处应当对齐
                             data_out_error<=2'b01;
                         end
+                        tWatchDog<=0;
                     end
                     if(buffer_in_valid)begin
                         data_out_valid<=1;
                         data_out_data<=buffer_in_data;
                         tDataSymbolCounter<=tDataSymbolCounter+1;
                     end
-                    else begin
-                        data_out_valid<=0;
-                    end
+                    if(tWatchDog>Packet_Length)
+                        tInnerState<=0;
 
                     if(tDataSymbolCounter>=Packet_Length-2)begin
                         data_out_endofpacket<=1;

@@ -4,119 +4,119 @@
 
 `timescale 1 ps / 1 ps
 module OFDMCPAdder (
-		input  wire        clk_clk,                                //                      clk.clk
-		output wire [21:0] cpadderrouter_0_data_out_data,          // cpadderrouter_0_data_out.data
-		output wire        cpadderrouter_0_data_out_valid,         //                         .valid
-		output wire        cpadderrouter_0_data_out_endofpacket,   //                         .endofpacket
-		output wire        cpadderrouter_0_data_out_startofpacket, //                         .startofpacket
-		input  wire [21:0] demultiplexer_0_in_data,                //       demultiplexer_0_in.data
-		input  wire        demultiplexer_0_in_valid,               //                         .valid
-		output wire        demultiplexer_0_in_ready,               //                         .ready
-		input  wire        demultiplexer_0_in_startofpacket,       //                         .startofpacket
-		input  wire        demultiplexer_0_in_endofpacket,         //                         .endofpacket
-		input  wire        demultiplexer_0_in_channel,             //                         .channel
-		input  wire        reset_reset_n                           //                    reset.reset_n
+		input  wire [21:0] avalon_st_demux_0_asi_in0_data,          // avalon_st_demux_0_asi_in0.data
+		output wire        avalon_st_demux_0_asi_in0_ready,         //                          .ready
+		input  wire        avalon_st_demux_0_asi_in0_valid,         //                          .valid
+		input  wire        avalon_st_demux_0_asi_in0_endofpacket,   //                          .endofpacket
+		input  wire        avalon_st_demux_0_asi_in0_startofpacket, //                          .startofpacket
+		input  wire        clk_clk,                                 //                       clk.clk
+		output wire [21:0] cpadderrouter_0_data_out_data,           //  cpadderrouter_0_data_out.data
+		output wire        cpadderrouter_0_data_out_valid,          //                          .valid
+		output wire [1:0]  cpadderrouter_0_data_out_error,          //                          .error
+		output wire        cpadderrouter_0_data_out_endofpacket,    //                          .endofpacket
+		output wire        cpadderrouter_0_data_out_startofpacket,  //                          .startofpacket
+		input  wire        reset_reset_n                            //                     reset.reset_n
 	);
 
-	wire         sc_fifo_0_out_valid;                // sc_fifo_0:out_valid -> CPAdderRouter_0:buffer_in_valid
-	wire  [21:0] sc_fifo_0_out_data;                 // sc_fifo_0:out_data -> CPAdderRouter_0:buffer_in_data
-	wire         sc_fifo_0_out_ready;                // CPAdderRouter_0:buffer_in_ready -> sc_fifo_0:out_ready
-	wire         sc_fifo_0_out_startofpacket;        // sc_fifo_0:out_startofpacket -> CPAdderRouter_0:buffer_in_startofpacket
-	wire         sc_fifo_0_out_endofpacket;          // sc_fifo_0:out_endofpacket -> CPAdderRouter_0:buffer_in_endofpacket
-	wire         demultiplexer_0_out0_valid;         // demultiplexer_0:out0_valid -> CPAdderRouter_0:asi_in0_valid
-	wire  [21:0] demultiplexer_0_out0_data;          // demultiplexer_0:out0_data -> CPAdderRouter_0:asi_in0_data
-	wire         demultiplexer_0_out0_ready;         // CPAdderRouter_0:asi_in0_ready -> demultiplexer_0:out0_ready
-	wire         demultiplexer_0_out0_startofpacket; // demultiplexer_0:out0_startofpacket -> CPAdderRouter_0:asi_in0_startofpacket
-	wire         demultiplexer_0_out0_endofpacket;   // demultiplexer_0:out0_endofpacket -> CPAdderRouter_0:asi_in0_endofpacket
-	wire         demultiplexer_0_out1_valid;         // demultiplexer_0:out1_valid -> sc_fifo_0:in_valid
-	wire  [21:0] demultiplexer_0_out1_data;          // demultiplexer_0:out1_data -> sc_fifo_0:in_data
-	wire         demultiplexer_0_out1_ready;         // sc_fifo_0:in_ready -> demultiplexer_0:out1_ready
-	wire         demultiplexer_0_out1_startofpacket; // demultiplexer_0:out1_startofpacket -> sc_fifo_0:in_startofpacket
-	wire         demultiplexer_0_out1_endofpacket;   // demultiplexer_0:out1_endofpacket -> sc_fifo_0:in_endofpacket
-	wire         rst_controller_reset_out_reset;     // rst_controller:reset_out -> [CPAdderRouter_0:reset_reset, demultiplexer_0:reset_n, sc_fifo_0:reset]
+	wire         avalon_st_demux_0_aso_out0_valid;         // Avalon_ST_Demux_0:aso_out0_valid -> CPAdderRouter_0:asi_in0_valid
+	wire  [21:0] avalon_st_demux_0_aso_out0_data;          // Avalon_ST_Demux_0:aso_out0_data -> CPAdderRouter_0:asi_in0_data
+	wire         avalon_st_demux_0_aso_out0_ready;         // CPAdderRouter_0:asi_in0_ready -> Avalon_ST_Demux_0:aso_out0_ready
+	wire         avalon_st_demux_0_aso_out0_startofpacket; // Avalon_ST_Demux_0:aso_out0_startofpacket -> CPAdderRouter_0:asi_in0_startofpacket
+	wire         avalon_st_demux_0_aso_out0_endofpacket;   // Avalon_ST_Demux_0:aso_out0_endofpacket -> CPAdderRouter_0:asi_in0_endofpacket
+	wire         avalon_st_demux_0_aso_out1_valid;         // Avalon_ST_Demux_0:aso_out1_valid -> sc_fifo_0:in_valid
+	wire  [21:0] avalon_st_demux_0_aso_out1_data;          // Avalon_ST_Demux_0:aso_out1_data -> sc_fifo_0:in_data
+	wire         avalon_st_demux_0_aso_out1_ready;         // sc_fifo_0:in_ready -> Avalon_ST_Demux_0:aso_out1_ready
+	wire         avalon_st_demux_0_aso_out1_startofpacket; // Avalon_ST_Demux_0:aso_out1_startofpacket -> sc_fifo_0:in_startofpacket
+	wire         avalon_st_demux_0_aso_out1_endofpacket;   // Avalon_ST_Demux_0:aso_out1_endofpacket -> sc_fifo_0:in_endofpacket
+	wire         sc_fifo_0_out_valid;                      // sc_fifo_0:out_valid -> CPAdderRouter_0:buffer_in_valid
+	wire  [21:0] sc_fifo_0_out_data;                       // sc_fifo_0:out_data -> CPAdderRouter_0:buffer_in_data
+	wire         sc_fifo_0_out_ready;                      // CPAdderRouter_0:buffer_in_ready -> sc_fifo_0:out_ready
+	wire         sc_fifo_0_out_startofpacket;              // sc_fifo_0:out_startofpacket -> CPAdderRouter_0:buffer_in_startofpacket
+	wire         sc_fifo_0_out_endofpacket;                // sc_fifo_0:out_endofpacket -> CPAdderRouter_0:buffer_in_endofpacket
+	wire         rst_controller_reset_out_reset;           // rst_controller:reset_out -> [Avalon_ST_Demux_0:reset_reset, CPAdderRouter_0:reset_reset, sc_fifo_0:reset]
+
+	Avalon_ST_Demux avalon_st_demux_0 (
+		.asi_in0_data           (avalon_st_demux_0_asi_in0_data),           //  asi_in0.data
+		.asi_in0_ready          (avalon_st_demux_0_asi_in0_ready),          //         .ready
+		.asi_in0_valid          (avalon_st_demux_0_asi_in0_valid),          //         .valid
+		.asi_in0_endofpacket    (avalon_st_demux_0_asi_in0_endofpacket),    //         .endofpacket
+		.asi_in0_startofpacket  (avalon_st_demux_0_asi_in0_startofpacket),  //         .startofpacket
+		.clock_clk              (clk_clk),                                  //    clock.clk
+		.reset_reset            (rst_controller_reset_out_reset),           //    reset.reset
+		.aso_out0_data          (avalon_st_demux_0_aso_out0_data),          // aso_out0.data
+		.aso_out0_ready         (avalon_st_demux_0_aso_out0_ready),         //         .ready
+		.aso_out0_valid         (avalon_st_demux_0_aso_out0_valid),         //         .valid
+		.aso_out0_endofpacket   (avalon_st_demux_0_aso_out0_endofpacket),   //         .endofpacket
+		.aso_out0_startofpacket (avalon_st_demux_0_aso_out0_startofpacket), //         .startofpacket
+		.aso_out1_data          (avalon_st_demux_0_aso_out1_data),          // aso_out1.data
+		.aso_out1_ready         (avalon_st_demux_0_aso_out1_ready),         //         .ready
+		.aso_out1_valid         (avalon_st_demux_0_aso_out1_valid),         //         .valid
+		.aso_out1_endofpacket   (avalon_st_demux_0_aso_out1_endofpacket),   //         .endofpacket
+		.aso_out1_startofpacket (avalon_st_demux_0_aso_out1_startofpacket)  //         .startofpacket
+	);
 
 	OFDM_Cyclic_Prefix_Adder #(
 		.Packet_Length (1024),
-		.CP_Length     (128)
+		.CP_Length     (256)
 	) cpadderrouter_0 (
-		.asi_in0_data            (demultiplexer_0_out0_data),              //   asi_in0.data
-		.asi_in0_valid           (demultiplexer_0_out0_valid),             //          .valid
-		.asi_in0_endofpacket     (demultiplexer_0_out0_endofpacket),       //          .endofpacket
-		.asi_in0_startofpacket   (demultiplexer_0_out0_startofpacket),     //          .startofpacket
-		.asi_in0_ready           (demultiplexer_0_out0_ready),             //          .ready
-		.clock_clk               (clk_clk),                                //     clock.clk
-		.reset_reset             (rst_controller_reset_out_reset),         //     reset.reset
-		.buffer_in_data          (sc_fifo_0_out_data),                     // buffer_in.data
-		.buffer_in_ready         (sc_fifo_0_out_ready),                    //          .ready
-		.buffer_in_valid         (sc_fifo_0_out_valid),                    //          .valid
-		.buffer_in_startofpacket (sc_fifo_0_out_startofpacket),            //          .startofpacket
-		.buffer_in_endofpacket   (sc_fifo_0_out_endofpacket),              //          .endofpacket
-		.data_out_data           (cpadderrouter_0_data_out_data),          //  data_out.data
-		.data_out_valid          (cpadderrouter_0_data_out_valid),         //          .valid
-		.data_out_endofpacket    (cpadderrouter_0_data_out_endofpacket),   //          .endofpacket
-		.data_out_startofpacket  (cpadderrouter_0_data_out_startofpacket)  //          .startofpacket
-	);
-
-	OFDMCPAdder_demultiplexer_0 demultiplexer_0 (
-		.clk                (clk_clk),                            //   clk.clk
-		.reset_n            (~rst_controller_reset_out_reset),    // reset.reset_n
-		.in_data            (demultiplexer_0_in_data),            //    in.data
-		.in_valid           (demultiplexer_0_in_valid),           //      .valid
-		.in_ready           (demultiplexer_0_in_ready),           //      .ready
-		.in_startofpacket   (demultiplexer_0_in_startofpacket),   //      .startofpacket
-		.in_endofpacket     (demultiplexer_0_in_endofpacket),     //      .endofpacket
-		.in_channel         (demultiplexer_0_in_channel),         //      .channel
-		.out0_data          (demultiplexer_0_out0_data),          //  out0.data
-		.out0_valid         (demultiplexer_0_out0_valid),         //      .valid
-		.out0_ready         (demultiplexer_0_out0_ready),         //      .ready
-		.out0_startofpacket (demultiplexer_0_out0_startofpacket), //      .startofpacket
-		.out0_endofpacket   (demultiplexer_0_out0_endofpacket),   //      .endofpacket
-		.out1_data          (demultiplexer_0_out1_data),          //  out1.data
-		.out1_valid         (demultiplexer_0_out1_valid),         //      .valid
-		.out1_ready         (demultiplexer_0_out1_ready),         //      .ready
-		.out1_startofpacket (demultiplexer_0_out1_startofpacket), //      .startofpacket
-		.out1_endofpacket   (demultiplexer_0_out1_endofpacket)    //      .endofpacket
+		.asi_in0_data            (avalon_st_demux_0_aso_out0_data),          //   asi_in0.data
+		.asi_in0_valid           (avalon_st_demux_0_aso_out0_valid),         //          .valid
+		.asi_in0_endofpacket     (avalon_st_demux_0_aso_out0_endofpacket),   //          .endofpacket
+		.asi_in0_startofpacket   (avalon_st_demux_0_aso_out0_startofpacket), //          .startofpacket
+		.asi_in0_ready           (avalon_st_demux_0_aso_out0_ready),         //          .ready
+		.clock_clk               (clk_clk),                                  //     clock.clk
+		.reset_reset             (rst_controller_reset_out_reset),           //     reset.reset
+		.buffer_in_data          (sc_fifo_0_out_data),                       // buffer_in.data
+		.buffer_in_ready         (sc_fifo_0_out_ready),                      //          .ready
+		.buffer_in_valid         (sc_fifo_0_out_valid),                      //          .valid
+		.buffer_in_startofpacket (sc_fifo_0_out_startofpacket),              //          .startofpacket
+		.buffer_in_endofpacket   (sc_fifo_0_out_endofpacket),                //          .endofpacket
+		.data_out_data           (cpadderrouter_0_data_out_data),            //  data_out.data
+		.data_out_valid          (cpadderrouter_0_data_out_valid),           //          .valid
+		.data_out_error          (cpadderrouter_0_data_out_error),           //          .error
+		.data_out_endofpacket    (cpadderrouter_0_data_out_endofpacket),     //          .endofpacket
+		.data_out_startofpacket  (cpadderrouter_0_data_out_startofpacket)    //          .startofpacket
 	);
 
 	altera_avalon_sc_fifo #(
 		.SYMBOLS_PER_BEAT    (1),
 		.BITS_PER_SYMBOL     (22),
-		.FIFO_DEPTH          (2048),
+		.FIFO_DEPTH          (32768),
 		.CHANNEL_WIDTH       (0),
 		.ERROR_WIDTH         (0),
 		.USE_PACKETS         (1),
-		.USE_FILL_LEVEL      (0),
+		.USE_FILL_LEVEL      (1),
 		.EMPTY_LATENCY       (3),
 		.USE_MEMORY_BLOCKS   (1),
-		.USE_STORE_FORWARD   (0),
+		.USE_STORE_FORWARD   (1),
 		.USE_ALMOST_FULL_IF  (0),
 		.USE_ALMOST_EMPTY_IF (0)
 	) sc_fifo_0 (
-		.clk               (clk_clk),                              //       clk.clk
-		.reset             (rst_controller_reset_out_reset),       // clk_reset.reset
-		.in_data           (demultiplexer_0_out1_data),            //        in.data
-		.in_valid          (demultiplexer_0_out1_valid),           //          .valid
-		.in_ready          (demultiplexer_0_out1_ready),           //          .ready
-		.in_startofpacket  (demultiplexer_0_out1_startofpacket),   //          .startofpacket
-		.in_endofpacket    (demultiplexer_0_out1_endofpacket),     //          .endofpacket
-		.out_data          (sc_fifo_0_out_data),                   //       out.data
-		.out_valid         (sc_fifo_0_out_valid),                  //          .valid
-		.out_ready         (sc_fifo_0_out_ready),                  //          .ready
-		.out_startofpacket (sc_fifo_0_out_startofpacket),          //          .startofpacket
-		.out_endofpacket   (sc_fifo_0_out_endofpacket),            //          .endofpacket
-		.csr_address       (2'b00),                                // (terminated)
-		.csr_read          (1'b0),                                 // (terminated)
-		.csr_write         (1'b0),                                 // (terminated)
-		.csr_readdata      (),                                     // (terminated)
-		.csr_writedata     (32'b00000000000000000000000000000000), // (terminated)
-		.almost_full_data  (),                                     // (terminated)
-		.almost_empty_data (),                                     // (terminated)
-		.in_empty          (1'b0),                                 // (terminated)
-		.out_empty         (),                                     // (terminated)
-		.in_error          (1'b0),                                 // (terminated)
-		.out_error         (),                                     // (terminated)
-		.in_channel        (1'b0),                                 // (terminated)
-		.out_channel       ()                                      // (terminated)
+		.clk               (clk_clk),                                  //       clk.clk
+		.reset             (rst_controller_reset_out_reset),           // clk_reset.reset
+		.csr_address       (),                                         //       csr.address
+		.csr_read          (),                                         //          .read
+		.csr_write         (),                                         //          .write
+		.csr_readdata      (),                                         //          .readdata
+		.csr_writedata     (),                                         //          .writedata
+		.in_data           (avalon_st_demux_0_aso_out1_data),          //        in.data
+		.in_valid          (avalon_st_demux_0_aso_out1_valid),         //          .valid
+		.in_ready          (avalon_st_demux_0_aso_out1_ready),         //          .ready
+		.in_startofpacket  (avalon_st_demux_0_aso_out1_startofpacket), //          .startofpacket
+		.in_endofpacket    (avalon_st_demux_0_aso_out1_endofpacket),   //          .endofpacket
+		.out_data          (sc_fifo_0_out_data),                       //       out.data
+		.out_valid         (sc_fifo_0_out_valid),                      //          .valid
+		.out_ready         (sc_fifo_0_out_ready),                      //          .ready
+		.out_startofpacket (sc_fifo_0_out_startofpacket),              //          .startofpacket
+		.out_endofpacket   (sc_fifo_0_out_endofpacket),                //          .endofpacket
+		.almost_full_data  (),                                         // (terminated)
+		.almost_empty_data (),                                         // (terminated)
+		.in_empty          (1'b0),                                     // (terminated)
+		.out_empty         (),                                         // (terminated)
+		.in_error          (1'b0),                                     // (terminated)
+		.out_error         (),                                         // (terminated)
+		.in_channel        (1'b0),                                     // (terminated)
+		.out_channel       ()                                          // (terminated)
 	);
 
 	altera_reset_controller #(
