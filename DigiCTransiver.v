@@ -92,11 +92,21 @@ module DigiCTransiver(
     wire PLL_CLK_1M,PLL_CLK_10M,PLL_CLK_20M;
     wire PLL_CLK_120M;
 	 wire BareMetalPLL100M;
+  
+        assign FPGA_CLK_A_P = CLOCK_50;
+        assign FPGA_CLK_A_N = ~CLOCK_50;
+        assign FPGA_CLK_B_N = CLOCK_50;
+        assign FPGA_CLK_B_P = ~CLOCK_50;
+   
+        assign  AD_SCLK         = SW[0];            // (DFS)Data Format Select
+        assign  AD_SDIO         = SW[1];            // (DCS)Duty Cycle Stabilizer Select
+        assign  ADA_OE          = 1'b0;             // enable ADA output
+        assign  ADA_SPI_CS      = 1'b1;             // disable ADA_SPI_CS (CSB)
+        assign  ADB_OE          = 1'b0;             // enable ADB output
+        assign  ADB_SPI_CS      = 1'b1;             // disable ADB_SPI_CS (CSB)
 
 
-//=======================================================
-//  REG/WIRE declarations
-//=======================================================
+
 	baremetal_pll pll0(
 		.refclk(CLOCK_50),   //  refclk.clk
 		.rst (~KEY[0]),      //   reset.reset
@@ -110,17 +120,16 @@ module DigiCTransiver(
 		.spislave_0_export_0_miso                (GPIO[2]),                
 		.spislave_0_export_0_sclk                (GPIO[3]),              
 		.pll_0_refclk_clk                        (CLOCK_50),                                       
-      .global_reset_reset_n                    (1),
+        .global_reset_reset_n                    (KEY[0]),
+		.ofdm_dac_control_0_dac_control_chadata  (DA),
+        .ofdm_dac_control_0_dac_control_chbdata  (DB)
 	);
+	
+
     
-    
 
 
 
-
-//=======================================================
-//  Structural coding
-//=======================================================
 
 
 

@@ -9,12 +9,33 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element CPAdderRouter_0
+   element Avalon_ST_Demux_0
    {
       datum _sortIndex
       {
          value = "1";
          type = "int";
+      }
+   }
+   element CPAdderRouter_0
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element OFDMCPAdder
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
       }
    }
    element OFDMCPAdder
@@ -33,7 +54,7 @@
          type = "int";
       }
    }
-   element multiplexer_0
+   element sc_fifo_0
    {
       datum _sortIndex
       {
@@ -44,14 +65,6 @@
       {
          value = "1";
          type = "boolean";
-      }
-   }
-   element sc_fifo_0
-   {
-      datum _sortIndex
-      {
-         value = "2";
-         type = "int";
       }
    }
 }
@@ -75,43 +88,37 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
- <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
-   name="cpadderrouter_0_asi_in0"
-   internal="CPAdderRouter_0.asi_in0"
+   name="avalon_st_demux_0_asi_in0"
+   internal="Avalon_ST_Demux_0.asi_in0"
    type="avalon_streaming"
    dir="end" />
+ <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
-   name="multiplexer_0_out"
-   internal="multiplexer_0.out"
+   name="cpadderrouter_0_data_out"
+   internal="CPAdderRouter_0.data_out"
    type="avalon_streaming"
    dir="start" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
+ <module
+   name="Avalon_ST_Demux_0"
+   kind="Avalon_ST_Demux"
+   version="1.0"
+   enabled="1" />
  <module name="CPAdderRouter_0" kind="CPAdderRouter" version="1.0" enabled="1">
-  <parameter name="CP_Length" value="128" />
+  <parameter name="CP_Length" value="256" />
   <parameter name="Packet_Length" value="1024" />
  </module>
- <module name="clk_0" kind="clock_source" version="18.0" enabled="1">
+ <module name="clk_0" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module name="multiplexer_0" kind="multiplexer" version="18.0" enabled="1">
-  <parameter name="bitsPerSymbol" value="22" />
-  <parameter name="errorWidth" value="0" />
-  <parameter name="numInputInterfaces" value="2" />
-  <parameter name="outChannelWidth" value="2" />
-  <parameter name="packetScheduling" value="false" />
-  <parameter name="schedulingSize" value="2" />
-  <parameter name="symbolsPerBeat" value="1" />
-  <parameter name="useHighBitsOfChannel" value="true" />
-  <parameter name="usePackets" value="true" />
- </module>
  <module
    name="sc_fifo_0"
    kind="altera_avalon_sc_fifo"
-   version="18.0"
+   version="16.1"
    enabled="1">
   <parameter name="BITS_PER_SYMBOL" value="22" />
   <parameter name="CHANNEL_WIDTH" value="0" />
@@ -119,47 +126,56 @@
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="2048" />
+  <parameter name="FIFO_DEPTH" value="32768" />
   <parameter name="SYMBOLS_PER_BEAT" value="1" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="0" />
-  <parameter name="USE_FILL_LEVEL" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="1" />
   <parameter name="USE_MEMORY_BLOCKS" value="1" />
   <parameter name="USE_PACKETS" value="1" />
-  <parameter name="USE_STORE_FORWARD" value="0" />
+  <parameter name="USE_STORE_FORWARD" value="1" />
  </module>
  <connection
    kind="avalon_streaming"
-   version="18.0"
-   start="CPAdderRouter_0.CPSource"
-   end="multiplexer_0.in1" />
+   version="16.1"
+   start="Avalon_ST_Demux_0.aso_out0"
+   end="CPAdderRouter_0.asi_in0" />
  <connection
    kind="avalon_streaming"
-   version="18.0"
-   start="CPAdderRouter_0.dataSource"
+   version="16.1"
+   start="Avalon_ST_Demux_0.aso_out1"
    end="sc_fifo_0.in" />
- <connection kind="clock" version="18.0" start="clk_0.clk" end="sc_fifo_0.clk" />
- <connection kind="clock" version="18.0" start="clk_0.clk" end="multiplexer_0.clk" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="sc_fifo_0.out"
+   end="CPAdderRouter_0.buffer_in" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="sc_fifo_0.clk" />
  <connection
    kind="clock"
-   version="18.0"
+   version="16.1"
    start="clk_0.clk"
    end="CPAdderRouter_0.clock" />
  <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="Avalon_ST_Demux_0.clock" />
+ <connection
    kind="reset"
-   version="18.0"
+   version="16.1"
    start="clk_0.clk_reset"
    end="sc_fifo_0.clk_reset" />
  <connection
    kind="reset"
-   version="18.0"
+   version="16.1"
    start="clk_0.clk_reset"
    end="CPAdderRouter_0.reset" />
  <connection
    kind="reset"
-   version="18.0"
+   version="16.1"
    start="clk_0.clk_reset"
-   end="multiplexer_0.reset" />
+   end="Avalon_ST_Demux_0.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
