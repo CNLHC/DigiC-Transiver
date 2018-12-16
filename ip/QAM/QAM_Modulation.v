@@ -10,25 +10,30 @@
 
 `timescale 1 ps / 1 ps
 module QAM_Modulation #(
-		parameter PACKET_LENGTH = 1024
+		parameter PACKET_LENGTH = 1024 ,
+		parameter QAM_STAGE = 4 ,
+        parameter QAM_SYMBOL_PER_BEAT = 16,
 	) (
     //Clock and Resource 
 		input  wire        clock_clk,             //    clock.clk
 		input  wire        reset_reset,           //    reset.reset
     // Avalon Sink
-		input  wire [31:0] asi_in0_data,          //  asi_in0.data
+		input  wire        [($clog2(QAM_STAGE)*QAM_SYMBOL_PER_BEAT)-1:0] asi_in0_data,          //  asi_in0.data
 		output reg         asi_in0_ready,         //         .ready
 		input  wire        asi_in0_valid,         //         .valid
 		input  wire        asi_in0_empty,         //         .valid
 		input  wire        asi_in0_startofpacket, //         .startofpacket
 		input  wire        asi_in0_endofpacket,   //         .endofpacket
+
     // Avalon Source
-		output reg  [16:0] aso_out0_data,         // aso_out0.data
+		output reg  [15:0] aso_out0_data,         // aso_out0.data
 		input  wire        aso_out0_ready,        //         .ready
 		output reg         aso_out0_valid,        //         .valid
         output reg         aso_out0_endofpacket,
         output reg         aso_out0_startofpacket,
-        output wire        aso_out0_empty);
+        output wire        aso_out0_empty
+    );
+
     assign aso_out0_empty=0;
     reg [1:0]tInnerStateFlag;//00-idle 01-start asserted 02: reading packet 03: end asserted
     reg [5:0]tBytesBuffer;
