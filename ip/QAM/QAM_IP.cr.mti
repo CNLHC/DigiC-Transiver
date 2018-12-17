@@ -1,8 +1,0 @@
-C:/Users/cn/Desktop/Project/DigiC-Transiver/ip/QAM/QAM_Modulation.v {1 {vlog -work QAM -vopt -stats=none C:/Users/cn/Desktop/Project/DigiC-Transiver/ip/QAM/QAM_Modulation.v
-Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module QAM_Modulation
-
-Top level modules:
-	QAM_Modulation
-
-} {} {}}

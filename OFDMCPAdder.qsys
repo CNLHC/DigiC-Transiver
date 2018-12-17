@@ -46,6 +46,38 @@
          type = "String";
       }
    }
+   element OFDMCPAdder
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element OFDMCPAdder
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element OFDMCPAdder
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element OFDMCPAdder
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
@@ -120,7 +152,7 @@
    kind="altera_avalon_sc_fifo"
    version="16.1"
    enabled="1">
-  <parameter name="BITS_PER_SYMBOL" value="22" />
+  <parameter name="BITS_PER_SYMBOL" value="34" />
   <parameter name="CHANNEL_WIDTH" value="0" />
   <parameter name="EMPTY_LATENCY" value="3" />
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />

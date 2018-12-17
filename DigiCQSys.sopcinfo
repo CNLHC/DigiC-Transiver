@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="DigiCQSys" kind="DigiCQSys" version="1.0" fabric="QSYS">
  <!-- Format version 16.1 196 (Future versions may contain additional information.) -->
- <!-- 2018.12.13.16:09:49 -->
+ <!-- 2018.12.14.00:09:38 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1544688589</value>
+  <value>1544717378</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -540,7 +540,7 @@ parameters are a RESULT of the module parameters. -->
 the requested settings for a module instance. -->
   <parameter name="AUTO_GENERATION_ID">
    <type>java.lang.Integer</type>
-   <value>1544688589</value>
+   <value>1544717378</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -663,7 +663,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -754,7 +754,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>avalon_st_demux_0_asi_in0_data</name>
     <direction>Input</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -880,7 +880,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -971,7 +971,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>cpadderrouter_0_data_out_data</name>
     <direction>Output</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -1102,7 +1102,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -1193,7 +1193,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>asi_in0_data</name>
     <direction>Input</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -1341,7 +1341,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -1432,7 +1432,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>aso_out0_data</name>
     <direction>Output</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -1490,7 +1490,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -1581,7 +1581,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>aso_out1_data</name>
     <direction>Output</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -1679,7 +1679,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -1770,7 +1770,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>asi_in0_data</name>
     <direction>Input</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -1918,7 +1918,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -2009,7 +2009,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>buffer_in_data</name>
     <direction>Input</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -2067,7 +2067,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -2158,7 +2158,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>data_out_data</name>
     <direction>Output</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -2528,7 +2528,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="BITS_PER_SYMBOL">
    <type>int</type>
-   <value>22</value>
+   <value>34</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -3127,7 +3127,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -3218,7 +3218,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>in_data</name>
     <direction>Input</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -3280,7 +3280,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -3371,7 +3371,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>out_data</name>
     <direction>Output</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -3453,7 +3453,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -3544,7 +3544,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>asi_in0_data</name>
     <direction>Input</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -4014,7 +4014,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>17</value>
+    <value>29</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -4105,7 +4105,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>aso_out0_data</name>
     <direction>Output</direction>
-    <width>17</width>
+    <width>29</width>
     <role>data</role>
    </port>
    <port>
@@ -4521,7 +4521,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="BITS_PER_SYMBOL">
    <type>int</type>
-   <value>22</value>
+   <value>34</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -4833,7 +4833,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -4924,7 +4924,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>in_data</name>
     <direction>Input</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -4982,7 +4982,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -5073,7 +5073,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>out_data</name>
     <direction>Output</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
    <port>
@@ -5148,7 +5148,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="in_width">
    <type>int</type>
-   <value>8</value>
+   <value>14</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -5156,7 +5156,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="in_width_derived">
    <type>int</type>
-   <value>8</value>
+   <value>14</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -5172,7 +5172,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="out_width_derived">
    <type>int</type>
-   <value>8</value>
+   <value>14</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -5180,7 +5180,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="twid_width">
    <type>int</type>
-   <value>8</value>
+   <value>14</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -5188,7 +5188,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="twid_width_derived">
    <type>int</type>
-   <value>8</value>
+   <value>14</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -5419,7 +5419,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>17</value>
+    <value>29</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -5540,7 +5540,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>sink_data</name>
     <direction>Input</direction>
-    <width>17</width>
+    <width>29</width>
     <role>data</role>
    </port>
   </interface>
@@ -5574,7 +5574,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="dataBitsPerSymbol">
     <type>int</type>
-    <value>22</value>
+    <value>34</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -5695,7 +5695,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>source_data</name>
     <direction>Output</direction>
-    <width>22</width>
+    <width>34</width>
     <role>data</role>
    </port>
   </interface>

@@ -4,13 +4,13 @@
 
 `timescale 1 ps / 1 ps
 module OFDMCPAdder (
-		input  wire [21:0] avalon_st_demux_0_asi_in0_data,          // avalon_st_demux_0_asi_in0.data
+		input  wire [33:0] avalon_st_demux_0_asi_in0_data,          // avalon_st_demux_0_asi_in0.data
 		output wire        avalon_st_demux_0_asi_in0_ready,         //                          .ready
 		input  wire        avalon_st_demux_0_asi_in0_valid,         //                          .valid
 		input  wire        avalon_st_demux_0_asi_in0_endofpacket,   //                          .endofpacket
 		input  wire        avalon_st_demux_0_asi_in0_startofpacket, //                          .startofpacket
 		input  wire        clk_clk,                                 //                       clk.clk
-		output wire [21:0] cpadderrouter_0_data_out_data,           //  cpadderrouter_0_data_out.data
+		output wire [33:0] cpadderrouter_0_data_out_data,           //  cpadderrouter_0_data_out.data
 		output wire        cpadderrouter_0_data_out_valid,          //                          .valid
 		output wire [1:0]  cpadderrouter_0_data_out_error,          //                          .error
 		output wire        cpadderrouter_0_data_out_endofpacket,    //                          .endofpacket
@@ -19,17 +19,17 @@ module OFDMCPAdder (
 	);
 
 	wire         avalon_st_demux_0_aso_out0_valid;         // Avalon_ST_Demux_0:aso_out0_valid -> CPAdderRouter_0:asi_in0_valid
-	wire  [21:0] avalon_st_demux_0_aso_out0_data;          // Avalon_ST_Demux_0:aso_out0_data -> CPAdderRouter_0:asi_in0_data
+	wire  [33:0] avalon_st_demux_0_aso_out0_data;          // Avalon_ST_Demux_0:aso_out0_data -> CPAdderRouter_0:asi_in0_data
 	wire         avalon_st_demux_0_aso_out0_ready;         // CPAdderRouter_0:asi_in0_ready -> Avalon_ST_Demux_0:aso_out0_ready
 	wire         avalon_st_demux_0_aso_out0_startofpacket; // Avalon_ST_Demux_0:aso_out0_startofpacket -> CPAdderRouter_0:asi_in0_startofpacket
 	wire         avalon_st_demux_0_aso_out0_endofpacket;   // Avalon_ST_Demux_0:aso_out0_endofpacket -> CPAdderRouter_0:asi_in0_endofpacket
 	wire         avalon_st_demux_0_aso_out1_valid;         // Avalon_ST_Demux_0:aso_out1_valid -> sc_fifo_0:in_valid
-	wire  [21:0] avalon_st_demux_0_aso_out1_data;          // Avalon_ST_Demux_0:aso_out1_data -> sc_fifo_0:in_data
+	wire  [33:0] avalon_st_demux_0_aso_out1_data;          // Avalon_ST_Demux_0:aso_out1_data -> sc_fifo_0:in_data
 	wire         avalon_st_demux_0_aso_out1_ready;         // sc_fifo_0:in_ready -> Avalon_ST_Demux_0:aso_out1_ready
 	wire         avalon_st_demux_0_aso_out1_startofpacket; // Avalon_ST_Demux_0:aso_out1_startofpacket -> sc_fifo_0:in_startofpacket
 	wire         avalon_st_demux_0_aso_out1_endofpacket;   // Avalon_ST_Demux_0:aso_out1_endofpacket -> sc_fifo_0:in_endofpacket
 	wire         sc_fifo_0_out_valid;                      // sc_fifo_0:out_valid -> CPAdderRouter_0:buffer_in_valid
-	wire  [21:0] sc_fifo_0_out_data;                       // sc_fifo_0:out_data -> CPAdderRouter_0:buffer_in_data
+	wire  [33:0] sc_fifo_0_out_data;                       // sc_fifo_0:out_data -> CPAdderRouter_0:buffer_in_data
 	wire         sc_fifo_0_out_ready;                      // CPAdderRouter_0:buffer_in_ready -> sc_fifo_0:out_ready
 	wire         sc_fifo_0_out_startofpacket;              // sc_fifo_0:out_startofpacket -> CPAdderRouter_0:buffer_in_startofpacket
 	wire         sc_fifo_0_out_endofpacket;                // sc_fifo_0:out_endofpacket -> CPAdderRouter_0:buffer_in_endofpacket
@@ -80,7 +80,7 @@ module OFDMCPAdder (
 
 	altera_avalon_sc_fifo #(
 		.SYMBOLS_PER_BEAT    (1),
-		.BITS_PER_SYMBOL     (22),
+		.BITS_PER_SYMBOL     (34),
 		.FIFO_DEPTH          (32768),
 		.CHANNEL_WIDTH       (0),
 		.ERROR_WIDTH         (0),
