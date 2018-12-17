@@ -4,9 +4,9 @@
  <systemtable
    filter="DigiCQSys.qsys_clkin"
    showClockDomains="0"
-   showResetDomains="1">
+   showResetDomains="0">
   <columns>
-   <connections preferredWidth="63" />
+   <connections preferredWidth="47" />
    <irq preferredWidth="34" />
    <name preferredWidth="408" />
    <export preferredWidth="219" />
@@ -15,7 +15,7 @@
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library/Interface Protocols,Project,Library/University Program/Clock,Library,Library/University Program,Library/Basic Functions/Clocks; PLLs and Resets,Project/System,Library/Basic Functions/Clocks; PLLs and Resets/PLL,Library/Interface Protocols/Transceiver PLL,Library/Basic Functions" />
+   expandedCategories="Library/Basic Functions/Clocks; PLLs and Resets,Library/University Program/Clock,Library/Basic Functions,Project,Library/Interface Protocols/Transceiver PLL,Library/University Program,Library/Basic Functions/Clocks; PLLs and Resets/PLL,Project/System,Library/Interface Protocols,Library" />
  <window width="2560" height="1402" x="-2" y="4" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
