@@ -80,4 +80,5 @@ transcript*
 sc_dpiheader.h
 vsim.dbg
 ReceiverTopQsys/*
+TransmitterTopQsys/*
 

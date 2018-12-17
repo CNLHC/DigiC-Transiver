@@ -136,9 +136,12 @@
    name="Avalon_ST_Demux_0"
    kind="Avalon_ST_Demux"
    version="1.0"
-   enabled="1" />
+   enabled="1">
+  <parameter name="INPUT_WIDTH" value="38" />
+ </module>
  <module name="CPAdderRouter_0" kind="CPAdderRouter" version="1.0" enabled="1">
   <parameter name="CP_Length" value="256" />
+  <parameter name="INPUT_WIDTH" value="38" />
   <parameter name="Packet_Length" value="1024" />
  </module>
  <module name="clk_0" kind="clock_source" version="16.1" enabled="1">
@@ -152,7 +155,7 @@
    kind="altera_avalon_sc_fifo"
    version="16.1"
    enabled="1">
-  <parameter name="BITS_PER_SYMBOL" value="34" />
+  <parameter name="BITS_PER_SYMBOL" value="38" />
   <parameter name="CHANNEL_WIDTH" value="0" />
   <parameter name="EMPTY_LATENCY" value="3" />
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
