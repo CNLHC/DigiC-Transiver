@@ -1,61 +1,58 @@
 <sld_project_info>
   <sld_infos>
-    <sld_info hpath="DigiCQSys:u1" name="u1">
+    <sld_info hpath="DigiCQSys:u0" name="u0">
       <assignment_values>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544713519"/>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544714236"/>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544717378"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
-    <sld_info hpath="DigiCQSys:u1|Fix_Length_Bytes2Packets:fix_length_bytes2packets_0" name="fix_length_bytes2packets_0">
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|DigiCQSys_TransmitterTopQsys_0_OFDMCPAdder:ofdmcpadder" name="ofdmcpadder">
       <assignment_values>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544713519"/>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544714236"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
-    <sld_info hpath="DigiCQSys:u1|QAM_Modulation:qam_modulation_0" name="qam_modulation_0">
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|DigiCQSys_TransmitterTopQsys_0_OFDMCPAdder:ofdmcpadder|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|DigiCQSys_TransmitterTopQsys_0_OFDMCPAdder:ofdmcpadder" name="ofdmcpadder">
       <assignment_values>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544713519"/>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544714236"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
-    <sld_info hpath="DigiCQSys:u1|OFDM_DAC_Control:ofdm_dac_control_0" name="ofdm_dac_control_0">
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter" name="fftdataadapter">
       <assignment_values>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544713519"/>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544714236"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
-    <sld_info hpath="DigiCQSys:u1|DigiCQSys_OFDMCPAdder_0:ofdmcpadder_0" name="ofdmcpadder_0">
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|FixLengthB2P:spipacketer|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|FixLengthB2P:spipacketer" name="spipacketer">
       <assignment_values>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544713519"/>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544714236"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
-    <sld_info hpath="DigiCQSys:u1|DigiCQSys_OFDMCPAdder_0:ofdmcpadder_0|DigiCQSys_OFDMCPAdder_0:ofdmcpadder_0" name="ofdmcpadder_0">
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|FixLengthB2P:spipacketer" name="spipacketer">
       <assignment_values>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544713519"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
-    <sld_info hpath="DigiCQSys:u1|Fix_Length_Bytes2Packets:fix_length_bytes2packets_0|Fix_Length_Bytes2Packets:fix_length_bytes2packets_0" name="fix_length_bytes2packets_0">
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|OFDM_DAC_Control:ofdmdaccontrol" name="ofdmdaccontrol">
       <assignment_values>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544713519"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
-    <sld_info hpath="DigiCQSys:u1|OFDM_DAC_Control:ofdm_dac_control_0|OFDM_DAC_Control:ofdm_dac_control_0" name="ofdm_dac_control_0">
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|OFDM_DAC_Control:ofdmdaccontrol|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|OFDM_DAC_Control:ofdmdaccontrol" name="ofdmdaccontrol">
       <assignment_values>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544713519"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
-    <sld_info hpath="DigiCQSys:u1|QAM_Modulation:qam_modulation_0|QAM_Modulation:qam_modulation_0" name="qam_modulation_0">
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|altera_avalon_sc_fifo:spibuffer" name="spibuffer">
       <assignment_values>
-        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1544713519"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
-    <sld_info hpath="ReceiverTopQsys:u0" name="u0">
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|altera_avalon_sc_fifo:spibuffer|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|altera_avalon_sc_fifo:spibuffer" name="spibuffer">
       <assignment_values>
-        <assignment_value text="QSYS_NAME ReceiverTopQsys HAS_SOPCINFO 1 GENERATION_ID 1544713494"/>
-        <assignment_value text="QSYS_NAME ReceiverTopQsys HAS_SOPCINFO 1 GENERATION_ID 1544714210"/>
-        <assignment_value text="QSYS_NAME ReceiverTopQsys HAS_SOPCINFO 1 GENERATION_ID 1544717351"/>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|QAM_Modulation:qammodulation" name="qammodulation">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME DigiCQSys HAS_SOPCINFO 1 GENERATION_ID 1545294153"/>
       </assignment_values>
     </sld_info>
     <sld_info hpath="sld_hub:auto_hub|alt_sld_fab:\instrumentation_fabric_with_node_gen:instrumentation_fabric" library="alt_sld_fab" name="instrumentation_fabric">

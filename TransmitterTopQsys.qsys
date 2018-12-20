@@ -13,6 +13,14 @@
    {
       datum _sortIndex
       {
+         value = "8";
+         type = "int";
+      }
+   }
+   element FFTInputBuffer
+   {
+      datum _sortIndex
+      {
          value = "7";
          type = "int";
       }
@@ -21,7 +29,7 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "10";
          type = "int";
       }
    }
@@ -29,7 +37,7 @@
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "11";
          type = "int";
       }
    }
@@ -37,7 +45,7 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "9";
          type = "int";
       }
    }
@@ -140,8 +148,30 @@
    kind="FFT_Data_Adapter"
    version="1.0"
    enabled="1">
-  <parameter name="INPUT_SYMBOL_WIDTH" value="32" />
+  <parameter name="EXTRA_LEFT_PADDING" value="5" />
+  <parameter name="EXTRA_RIGHT_PADDING" value="9" />
+  <parameter name="INPUT_SYMBOL_WIDTH" value="2" />
   <parameter name="INVERSE_FFT" value="1" />
+ </module>
+ <module
+   name="FFTInputBuffer"
+   kind="altera_avalon_sc_fifo"
+   version="16.1"
+   enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="4" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="EMPTY_LATENCY" value="3" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="8192" />
+  <parameter name="SYMBOLS_PER_BEAT" value="1" />
+  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
+  <parameter name="USE_ALMOST_FULL_IF" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="1" />
+  <parameter name="USE_MEMORY_BLOCKS" value="1" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="USE_STORE_FORWARD" value="1" />
  </module>
  <module name="OFDMCPAdder" kind="OFDMCPAdder" version="1.0" enabled="1">
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
@@ -169,7 +199,7 @@
   <parameter name="hyper_opt" value="false" />
   <parameter name="in_order" value="Natural" />
   <parameter name="in_width" value="16" />
-  <parameter name="length" value="1024" />
+  <parameter name="length" value="256" />
   <parameter name="num_engines" value="1" />
   <parameter name="out_order" value="Natural" />
   <parameter name="out_width" value="29" />
@@ -181,11 +211,11 @@
    kind="Packet_Symbol_Width_adapter"
    version="1.0"
    enabled="1">
-  <parameter name="INPUT_SYMBOL_WIDTH" value="256" />
-  <parameter name="OUTPUT_SYMBOL_WIDTH" value="32" />
+  <parameter name="INPUT_SYMBOL_WIDTH" value="64" />
+  <parameter name="OUTPUT_SYMBOL_WIDTH" value="4" />
  </module>
  <module name="QAMModulation" kind="QAM_Modulation" version="1.0" enabled="1">
-  <parameter name="MOD_OUT_WIDTH" value="8" />
+  <parameter name="MOD_OUT_WIDTH" value="2" />
   <parameter name="PIPELINE_DEEPTH" value="16" />
   <parameter name="QAM_STAGE" value="4" />
  </module>
@@ -194,20 +224,20 @@
    kind="altera_avalon_sc_fifo"
    version="16.1"
    enabled="1">
-  <parameter name="BITS_PER_SYMBOL" value="256" />
+  <parameter name="BITS_PER_SYMBOL" value="64" />
   <parameter name="CHANNEL_WIDTH" value="0" />
   <parameter name="EMPTY_LATENCY" value="3" />
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="128" />
+  <parameter name="FIFO_DEPTH" value="1024" />
   <parameter name="SYMBOLS_PER_BEAT" value="1" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="0" />
-  <parameter name="USE_FILL_LEVEL" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="1" />
   <parameter name="USE_MEMORY_BLOCKS" value="1" />
   <parameter name="USE_PACKETS" value="1" />
-  <parameter name="USE_STORE_FORWARD" value="0" />
+  <parameter name="USE_STORE_FORWARD" value="1" />
  </module>
  <module
    name="SPIBuffer"
@@ -236,7 +266,7 @@
    enabled="1">
   <parameter name="BITS_PER_BYTES" value="8" />
   <parameter name="BYTES_PER_SYMBOL" value="4" />
-  <parameter name="SYMBOL_PER_PACKET" value="256" />
+  <parameter name="SYMBOL_PER_PACKET" value="16" />
  </module>
  <module name="clk_0" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
@@ -257,13 +287,13 @@
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="PacketSymbolWidthadapter.aso_out0"
-   end="FFTDataAdapter.asi_in" />
+   start="QAMModulation.aso_out0"
+   end="QAMOutputBuffer.in" />
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="QAMModulation.aso_out0"
-   end="QAMOutputBuffer.in" />
+   start="PacketSymbolWidthadapter.aso_out0"
+   end="FFTInputBuffer.in" />
  <connection
    kind="avalon_streaming"
    version="16.1"
@@ -282,6 +312,11 @@
  <connection
    kind="avalon_streaming"
    version="16.1"
+   start="FFTInputBuffer.out"
+   end="FFTDataAdapter.asi_in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
    start="SPIBuffer.out"
    end="SPIPacketer.asi_in0" />
  <connection
@@ -295,23 +330,28 @@
    start="OFDMFFT.source"
    end="OFDMCPAdder.avalon_st_demux_0_asi_in0" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="SPIBuffer.clk" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="clk_0.clk"
-   end="QAMOutputBuffer.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="OFDMFFT.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="OFDMCPAdder.clk" />
  <connection
    kind="clock"
    version="16.1"
    start="clk_0.clk"
-   end="QAMModulation.clock" />
+   end="QAMOutputBuffer.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="FFTInputBuffer.clk" />
  <connection
    kind="clock"
    version="16.1"
    start="clk_0.clk"
    end="PacketSymbolWidthadapter.clock" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="QAMModulation.clock" />
  <connection
    kind="clock"
    version="16.1"
@@ -346,17 +386,17 @@
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
+   end="FFTInputBuffer.clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
    end="externalSPI.clock_sink_reset" />
  <connection
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
    end="SPIPacketer.reset" />
- <connection
-   kind="reset"
-   version="16.1"
-   start="clk_0.clk_reset"
-   end="QAMModulation.reset" />
  <connection
    kind="reset"
    version="16.1"
@@ -377,6 +417,11 @@
    version="16.1"
    start="clk_0.clk_reset"
    end="OFDMDACControl.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="QAMModulation.reset" />
  <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="OFDMFFT.rst" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />

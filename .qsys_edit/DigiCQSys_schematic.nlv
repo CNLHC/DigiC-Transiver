@@ -1,56 +1,48 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst DigiCQSys.ReceiverTopQsys_0.AvalonFIFO -pg 1
 preplace inst DigiCQSys.TransmitterTopQsys_0.PacketSymbolWidthadapter -pg 1 -lvl 7 -y 50
 preplace inst DigiCQSys.TransmitterTopQsys_0.OFDMCPAdder.clk_0 -pg 1
+preplace inst DigiCQSys.ReceiverTopQsys_0.AvalonFIFO -pg 1
 preplace inst DigiCQSys -pg 1 -lvl 1 -y 40 -regml 18 -regy -20
-preplace inst DigiCQSys.ReceiverTopQsys_0.OFDMPrefixWipeer -pg 1
 preplace inst DigiCQSys.TransmitterTopQsys_0.QAMModulation -pg 1 -lvl 5 -y 50
 preplace inst DigiCQSys.TransmitterTopQsys_0.OFDMFFT -pg 1 -lvl 9 -y 50
 preplace inst DigiCQSys.TransmitterTopQsys_0.OFDMCPAdder.CPAdderRouter_0 -pg 1
-preplace inst DigiCQSys.TransmitterTopQsys_0 -pg 1 -lvl 2 -y 60 -regy -20
-preplace inst DigiCQSys.ReceiverTopQsys_0.QAMDemodulation -pg 1
+preplace inst DigiCQSys.TransmitterTopQsys_0 -pg 1 -lvl 2 -y 50 -regy -20
+preplace inst DigiCQSys.ReceiverTopQsys_0.OFDMPrefixWipeer -pg 1
+preplace inst DigiCQSys.clk_0 -pg 1 -lvl 1 -y 250
 preplace inst DigiCQSys.TransmitterTopQsys_0.OFDMCPAdder.sc_fifo_0 -pg 1
-preplace inst DigiCQSys.clk_0 -pg 1 -lvl 1 -y 260
+preplace inst DigiCQSys.ReceiverTopQsys_0.QAMDemodulation -pg 1
 preplace inst DigiCQSys.ReceiverTopQsys_0.OFDMSymbolSync -pg 1
 preplace inst DigiCQSys.ReceiverTopQsys_0.OFDMChannelEqualization -pg 1
-preplace inst DigiCQSys.ReceiverTopQsys_0.PLLSampleClock -pg 1
-preplace inst DigiCQSys.ReceiverTopQsys_0 -pg 1 -lvl 2 -y 300
 preplace inst DigiCQSys.TransmitterTopQsys_0.OFDMCPAdder -pg 1 -lvl 10 -y 70
+preplace inst DigiCQSys.ReceiverTopQsys_0.PLLSampleClock -pg 1
+preplace inst DigiCQSys.ReceiverTopQsys_0 -pg 1 -lvl 2 -y 290
 preplace inst DigiCQSys.TransmitterTopQsys_0.SPIPacketer -pg 1 -lvl 4 -y 50
+preplace inst DigiCQSys.TransmitterTopQsys_0.externalSPI -pg 1 -lvl 2 -y 70
 preplace inst DigiCQSys.ReceiverTopQsys_0.MMBridge -pg 1
 preplace inst DigiCQSys.ReceiverTopQsys_0.IFFT -pg 1
-preplace inst DigiCQSys.TransmitterTopQsys_0.externalSPI -pg 1 -lvl 2 -y 70
 preplace inst DigiCQSys.ReceiverTopQsys_0.clk_0 -pg 1
 preplace inst DigiCQSys.TransmitterTopQsys_0.QAMOutputBuffer -pg 1 -lvl 6 -y 50
 preplace inst DigiCQSys.TransmitterTopQsys_0.OFDMCPAdder.Avalon_ST_Demux_0 -pg 1
 preplace inst DigiCQSys.TransmitterTopQsys_0.FFTDataAdapter -pg 1 -lvl 8 -y 50
-preplace inst DigiCQSys.ReceiverTopQsys_0.dc_fifo_0 -pg 1
-preplace inst DigiCQSys.ReceiverTopQsys_0.OFDMADCControl -pg 1
 preplace inst DigiCQSys.TransmitterTopQsys_0.clk_0 -pg 1 -lvl 1 -y 190
 preplace inst DigiCQSys.TransmitterTopQsys_0.SPIBuffer -pg 1 -lvl 3 -y 50
 preplace inst DigiCQSys.TransmitterTopQsys_0.OFDMDACControl -pg 1 -lvl 11 -y 150
+preplace inst DigiCQSys.ReceiverTopQsys_0.dc_fifo_0 -pg 1
+preplace inst DigiCQSys.ReceiverTopQsys_0.OFDMADCControl -pg 1
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)TransmitterTopQsys_0.ofdmdaccontrol_dac_control,(SLAVE)DigiCQSys.transmittertopqsys_0_ofdmdaccontrol_dac_control) 1 0 2 NJ 150 NJ
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)ReceiverTopQsys_0.reset,(MASTER)clk_0.clk_reset,(SLAVE)TransmitterTopQsys_0.reset) 1 1 1 470
 preplace netloc EXPORT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)OFDMDACControl.DAC_Control,(SLAVE)TransmitterTopQsys_0.ofdmdaccontrol_dac_control) 1 0 11 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ 180 NJ
-preplace netloc EXPORT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)TransmitterTopQsys_0.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)ReceiverTopQsys_0.ofdmadccontrol_external_adc,(SLAVE)DigiCQSys.receivertopqsys_0_ofdmadccontrol_external_adc) 1 0 2 NJ 340 NJ
 preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)clk_0.clk_in,(SLAVE)DigiCQSys.qsys_clkin) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)ReceiverTopQsys_0.clk,(MASTER)clk_0.clk,(SLAVE)TransmitterTopQsys_0.clk) 1 1 1 410
 preplace netloc POINT_TO_POINT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(MASTER)FFTDataAdapter.aso_out,(SLAVE)OFDMFFT.sink) 1 8 1 2660
+preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(SLAVE)TransmitterTopQsys_0.clk,(MASTER)clk_0.clk,(SLAVE)ReceiverTopQsys_0.clk) 1 1 1 430
 preplace netloc EXPORT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)TransmitterTopQsys_0.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(MASTER)QAMOutputBuffer.out,(SLAVE)PacketSymbolWidthadapter.asi_in0) 1 6 1 2160
 preplace netloc POINT_TO_POINT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)QAMOutputBuffer.in,(MASTER)QAMModulation.aso_out0) 1 5 1 1950
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)TransmitterTopQsys_0.externalspi_export_0,(SLAVE)DigiCQSys.transmittertopqsys_0_externalspi_export_0) 1 0 2 NJ 140 NJ
-preplace netloc FAN_OUT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)QAMOutputBuffer.clk,(SLAVE)PacketSymbolWidthadapter.clock,(SLAVE)OFDMFFT.clk,(MASTER)clk_0.clk,(SLAVE)QAMModulation.clock,(SLAVE)SPIBuffer.clk,(SLAVE)externalSPI.clock_sink,(SLAVE)OFDMCPAdder.clk,(SLAVE)SPIPacketer.clock_1,(SLAVE)FFTDataAdapter.clock_1,(SLAVE)OFDMDACControl.sample_clock) 1 1 10 940 200 1240 140 1470 140 1710 140 1930 140 2180 140 2420 140 2640 140 2870 220 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.transmittertopqsys_0_ofdmdaccontrol_dac_control,(SLAVE)TransmitterTopQsys_0.ofdmdaccontrol_dac_control) 1 0 2 NJ 180 NJ
-preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)DigiCQSys.global_reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(MASTER)externalSPI.avalon_streaming_source,(SLAVE)SPIBuffer.in) 1 2 1 N
-preplace netloc FAN_OUT<net_container>DigiCQSys</net_container>(MASTER)clk_0.clk_reset,(SLAVE)TransmitterTopQsys_0.reset,(SLAVE)ReceiverTopQsys_0.reset) 1 1 1 430
-preplace netloc EXPORT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)externalSPI.export_0,(SLAVE)TransmitterTopQsys_0.externalspi_export_0) 1 0 2 NJ 140 NJ
-preplace netloc FAN_OUT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)FFTDataAdapter.reset,(SLAVE)QAMOutputBuffer.clk_reset,(MASTER)clk_0.clk_reset,(SLAVE)SPIBuffer.clk_reset,(SLAVE)externalSPI.clock_sink_reset,(SLAVE)QAMModulation.reset,(SLAVE)PacketSymbolWidthadapter.reset,(SLAVE)OFDMCPAdder.reset,(SLAVE)SPIPacketer.reset,(SLAVE)OFDMDACControl.reset,(SLAVE)OFDMFFT.rst) 1 1 10 960 220 1260 160 1490 160 1730 160 1970 160 2200 160 2440 160 2680 160 2890 200 NJ
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)OFDMCPAdder.avalon_st_demux_0_asi_in0,(MASTER)OFDMFFT.source) 1 9 1 N
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)TransmitterTopQsys_0.externalspi_export_0,(SLAVE)DigiCQSys.transmittertopqsys_0_externalspi_export_0) 1 0 2 NJ 130 NJ
+preplace netloc EXPORT<net_container>DigiCQSys</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)DigiCQSys.global_reset) 1 0 1 NJ
 preplace netloc POINT_TO_POINT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(MASTER)SPIBuffer.out,(SLAVE)SPIPacketer.asi_in0) 1 3 1 1450
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(MASTER)SPIPacketer.aso_out0_1,(SLAVE)QAMModulation.asi_in0) 1 4 1 1690
 preplace netloc POINT_TO_POINT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)FFTDataAdapter.asi_in,(MASTER)PacketSymbolWidthadapter.aso_out0) 1 7 1 2400
-preplace netloc POINT_TO_POINT<net_container>DigiCQSys.TransmitterTopQsys_0</net_container>(SLAVE)OFDMDACControl.asi_in0,(MASTER)OFDMCPAdder.cpadderrouter_0_data_out) 1 10 1 3320
 levelinfo -pg 1 0 200 3910
 levelinfo -hier DigiCQSys 210 240 730 3600 3620 3640 3660 3680 3700 3720 3740 3760 3780 3800 3820 3840 3860 3880 3900
 levelinfo -hier DigiCQSys.TransmitterTopQsys_0 740 770 990 1310 1530 1780 2020 2250 2490 2740 3070 3370 3510

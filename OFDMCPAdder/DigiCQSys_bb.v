@@ -1,28 +1,24 @@
 
 module DigiCQSys (
 	global_reset_reset_n,
-	ofdm_dac_control_0_dac_control_chadata,
-	ofdm_dac_control_0_dac_control_chbdata,
-	pll_0_locked_export,
-	pll_0_refclk_clk,
 	qsys_clkin_clk,
-	sc_fifo_0_clk_reset_reset,
-	signal_tap_clock_clk,
-	spislave_0_export_0_mosi,
-	spislave_0_export_0_nss,
-	spislave_0_export_0_miso,
-	spislave_0_export_0_sclk);	
+	receivertopqsys_0_ofdmadccontrol_external_adc_RealData,
+	receivertopqsys_0_ofdmadccontrol_external_adc_ImagData,
+	transmittertopqsys_0_externalspi_export_0_mosi,
+	transmittertopqsys_0_externalspi_export_0_nss,
+	transmittertopqsys_0_externalspi_export_0_miso,
+	transmittertopqsys_0_externalspi_export_0_sclk,
+	transmittertopqsys_0_ofdmdaccontrol_dac_control_chadata,
+	transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata);	
 
 	input		global_reset_reset_n;
-	output	[13:0]	ofdm_dac_control_0_dac_control_chadata;
-	output	[13:0]	ofdm_dac_control_0_dac_control_chbdata;
-	output		pll_0_locked_export;
-	input		pll_0_refclk_clk;
 	input		qsys_clkin_clk;
-	input		sc_fifo_0_clk_reset_reset;
-	output		signal_tap_clock_clk;
-	input		spislave_0_export_0_mosi;
-	input		spislave_0_export_0_nss;
-	inout		spislave_0_export_0_miso;
-	input		spislave_0_export_0_sclk;
+	input	[13:0]	receivertopqsys_0_ofdmadccontrol_external_adc_RealData;
+	input	[13:0]	receivertopqsys_0_ofdmadccontrol_external_adc_ImagData;
+	input		transmittertopqsys_0_externalspi_export_0_mosi;
+	input		transmittertopqsys_0_externalspi_export_0_nss;
+	inout		transmittertopqsys_0_externalspi_export_0_miso;
+	input		transmittertopqsys_0_externalspi_export_0_sclk;
+	output	[13:0]	transmittertopqsys_0_ofdmdaccontrol_dac_control_chadata;
+	output	[13:0]	transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata;
 endmodule

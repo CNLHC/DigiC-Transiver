@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
  <debug showDebugMenu="0" />
- <systemtable
-   filter="DigiCQSys.qsys_clkin"
-   showClockDomains="0"
-   showResetDomains="0">
+ <systemtable filter="All Interfaces" showClockDomains="0" showResetDomains="0">
   <columns>
-   <connections preferredWidth="47" />
+   <connections preferredWidth="223" />
    <irq preferredWidth="34" />
    <name preferredWidth="408" />
    <export preferredWidth="219" />
@@ -15,8 +12,8 @@
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library/Basic Functions/Clocks; PLLs and Resets,Library/University Program/Clock,Library/Basic Functions,Project,Library/Interface Protocols/Transceiver PLL,Library/University Program,Library/Basic Functions/Clocks; PLLs and Resets/PLL,Project/System,Library/Interface Protocols,Library" />
- <window width="2560" height="1402" x="-2" y="4" />
+   expandedCategories="Library/Qsys Interconnect/Memory-Mapped Alpha,Library/University Program,Library/University Program/Audio &amp; Video/Video,Library,Library/Qsys Interconnect/Memory-Mapped,Library/Qsys Interconnect,Library/University Program/Audio &amp; Video,Project,Library/Basic Functions,Library/Basic Functions/On Chip Memory" />
+ <window width="2560" height="1402" x="0" y="0" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
 </preferences>

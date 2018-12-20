@@ -11,9 +11,10 @@
 `timescale 1 ps / 1 ps
 module OFDM_Cyclic_Prefix_Adder #(
 		parameter Packet_Length = 1024,
-		parameter CP_Length     = 128
+		parameter CP_Length = 64,
+        parameter INPUT_WIDTH = 38
 	) (
-		input  wire [33:0] asi_in0_data,           //    asi_in0.data
+		input  wire [INPUT_WIDTH-1:0] asi_in0_data,           //    asi_in0.data
 		input  wire        asi_in0_valid,          //           .valid
 		input  wire        asi_in0_endofpacket,    //           .endofpacket
 		input  wire        asi_in0_startofpacket,  //           .startofpacket
@@ -22,13 +23,13 @@ module OFDM_Cyclic_Prefix_Adder #(
 		input  wire        clock_clk,              //      clock.clk
 		input  wire        reset_reset,            //      reset.reset
 
-		output reg  [33:0] data_out_data,          // dataSource.data
+		output reg  [INPUT_WIDTH-1 :0] data_out_data,          // dataSource.data
 		output reg         data_out_valid,         //           .valid
 		output reg         data_out_startofpacket,         //           .valid
 		output reg         data_out_endofpacket,         //           .valid
 		output reg   [1:0] data_out_error,
         
-        input  wire [33:0] buffer_in_data,
+        input  wire [INPUT_WIDTH-1 :0] buffer_in_data,
         output reg         buffer_in_ready,
         input  wire        buffer_in_valid,
         input  wire        buffer_in_startofpacket,
@@ -100,7 +101,7 @@ module OFDM_Cyclic_Prefix_Adder #(
                     if(!tCheckDataInputAlignFlag)begin
                         tCheckDataInputAlignFlag<=1;
                         data_out_valid<=0;
-                        if(!asi_in0_endofpacket)begin //æ­¤å¤„åº”å½“å¯¹é½
+                        if(!asi_in0_endofpacket)begin //??¡è?¡è??????????¨¦??
                             data_out_error<=2'b01;
                         end
                         tWatchDog<=0;
@@ -129,3 +130,4 @@ module OFDM_Cyclic_Prefix_Adder #(
         end
     end
 endmodule
+

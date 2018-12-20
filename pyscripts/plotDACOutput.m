@@ -1,0 +1,11 @@
+M=csvread('TransiverFFTOut.csv');
+fftReal=M(1,1:2:end);
+fftImag=M(2,1:2:end);
+subplot(1,2,1)
+plot(1:256,Cha);
+subplot(1,2,2)
+plot(1:256,Chb);
+c=fftReal+1i*fftImag;
+d=fft(c);
+figure()
+scatter(real(d),imag(d));

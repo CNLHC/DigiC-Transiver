@@ -102,6 +102,7 @@ module DigiCTransiver(
     assign  ADB_SPI_CS      = 1'b1;             // disable ADB_SPI_CS (CSB)
     wire globalReset;
     assign globalReset=KEY[0];
+    wire signalTapPLL;
 
 	baremetal_pll pll0(
 		.refclk(CLOCK_50),   //  refclk.clk
@@ -111,7 +112,7 @@ module DigiCTransiver(
 
 	DigiCQSys u0 (
 		.global_reset_reset_n                                    (globalReset),                                    
-		.qsys_clkin_clk                                          (BareMetalPLL100M),                                          
+		.qsys_clkin_clk                                          (CLOCK_50),                                          
 		.transmittertopqsys_0_externalspi_export_0_mosi          (GPIO[0]),          
 		.transmittertopqsys_0_externalspi_export_0_nss           (GPIO[1]),           
 		.transmittertopqsys_0_externalspi_export_0_miso          (GPIO[2]),          
@@ -119,8 +120,10 @@ module DigiCTransiver(
 		.transmittertopqsys_0_ofdmdaccontrol_dac_control_chadata (DA), 
 		.transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata (DB), 
 		.receivertopqsys_0_ofdmadccontrol_external_adc_RealData  (ADA_D),  
-		.receivertopqsys_0_ofdmadccontrol_external_adc_ImagData  (ADB_D)   
+		.receivertopqsys_0_ofdmadccontrol_external_adc_ImagData  (ADB_D),   
+		.signaltaopll_outclk0_clk                                (signalTapPLL)                                 
 	);
+
     
 
 endmodule
