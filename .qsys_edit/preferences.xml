@@ -12,7 +12,7 @@
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library/Qsys Interconnect/Memory-Mapped Alpha,Library/University Program,Library/University Program/Audio &amp; Video/Video,Library,Library/Qsys Interconnect/Memory-Mapped,Library/Qsys Interconnect,Library/University Program/Audio &amp; Video,Project,Library/Basic Functions,Library/Basic Functions/On Chip Memory" />
+   expandedCategories="Project,Library/DigiC/Utility,Library/DSP,Library,Library/DigiC,Library/DSP/Transforms" />
  <window width="2560" height="1402" x="0" y="0" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
