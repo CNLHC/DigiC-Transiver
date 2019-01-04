@@ -15,8 +15,8 @@ module baremetal_pll (
 		.refclk   (refclk),   //  refclk.clk
 		.rst      (rst),      //   reset.reset
 		.outclk_0 (outclk_0), // outclk0.clk
-		.locked   ()          // (terminated)
-	);
+		);
+	.locked   ()          // (terminated)
 
 endmodule
 // Retrieval info: <?xml version="1.0"?>

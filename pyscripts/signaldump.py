@@ -53,7 +53,7 @@ class signaltapCsvDumper():
         if(condition == 'active-high'):
             pattern = kwargs.get('validPattern',[])
             validIndex = [self.__findSignalBySubstringMatch(i) for i in pattern]
-            tSignalOut= [self.dumpBinaryDataByHierarchyPath(path=i,condition=condition,validSignalIndex = validIndex) for i in signalPattern]
+            tSignalOut= [self.dumpBinaryDataByHierarchyPath(path=i,condition=condition,validSignalIndex = validIndex,**kwargs) for i in signalPattern]
 
         elif(condition == "range"):
             sup = kwargs.get('sup',0)
@@ -67,20 +67,30 @@ class signaltapCsvDumper():
 
     def dumpBinaryDataByHierarchyPath(self,path:str,condition='active-high',**kwargs):
         RealOut=[]
-        dataIndex = self.__findSiganalByRegxpMatch(path)
+        dataIndex=[]
+        for v,i in enumerate(self._header):
+            pattern = re.compile(path)
+            t = pattern.search(i)
+            if t!=None:
+                dataIndex.append((v,int(t.group(1))))
+        dataIndex.sort(key = lambda x:x[1],reverse=True)
+        dataIndex=[i for i,_ in dataIndex]
+        unsigned = kwargs.get('unsigned')
         checkvalid = self.__getConditionCheckFunction(condition,**kwargs)
         for row in self._data:
             if checkvalid(row):
                 RealData = reduce(lambda x,y:x+str(row[y]),dataIndex,'')
                 RealData=RealData.replace(' ','')
-                RealData=RealData[::-1]
-                RealData=BitArray(bin= RealData).int
+                if unsigned==True:
+                    RealData=BitArray(bin= RealData).uint
+                else:
+                    RealData=BitArray(bin= RealData).int
+
                 RealOut.append(RealData)
         return RealOut
 
 
 
-#dumpSession(["ofdmfft\|source_real\[\d+\]","ofdmfft\|source_imag\[\d+\]"],["ofdmfft|source_valid"],"TransiverFFTOut")
 
 #dumpSession(["ofdmfft\|sink_real\[\d+\]","ofdmfft\|sink_imag\[\d+\]"],["ofdmfft|sink_valid"],"TransiverFFTInput")
 
@@ -91,8 +101,9 @@ class signaltapCsvDumper():
 
 
 
-a=signaltapCsvDumper('../stp1.csv')
-
-a.dumpSession(signalPattern=["ADA_D\[\d+\]","ADB_D\[\d+\]"],condition="range",inf=309,sup=309+960,outputName="ReceiverADInput")
-
+#a=signaltapCsvDumper('../stp1.csv')
+#base=2068;
+#a.dumpSession(signalPattern=["ADA_D\[(\d+)\]","ADB_D\[(\d+)\]"],condition="range",inf=base,sup=base+2559,outputName="ReceiverADInput")
+#a.dumpSession(signalPattern=["DA\[(\d+)\]","DB\[(\d+)\]"],condition="active-high",validPattern=["ofdmdaccontrol|asi_in0_valid"],outputName="TransiverDAOutput",unsigned=True)
+#a.dumpSession(signalPattern=["ofdmfft\|source_real\[(\d+)\]","ofdmfft\|source_imag\[(\d+)\]"],validPattern=["ofdmfft|source_valid"],outputName="TransiverFFTOut",condition="active-high")
 

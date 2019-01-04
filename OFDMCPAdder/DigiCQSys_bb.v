@@ -4,6 +4,8 @@ module DigiCQSys (
 	qsys_clkin_clk,
 	receivertopqsys_0_ofdmadccontrol_external_adc_RealData,
 	receivertopqsys_0_ofdmadccontrol_external_adc_ImagData,
+	signaltaopll_outclk0_clk,
+	systemclockpll_addaclk_clk,
 	transmittertopqsys_0_externalspi_export_0_mosi,
 	transmittertopqsys_0_externalspi_export_0_nss,
 	transmittertopqsys_0_externalspi_export_0_miso,
@@ -15,6 +17,8 @@ module DigiCQSys (
 	input		qsys_clkin_clk;
 	input	[13:0]	receivertopqsys_0_ofdmadccontrol_external_adc_RealData;
 	input	[13:0]	receivertopqsys_0_ofdmadccontrol_external_adc_ImagData;
+	output		signaltaopll_outclk0_clk;
+	output		systemclockpll_addaclk_clk;
 	input		transmittertopqsys_0_externalspi_export_0_mosi;
 	input		transmittertopqsys_0_externalspi_export_0_nss;
 	inout		transmittertopqsys_0_externalspi_export_0_miso;

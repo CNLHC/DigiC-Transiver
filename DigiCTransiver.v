@@ -83,16 +83,14 @@ module DigiCTransiver(
 	input 		          		XT_IN_P
 );
 
-    wire PLL_CLK_1M,PLL_CLK_10M,PLL_CLK_20M;
-    wire PLL_CLK_120M;
-    wire BareMetalPLL100M;
     wire [27:0] stm_hw_events;
     assign stm_hw_events    = 0;
+    wire DCClock;
   
-    assign FPGA_CLK_A_P = CLOCK_50;
-    assign FPGA_CLK_A_N = ~CLOCK_50;
-    assign FPGA_CLK_B_N = CLOCK_50;
-    assign FPGA_CLK_B_P = ~CLOCK_50;
+    assign FPGA_CLK_A_P = DCClock;
+    assign FPGA_CLK_A_N =  ~DCClock;
+    assign FPGA_CLK_B_N = ~DCClock;
+    assign FPGA_CLK_B_P =  DCClock;
 
     assign  AD_SCLK         = SW[0];            // (DFS)Data Format Select
     assign  AD_SDIO         = SW[1];            // (DCS)Duty Cycle Stabilizer Select
@@ -104,11 +102,6 @@ module DigiCTransiver(
     assign globalReset=KEY[0];
     wire signalTapPLL;
 
-	baremetal_pll pll0(
-		.refclk(CLOCK_50),   //  refclk.clk
-		.rst (~KEY[0]),      //   reset.reset
-		.outclk_0(BareMetalPLL100M)  // outclk0.clk
-	);
 
 	DigiCQSys u0 (
 		.global_reset_reset_n                                    (globalReset),                                    
@@ -119,11 +112,14 @@ module DigiCTransiver(
 		.transmittertopqsys_0_externalspi_export_0_sclk          (GPIO[3]),          
 		.transmittertopqsys_0_ofdmdaccontrol_dac_control_chadata (DA), 
 		.transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata (DB), 
+		.signaltaopll_outclk0_clk                                (signalTapPLL),
+		.systempll_dccclock_clk									 (DCClock),
 		.receivertopqsys_0_ofdmadccontrol_external_adc_RealData  (ADA_D),  
-		.receivertopqsys_0_ofdmadccontrol_external_adc_ImagData  (ADB_D),   
-		.signaltaopll_outclk0_clk                                (signalTapPLL)                                 
+		.receivertopqsys_0_ofdmadccontrol_external_adc_ImagData  (ADB_D)   
 	);
-
     
 
+
+    
 endmodule
+        
