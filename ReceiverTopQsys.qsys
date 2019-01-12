@@ -9,38 +9,33 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element AvalonFIFO
+   element FFT
    {
       datum _sortIndex
       {
-         value = "6";
+         value = "4";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
    }
-   element IFFT
+   element FFTBuffer
    {
       datum _sortIndex
       {
          value = "3";
          type = "int";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
-   element MMBridge
+   element FFT_Data_Adapter_RX_0
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "2";
          type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element OFDMADCControl
@@ -49,27 +44,6 @@
       {
          value = "0";
          type = "int";
-      }
-   }
-   element OFDMChannelEqualization
-   {
-      datum _sortIndex
-      {
-         value = "4";
-         type = "int";
-      }
-   }
-   element OFDMPrefixWipeer
-   {
-      datum _sortIndex
-      {
-         value = "2";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element OFDMSymbolSync
@@ -202,11 +176,19 @@
          type = "boolean";
       }
    }
-   element pll_0
+   element data_format_adapter_0
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "6";
+         type = "int";
+      }
+   }
+   element fifo_0
+   {
+      datum _sortIndex
+      {
+         value = "7";
          type = "int";
       }
    }
@@ -231,61 +213,24 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
- <interface
-   name="OFDM_Channel_Equalization_0_asi_in0"
-   internal="OFDMChannelEqualization.asi_in01" />
- <interface
-   name="OFDM_Channel_Equalization_0_reset"
-   internal="OFDMChannelEqualization.reset1" />
- <interface
-   name="OFDM_Prefix_Wipe_1_asi_in0"
-   internal="OFDMPrefixWipeer.asi_in01" />
- <interface
-   name="OFDM_Prefix_Wipe_1_aso_out0_1"
-   internal="OFDMPrefixWipeer.aso_out0_11" />
- <interface name="OFDM_Prefix_Wipe_1_reset" internal="OFDMPrefixWipeer.reset1" />
  <interface name="QAM_Demodulation_0_asi_in0" internal="QAMDemodulation.asi_in01" />
  <interface
    name="QAM_Demodulation_0_aso_out0"
    internal="QAMDemodulation.aso_out01" />
  <interface name="QAM_Demodulation_0_reset" internal="QAMDemodulation.reset1" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
- <interface name="mmbridge_s0" internal="MMBridge.s0" type="avalon" dir="end" />
- <interface
-   name="ofdm_channel_equalization_0_aso_out0"
-   internal="OFDMChannelEqualization.aso_out01" />
  <interface
    name="ofdmadccontrol_external_adc"
    internal="OFDMADCControl.external_adc"
    type="conduit"
    dir="end" />
+ <interface
+   name="ofdmadccontrol_sample_clock"
+   internal="OFDMADCControl.clock_1"
+   type="clock"
+   dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
- <module
-   name="AvalonFIFO"
-   kind="altera_avalon_fifo"
-   version="16.1"
-   enabled="1">
-  <parameter name="avalonMMAvalonMMDataWidth" value="32" />
-  <parameter name="avalonMMAvalonSTDataWidth" value="32" />
-  <parameter name="bitsPerSymbol" value="8" />
-  <parameter name="channelWidth" value="8" />
-  <parameter name="deviceFamilyString" value="Cyclone V" />
-  <parameter name="errorWidth" value="8" />
-  <parameter name="fifoDepth" value="8192" />
-  <parameter name="fifoInputInterfaceOptions" value="AVALONST_SINK" />
-  <parameter name="fifoOutputInterfaceOptions" value="AVALONMM_READ" />
-  <parameter name="showHiddenFeatures" value="false" />
-  <parameter name="singleClockMode" value="true" />
-  <parameter name="singleResetMode" value="false" />
-  <parameter name="symbolsPerBeat" value="4" />
-  <parameter name="useBackpressure" value="true" />
-  <parameter name="useIRQ" value="true" />
-  <parameter name="usePacket" value="true" />
-  <parameter name="useReadControl" value="false" />
-  <parameter name="useRegister" value="false" />
-  <parameter name="useWriteControl" value="true" />
- </module>
- <module name="IFFT" kind="altera_fft_ii" version="16.1" enabled="1">
+ <module name="FFT" kind="altera_fft_ii" version="16.1" enabled="1">
   <parameter name="data_flow" value="Streaming" />
   <parameter name="data_rep">Block Floating Point</parameter>
   <parameter name="design_env" value="QSYS" />
@@ -295,45 +240,47 @@
   <parameter name="hard_fp" value="false" />
   <parameter name="hyper_opt" value="false" />
   <parameter name="in_order" value="Natural" />
-  <parameter name="in_width" value="14" />
-  <parameter name="length" value="1024" />
+  <parameter name="in_width" value="16" />
+  <parameter name="length" value="64" />
   <parameter name="num_engines" value="1" />
   <parameter name="out_order" value="Natural" />
   <parameter name="out_width" value="29" />
   <parameter name="selected_device_family" value="Cyclone V" />
-  <parameter name="twid_width" value="14" />
+  <parameter name="twid_width" value="16" />
  </module>
  <module
-   name="MMBridge"
-   kind="altera_avalon_mm_bridge"
+   name="FFTBuffer"
+   kind="altera_avalon_sc_fifo"
    version="16.1"
    enabled="1">
-  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
-  <parameter name="ADDRESS_WIDTH" value="10" />
-  <parameter name="DATA_WIDTH" value="32" />
-  <parameter name="LINEWRAPBURSTS" value="0" />
-  <parameter name="MAX_BURST_SIZE" value="1" />
-  <parameter name="MAX_PENDING_RESPONSES" value="4" />
-  <parameter name="PIPELINE_COMMAND" value="1" />
-  <parameter name="PIPELINE_RESPONSE" value="1" />
-  <parameter name="SYMBOL_WIDTH" value="8" />
-  <parameter name="SYSINFO_ADDR_WIDTH" value="3" />
-  <parameter name="USE_AUTO_ADDRESS_WIDTH" value="0" />
-  <parameter name="USE_RESPONSE" value="0" />
+  <parameter name="BITS_PER_SYMBOL" value="33" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="EMPTY_LATENCY" value="3" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="2048" />
+  <parameter name="SYMBOLS_PER_BEAT" value="1" />
+  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
+  <parameter name="USE_ALMOST_FULL_IF" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="1" />
+  <parameter name="USE_MEMORY_BLOCKS" value="1" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="USE_STORE_FORWARD" value="1" />
+ </module>
+ <module
+   name="FFT_Data_Adapter_RX_0"
+   kind="FFT_Data_Adapter_RX"
+   version="1.0"
+   enabled="1">
+  <parameter name="EXTRA_LEFT_PADDING" value="0" />
+  <parameter name="EXTRA_RIGHT_PADDING" value="0" />
+  <parameter name="INPUT_SYMBOL_WIDTH" value="16" />
+  <parameter name="INVERSE_FFT" value="0" />
  </module>
  <module
    name="OFDMADCControl"
    kind="OFDM_ADC_Control"
-   version="1.0"
-   enabled="1" />
- <module
-   name="OFDMChannelEqualization"
-   kind="OFDM_Channel_Equalization"
-   version="1.0"
-   enabled="1" />
- <module
-   name="OFDMPrefixWipeer"
-   kind="OFDM_Prefix_Wipe"
    version="1.0"
    enabled="1" />
  <module
@@ -347,247 +294,94 @@
    version="1.0"
    enabled="1" />
  <module name="clk_0" kind="clock_source" version="16.1" enabled="1">
-  <parameter name="clockFrequency" value="50000000" />
+  <parameter name="clockFrequency" value="100000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module name="pll_0" kind="altera_pll" version="16.1" enabled="1">
-  <parameter name="debug_print_output" value="false" />
-  <parameter name="debug_use_rbc_taf_method" value="false" />
-  <parameter name="device" value="5CSXFC6D6F31C6" />
-  <parameter name="device_family" value="Cyclone V" />
-  <parameter name="gui_active_clk" value="false" />
-  <parameter name="gui_actual_output_clock_frequency0" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency1" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency10" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency11" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency12" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency13" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency14" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency15" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency16" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency17" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency2" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency3" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency4" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency5" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency6" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency7" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency8" value="0 MHz" />
-  <parameter name="gui_actual_output_clock_frequency9" value="0 MHz" />
-  <parameter name="gui_actual_phase_shift0" value="0" />
-  <parameter name="gui_actual_phase_shift1" value="0" />
-  <parameter name="gui_actual_phase_shift10" value="0" />
-  <parameter name="gui_actual_phase_shift11" value="0" />
-  <parameter name="gui_actual_phase_shift12" value="0" />
-  <parameter name="gui_actual_phase_shift13" value="0" />
-  <parameter name="gui_actual_phase_shift14" value="0" />
-  <parameter name="gui_actual_phase_shift15" value="0" />
-  <parameter name="gui_actual_phase_shift16" value="0" />
-  <parameter name="gui_actual_phase_shift17" value="0" />
-  <parameter name="gui_actual_phase_shift2" value="0" />
-  <parameter name="gui_actual_phase_shift3" value="0" />
-  <parameter name="gui_actual_phase_shift4" value="0" />
-  <parameter name="gui_actual_phase_shift5" value="0" />
-  <parameter name="gui_actual_phase_shift6" value="0" />
-  <parameter name="gui_actual_phase_shift7" value="0" />
-  <parameter name="gui_actual_phase_shift8" value="0" />
-  <parameter name="gui_actual_phase_shift9" value="0" />
-  <parameter name="gui_cascade_counter0" value="false" />
-  <parameter name="gui_cascade_counter1" value="false" />
-  <parameter name="gui_cascade_counter10" value="false" />
-  <parameter name="gui_cascade_counter11" value="false" />
-  <parameter name="gui_cascade_counter12" value="false" />
-  <parameter name="gui_cascade_counter13" value="false" />
-  <parameter name="gui_cascade_counter14" value="false" />
-  <parameter name="gui_cascade_counter15" value="false" />
-  <parameter name="gui_cascade_counter16" value="false" />
-  <parameter name="gui_cascade_counter17" value="false" />
-  <parameter name="gui_cascade_counter2" value="false" />
-  <parameter name="gui_cascade_counter3" value="false" />
-  <parameter name="gui_cascade_counter4" value="false" />
-  <parameter name="gui_cascade_counter5" value="false" />
-  <parameter name="gui_cascade_counter6" value="false" />
-  <parameter name="gui_cascade_counter7" value="false" />
-  <parameter name="gui_cascade_counter8" value="false" />
-  <parameter name="gui_cascade_counter9" value="false" />
-  <parameter name="gui_cascade_outclk_index" value="0" />
-  <parameter name="gui_channel_spacing" value="0.0" />
-  <parameter name="gui_clk_bad" value="false" />
-  <parameter name="gui_device_speed_grade" value="1" />
-  <parameter name="gui_divide_factor_c0" value="1" />
-  <parameter name="gui_divide_factor_c1" value="1" />
-  <parameter name="gui_divide_factor_c10" value="1" />
-  <parameter name="gui_divide_factor_c11" value="1" />
-  <parameter name="gui_divide_factor_c12" value="1" />
-  <parameter name="gui_divide_factor_c13" value="1" />
-  <parameter name="gui_divide_factor_c14" value="1" />
-  <parameter name="gui_divide_factor_c15" value="1" />
-  <parameter name="gui_divide_factor_c16" value="1" />
-  <parameter name="gui_divide_factor_c17" value="1" />
-  <parameter name="gui_divide_factor_c2" value="1" />
-  <parameter name="gui_divide_factor_c3" value="1" />
-  <parameter name="gui_divide_factor_c4" value="1" />
-  <parameter name="gui_divide_factor_c5" value="1" />
-  <parameter name="gui_divide_factor_c6" value="1" />
-  <parameter name="gui_divide_factor_c7" value="1" />
-  <parameter name="gui_divide_factor_c8" value="1" />
-  <parameter name="gui_divide_factor_c9" value="1" />
-  <parameter name="gui_divide_factor_n" value="1" />
-  <parameter name="gui_dps_cntr" value="C0" />
-  <parameter name="gui_dps_dir" value="Positive" />
-  <parameter name="gui_dps_num" value="1" />
-  <parameter name="gui_dsm_out_sel" value="1st_order" />
-  <parameter name="gui_duty_cycle0" value="50" />
-  <parameter name="gui_duty_cycle1" value="50" />
-  <parameter name="gui_duty_cycle10" value="50" />
-  <parameter name="gui_duty_cycle11" value="50" />
-  <parameter name="gui_duty_cycle12" value="50" />
-  <parameter name="gui_duty_cycle13" value="50" />
-  <parameter name="gui_duty_cycle14" value="50" />
-  <parameter name="gui_duty_cycle15" value="50" />
-  <parameter name="gui_duty_cycle16" value="50" />
-  <parameter name="gui_duty_cycle17" value="50" />
-  <parameter name="gui_duty_cycle2" value="50" />
-  <parameter name="gui_duty_cycle3" value="50" />
-  <parameter name="gui_duty_cycle4" value="50" />
-  <parameter name="gui_duty_cycle5" value="50" />
-  <parameter name="gui_duty_cycle6" value="50" />
-  <parameter name="gui_duty_cycle7" value="50" />
-  <parameter name="gui_duty_cycle8" value="50" />
-  <parameter name="gui_duty_cycle9" value="50" />
-  <parameter name="gui_en_adv_params" value="false" />
-  <parameter name="gui_en_dps_ports" value="false" />
-  <parameter name="gui_en_phout_ports" value="false" />
-  <parameter name="gui_en_reconf" value="false" />
-  <parameter name="gui_enable_cascade_in" value="false" />
-  <parameter name="gui_enable_cascade_out" value="false" />
-  <parameter name="gui_enable_mif_dps" value="false" />
-  <parameter name="gui_feedback_clock" value="Global Clock" />
-  <parameter name="gui_frac_multiply_factor" value="1" />
-  <parameter name="gui_fractional_cout" value="32" />
-  <parameter name="gui_mif_generate" value="false" />
-  <parameter name="gui_multiply_factor" value="1" />
-  <parameter name="gui_number_of_clocks" value="1" />
-  <parameter name="gui_operation_mode" value="direct" />
-  <parameter name="gui_output_clock_frequency0" value="20.0" />
-  <parameter name="gui_output_clock_frequency1" value="100.0" />
-  <parameter name="gui_output_clock_frequency10" value="100.0" />
-  <parameter name="gui_output_clock_frequency11" value="100.0" />
-  <parameter name="gui_output_clock_frequency12" value="100.0" />
-  <parameter name="gui_output_clock_frequency13" value="100.0" />
-  <parameter name="gui_output_clock_frequency14" value="100.0" />
-  <parameter name="gui_output_clock_frequency15" value="100.0" />
-  <parameter name="gui_output_clock_frequency16" value="100.0" />
-  <parameter name="gui_output_clock_frequency17" value="100.0" />
-  <parameter name="gui_output_clock_frequency2" value="100.0" />
-  <parameter name="gui_output_clock_frequency3" value="100.0" />
-  <parameter name="gui_output_clock_frequency4" value="100.0" />
-  <parameter name="gui_output_clock_frequency5" value="100.0" />
-  <parameter name="gui_output_clock_frequency6" value="100.0" />
-  <parameter name="gui_output_clock_frequency7" value="100.0" />
-  <parameter name="gui_output_clock_frequency8" value="100.0" />
-  <parameter name="gui_output_clock_frequency9" value="100.0" />
-  <parameter name="gui_phase_shift0" value="0" />
-  <parameter name="gui_phase_shift1" value="0" />
-  <parameter name="gui_phase_shift10" value="0" />
-  <parameter name="gui_phase_shift11" value="0" />
-  <parameter name="gui_phase_shift12" value="0" />
-  <parameter name="gui_phase_shift13" value="0" />
-  <parameter name="gui_phase_shift14" value="0" />
-  <parameter name="gui_phase_shift15" value="0" />
-  <parameter name="gui_phase_shift16" value="0" />
-  <parameter name="gui_phase_shift17" value="0" />
-  <parameter name="gui_phase_shift2" value="0" />
-  <parameter name="gui_phase_shift3" value="0" />
-  <parameter name="gui_phase_shift4" value="0" />
-  <parameter name="gui_phase_shift5" value="0" />
-  <parameter name="gui_phase_shift6" value="0" />
-  <parameter name="gui_phase_shift7" value="0" />
-  <parameter name="gui_phase_shift8" value="0" />
-  <parameter name="gui_phase_shift9" value="0" />
-  <parameter name="gui_phase_shift_deg0" value="0.0" />
-  <parameter name="gui_phase_shift_deg1" value="0.0" />
-  <parameter name="gui_phase_shift_deg10" value="0.0" />
-  <parameter name="gui_phase_shift_deg11" value="0.0" />
-  <parameter name="gui_phase_shift_deg12" value="0.0" />
-  <parameter name="gui_phase_shift_deg13" value="0.0" />
-  <parameter name="gui_phase_shift_deg14" value="0.0" />
-  <parameter name="gui_phase_shift_deg15" value="0.0" />
-  <parameter name="gui_phase_shift_deg16" value="0.0" />
-  <parameter name="gui_phase_shift_deg17" value="0.0" />
-  <parameter name="gui_phase_shift_deg2" value="0.0" />
-  <parameter name="gui_phase_shift_deg3" value="0.0" />
-  <parameter name="gui_phase_shift_deg4" value="0.0" />
-  <parameter name="gui_phase_shift_deg5" value="0.0" />
-  <parameter name="gui_phase_shift_deg6" value="0.0" />
-  <parameter name="gui_phase_shift_deg7" value="0.0" />
-  <parameter name="gui_phase_shift_deg8" value="0.0" />
-  <parameter name="gui_phase_shift_deg9" value="0.0" />
-  <parameter name="gui_phout_division" value="1" />
-  <parameter name="gui_pll_auto_reset" value="Off" />
-  <parameter name="gui_pll_bandwidth_preset" value="Auto" />
-  <parameter name="gui_pll_cascading_mode">Create an adjpllin signal to connect with an upstream PLL</parameter>
-  <parameter name="gui_pll_mode" value="Integer-N PLL" />
-  <parameter name="gui_ps_units0" value="ps" />
-  <parameter name="gui_ps_units1" value="ps" />
-  <parameter name="gui_ps_units10" value="ps" />
-  <parameter name="gui_ps_units11" value="ps" />
-  <parameter name="gui_ps_units12" value="ps" />
-  <parameter name="gui_ps_units13" value="ps" />
-  <parameter name="gui_ps_units14" value="ps" />
-  <parameter name="gui_ps_units15" value="ps" />
-  <parameter name="gui_ps_units16" value="ps" />
-  <parameter name="gui_ps_units17" value="ps" />
-  <parameter name="gui_ps_units2" value="ps" />
-  <parameter name="gui_ps_units3" value="ps" />
-  <parameter name="gui_ps_units4" value="ps" />
-  <parameter name="gui_ps_units5" value="ps" />
-  <parameter name="gui_ps_units6" value="ps" />
-  <parameter name="gui_ps_units7" value="ps" />
-  <parameter name="gui_ps_units8" value="ps" />
-  <parameter name="gui_ps_units9" value="ps" />
-  <parameter name="gui_refclk1_frequency" value="100.0" />
-  <parameter name="gui_refclk_switch" value="false" />
-  <parameter name="gui_reference_clock_frequency" value="200.0" />
-  <parameter name="gui_switchover_delay" value="0" />
-  <parameter name="gui_switchover_mode">Automatic Switchover</parameter>
-  <parameter name="gui_use_locked" value="true" />
+ <module
+   name="data_format_adapter_0"
+   kind="data_format_adapter"
+   version="16.1"
+   enabled="1">
+  <parameter name="inBitsPerSymbol" value="2" />
+  <parameter name="inChannelWidth" value="0" />
+  <parameter name="inErrorDescriptor" value="" />
+  <parameter name="inErrorWidth" value="0" />
+  <parameter name="inMaxChannel" value="0" />
+  <parameter name="inReadyLatency" value="0" />
+  <parameter name="inSymbolsPerBeat" value="1" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUseEmptyPort" value="AUTO" />
+  <parameter name="inUsePackets" value="true" />
+  <parameter name="outSymbolsPerBeat" value="16" />
+  <parameter name="outUseEmpty" value="false" />
+  <parameter name="outUseEmptyPort" value="AUTO" />
  </module>
- <connection kind="avalon" version="16.1" start="MMBridge.m0" end="AvalonFIFO.out">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
+ <module name="fifo_0" kind="altera_avalon_fifo" version="16.1" enabled="1">
+  <parameter name="avalonMMAvalonMMDataWidth" value="8" />
+  <parameter name="avalonMMAvalonSTDataWidth" value="32" />
+  <parameter name="bitsPerSymbol" value="2" />
+  <parameter name="channelWidth" value="0" />
+  <parameter name="deviceFamilyString" value="Cyclone V" />
+  <parameter name="errorWidth" value="0" />
+  <parameter name="fifoDepth" value="8192" />
+  <parameter name="fifoInputInterfaceOptions" value="AVALONST_SINK" />
+  <parameter name="fifoOutputInterfaceOptions" value="AVALONMM_READ" />
+  <parameter name="showHiddenFeatures" value="false" />
+  <parameter name="singleClockMode" value="true" />
+  <parameter name="singleResetMode" value="false" />
+  <parameter name="symbolsPerBeat" value="16" />
+  <parameter name="useBackpressure" value="false" />
+  <parameter name="useIRQ" value="false" />
+  <parameter name="usePacket" value="true" />
+  <parameter name="useReadControl" value="false" />
+  <parameter name="useRegister" value="false" />
+  <parameter name="useWriteControl" value="false" />
+ </module>
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="FFT_Data_Adapter_RX_0.aso_out"
+   end="FFTBuffer.in" />
  <connection
    kind="avalon_streaming"
    version="16.1"
    start="OFDMSymbolSync.aso_out0"
-   end="OFDMPrefixWipeer.asi_in0" />
+   end="FFT_Data_Adapter_RX_0.asi_in" />
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="OFDMChannelEqualization.aso_out0"
-   end="QAMDemodulation.asi_in0" />
+   start="OFDMADCControl.aso_out0"
+   end="OFDMSymbolSync.asi_in_0" />
  <connection
    kind="avalon_streaming"
    version="16.1"
    start="QAMDemodulation.aso_out0"
-   end="AvalonFIFO.in" />
+   end="data_format_adapter_0.in" />
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="OFDMPrefixWipeer.aso_out0_1"
-   end="IFFT.sink" />
+   start="data_format_adapter_0.out"
+   end="fifo_0.in" />
  <connection
    kind="avalon_streaming"
    version="16.1"
-   start="IFFT.source"
-   end="OFDMChannelEqualization.asi_in0" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="IFFT.clk" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="MMBridge.clk" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="AvalonFIFO.clk_in" />
+   start="FFTBuffer.out"
+   end="FFT.sink" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="FFT.source"
+   end="QAMDemodulation.asi_in0" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="FFT.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="FFTBuffer.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="data_format_adapter_0.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="fifo_0.clk_in" />
  <connection
    kind="clock"
    version="16.1"
@@ -597,28 +391,17 @@
    kind="clock"
    version="16.1"
    start="clk_0.clk"
-   end="OFDMPrefixWipeer.clock" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="clk_0.clk"
-   end="OFDMChannelEqualization.clock" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="clk_0.clk"
    end="QAMDemodulation.clock" />
  <connection
    kind="clock"
    version="16.1"
    start="clk_0.clk"
-   end="OFDMADCControl.clock_2" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="pll_0.refclk" />
+   end="FFT_Data_Adapter_RX_0.clock_1" />
  <connection
    kind="clock"
    version="16.1"
-   start="pll_0.outclk0"
-   end="OFDMADCControl.clock_1" />
+   start="clk_0.clk"
+   end="OFDMADCControl.clock_2" />
  <connection
    kind="conduit"
    version="16.1"
@@ -634,17 +417,7 @@
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
-   end="OFDMPrefixWipeer.reset" />
- <connection
-   kind="reset"
-   version="16.1"
-   start="clk_0.clk_reset"
-   end="MMBridge.reset" />
- <connection
-   kind="reset"
-   version="16.1"
-   start="clk_0.clk_reset"
-   end="OFDMChannelEqualization.reset" />
+   end="FFTBuffer.clk_reset" />
  <connection
    kind="reset"
    version="16.1"
@@ -655,18 +428,27 @@
    version="16.1"
    start="clk_0.clk_reset"
    end="OFDMADCControl.reset" />
- <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="pll_0.reset" />
  <connection
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
-   end="AvalonFIFO.reset_in" />
+   end="FFT_Data_Adapter_RX_0.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="data_format_adapter_0.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="fifo_0.reset_in" />
  <connection
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
    end="OFDMSymbolSync.reset_sink" />
- <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="IFFT.rst" />
+ <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="FFT.rst" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />

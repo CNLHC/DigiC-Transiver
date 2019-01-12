@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
  <debug showDebugMenu="0" />
- <systemtable filter="All Interfaces" showClockDomains="0" showResetDomains="0">
+ <systemtable
+   filter="TransmitterTopQsys.clk OR TransmitterTopQsys.ofdmdaccontrol_sample_clock OR TransmitterTopQsys.outputbuffer_out_clk OR TransmitterTopQsys.outputforwardbuffer_clk"
+   showClockDomains="1"
+   showResetDomains="0">
   <columns>
-   <connections preferredWidth="95" />
+   <connections preferredWidth="127" />
    <irq preferredWidth="34" />
    <name preferredWidth="408" />
    <export preferredWidth="219" />
@@ -12,8 +15,8 @@
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library/University Program/Clock,Library/Basic Functions,Library,Library/Basic Functions/Clocks; PLLs and Resets/PLL,Library/Interface Protocols/Transceiver PLL,Library/University Program,Project,Library/Basic Functions/Clocks; PLLs and Resets,Library/Interface Protocols" />
- <window width="2560" height="1402" x="0" y="0" />
+   expandedCategories="Library,Project,Library/Processors and Peripherals/Hard Processor Systems,Library/Processors and Peripherals/Hard Processor Components,Project/System,Library/Processors and Peripherals" />
+ <window width="2578" height="1420" x="-9" y="-9" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
 </preferences>

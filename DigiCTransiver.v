@@ -113,7 +113,7 @@ module DigiCTransiver(
 		.transmittertopqsys_0_ofdmdaccontrol_dac_control_chadata (DA), 
 		.transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata (DB), 
 		.signaltaopll_outclk0_clk                                (signalTapPLL),
-		.systempll_dccclock_clk									 (DCClock),
+		.systempll_dccclock_clk									 			(DCClock),
 		.receivertopqsys_0_ofdmadccontrol_external_adc_RealData  (ADA_D),  
 		.receivertopqsys_0_ofdmadccontrol_external_adc_ImagData  (ADB_D)   
 	);
