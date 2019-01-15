@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element FFTDataAdapter
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+   element FFTInputBuffer
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element OFDMDACControl
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
+   element OFDMFFT
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+   element OutPutForwardBuffer
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
+   element OutputBuffer
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element QAMModulation
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element QAMOutputBuffer
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element SPIBuffer
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element SPIPacketer
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element TXPackter
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+   element TransmitterMaster
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
+      }
+   }
+   element clk_0
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+   }
+   element externalSPI
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element sample_clk
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="5CSXFC6D6F31C6" />
+ <parameter name="deviceFamily" value="Cyclone V" />
+ <parameter name="deviceSpeedGrade" value="6_H6" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="hideFromIPCatalog" value="false" />
+ <parameter name="lockedInterfaceDefinition" value="" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="DigiCTransiver.qpf" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="0" />
+ <parameter name="testBenchDutName" value="" />
+ <parameter name="timeStamp" value="0" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface
+   name="externalspi_export_0"
+   internal="externalSPI.export_0"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="ofdmdaccontrol_dac_control"
+   internal="OFDMDACControl.DAC_Control"
+   type="conduit"
+   dir="end" />
+ <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
+ <interface name="sample_clk" internal="sample_clk.clk_in" type="clock" dir="end" />
+ <interface
+   name="sample_clk_reset"
+   internal="sample_clk.clk_in_reset"
+   type="reset"
+   dir="end" />
+ <module
+   name="FFTDataAdapter"
+   kind="FFT_Data_Adapter"
+   version="1.0"
+   enabled="1">
+  <parameter name="EXTRA_LEFT_PADDING" value="5" />
+  <parameter name="EXTRA_RIGHT_PADDING" value="9" />
+  <parameter name="INPUT_SYMBOL_WIDTH" value="2" />
+  <parameter name="INVERSE_FFT" value="1" />
+ </module>
+ <module
+   name="FFTInputBuffer"
+   kind="altera_avalon_sc_fifo"
+   version="16.1"
+   enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="4" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="EMPTY_LATENCY" value="3" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="8192" />
+  <parameter name="SYMBOLS_PER_BEAT" value="1" />
+  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
+  <parameter name="USE_ALMOST_FULL_IF" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="1" />
+  <parameter name="USE_MEMORY_BLOCKS" value="1" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="USE_STORE_FORWARD" value="1" />
+ </module>
+ <module
+   name="OFDMDACControl"
+   kind="OFDM_DAC_Control"
+   version="1.0"
+   enabled="1" />
+ <module name="OFDMFFT" kind="altera_fft_ii" version="16.1" enabled="1">
+  <parameter name="data_flow" value="Streaming" />
+  <parameter name="data_rep">Block Floating Point</parameter>
+  <parameter name="design_env" value="QSYS" />
+  <parameter name="direction" value="Bi-directional" />
+  <parameter name="dsp_resource_opt" value="false" />
+  <parameter name="engine_arch" value="Quad Output" />
+  <parameter name="hard_fp" value="false" />
+  <parameter name="hyper_opt" value="false" />
+  <parameter name="in_order" value="Natural" />
+  <parameter name="in_width" value="16" />
+  <parameter name="length" value="64" />
+  <parameter name="num_engines" value="1" />
+  <parameter name="out_order" value="Natural" />
+  <parameter name="out_width" value="29" />
+  <parameter name="selected_device_family" value="Cyclone V" />
+  <parameter name="twid_width" value="16" />
+ </module>
+ <module
+   name="OutPutForwardBuffer"
+   kind="altera_avalon_sc_fifo"
+   version="16.1"
+   enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="38" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="EMPTY_LATENCY" value="3" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="4096" />
+  <parameter name="SYMBOLS_PER_BEAT" value="1" />
+  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
+  <parameter name="USE_ALMOST_FULL_IF" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="1" />
+  <parameter name="USE_MEMORY_BLOCKS" value="1" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="USE_STORE_FORWARD" value="1" />
+ </module>
+ <module
+   name="OutputBuffer"
+   kind="altera_avalon_dc_fifo"
+   version="16.1"
+   enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="38" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="4096" />
+  <parameter name="RD_SYNC_DEPTH" value="3" />
+  <parameter name="SYMBOLS_PER_BEAT" value="1" />
+  <parameter name="USE_IN_FILL_LEVEL" value="0" />
+  <parameter name="USE_OUT_FILL_LEVEL" value="0" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="WR_SYNC_DEPTH" value="3" />
+ </module>
+ <module name="QAMModulation" kind="QAM_Modulation" version="1.0" enabled="1">
+  <parameter name="MOD_OUT_WIDTH" value="2" />
+  <parameter name="PIPELINE_DEEPTH" value="4" />
+  <parameter name="QAM_STAGE" value="4" />
+ </module>
+ <module
+   name="QAMOutputBuffer"
+   kind="altera_avalon_sc_fifo"
+   version="16.1"
+   enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="16" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="EMPTY_LATENCY" value="3" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="4096" />
+  <parameter name="SYMBOLS_PER_BEAT" value="1" />
+  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
+  <parameter name="USE_ALMOST_FULL_IF" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="1" />
+  <parameter name="USE_MEMORY_BLOCKS" value="1" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="USE_STORE_FORWARD" value="1" />
+ </module>
+ <module
+   name="SPIBuffer"
+   kind="altera_avalon_sc_fifo"
+   version="16.1"
+   enabled="1">
+  <parameter name="BITS_PER_SYMBOL" value="8" />
+  <parameter name="CHANNEL_WIDTH" value="0" />
+  <parameter name="EMPTY_LATENCY" value="3" />
+  <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
+  <parameter name="FIFO_DEPTH" value="16384" />
+  <parameter name="SYMBOLS_PER_BEAT" value="1" />
+  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
+  <parameter name="USE_ALMOST_FULL_IF" value="0" />
+  <parameter name="USE_FILL_LEVEL" value="1" />
+  <parameter name="USE_MEMORY_BLOCKS" value="1" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="USE_STORE_FORWARD" value="1" />
+ </module>
+ <module
+   name="SPIPacketer"
+   kind="Fix_Length_Bytes2Packets"
+   version="1.0"
+   enabled="1">
+  <parameter name="BITS_PER_BYTES" value="8" />
+  <parameter name="BYTES_PER_SYMBOL" value="1" />
+  <parameter name="SYMBOL_PER_PACKET" value="16" />
+ </module>
+ <module
+   name="TXPackter"
+   kind="Packet_Symbol_Width_adapter_tx"
+   version="1.0"
+   enabled="1">
+  <parameter name="INPUT_SYMBOL_WIDTH" value="16" />
+  <parameter name="OUTPUT_SYMBOL_WIDTH" value="4" />
+ </module>
+ <module
+   name="TransmitterMaster"
+   kind="altera_jtag_avalon_master"
+   version="16.1"
+   enabled="1">
+  <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C6" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6_H6" />
+  <parameter name="COMPONENT_CLOCK" value="0" />
+  <parameter name="FAST_VER" value="0" />
+  <parameter name="FIFO_DEPTHS" value="2" />
+  <parameter name="PLI_PORT" value="50000" />
+  <parameter name="USE_PLI" value="0" />
+ </module>
+ <module name="clk_0" kind="clock_source" version="16.1" enabled="1">
+  <parameter name="clockFrequency" value="100000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module name="externalSPI" kind="spislave" version="16.1" enabled="1">
+  <parameter name="AUTO_CLOCK_SINK_CLOCK_RATE" value="100000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="SYNC_DEPTH" value="2" />
+ </module>
+ <module name="sample_clk" kind="clock_source" version="16.1" enabled="1">
+  <parameter name="clockFrequency" value="10000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="FFTDataAdapter.aso_out"
+   end="OFDMFFT.sink" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="QAMModulation.aso_out0"
+   end="QAMOutputBuffer.in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="TXPackter.aso_out0"
+   end="FFTInputBuffer.in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="SPIPacketer.aso_out0_1"
+   end="SPIBuffer.in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="externalSPI.avalon_streaming_source"
+   end="SPIPacketer.asi_in0" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="FFTInputBuffer.out"
+   end="FFTDataAdapter.asi_in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="SPIBuffer.out"
+   end="QAMModulation.asi_in0" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="OutPutForwardBuffer.out"
+   end="OFDMDACControl.asi_in0" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="QAMOutputBuffer.out"
+   end="TXPackter.asi_in0" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="OutputBuffer.out"
+   end="OutPutForwardBuffer.in" />
+ <connection
+   kind="avalon_streaming"
+   version="16.1"
+   start="OFDMFFT.source"
+   end="OutputBuffer.in" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="SPIBuffer.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="OFDMFFT.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="QAMOutputBuffer.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="FFTInputBuffer.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="TransmitterMaster.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="sample_clk.clk"
+   end="OutPutForwardBuffer.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="QAMModulation.clock" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="TXPackter.clock" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="SPIPacketer.clock_1" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="FFTDataAdapter.clock_1" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="externalSPI.clock_sink" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="OutputBuffer.in_clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="sample_clk.clk"
+   end="OutputBuffer.out_clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="sample_clk.clk"
+   end="OFDMDACControl.sample_clock" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="SPIBuffer.clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="QAMOutputBuffer.clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="FFTInputBuffer.clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="TransmitterMaster.clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="sample_clk.clk_reset"
+   end="OutPutForwardBuffer.clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="externalSPI.clock_sink_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="OutputBuffer.in_clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="sample_clk.clk_reset"
+   end="OutputBuffer.out_clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="SPIPacketer.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="FFTDataAdapter.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="QAMModulation.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="TXPackter.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="sample_clk.clk_reset"
+   end="OFDMDACControl.reset" />
+ <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="OFDMFFT.rst" />
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
+ <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
+</system>

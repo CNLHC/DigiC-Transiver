@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<simPackage>
- <file path="baremetal_pll_sim/baremetal_pll.vo" type="VERILOG" />
- <topLevel name="baremetal_pll" />
- <deviceFamily name="cyclonev" />
-</simPackage>

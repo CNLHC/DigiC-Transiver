@@ -6,7 +6,7 @@
    showClockDomains="1"
    showResetDomains="0">
   <columns>
-   <connections preferredWidth="127" />
+   <connections preferredWidth="207" />
    <irq preferredWidth="34" />
    <name preferredWidth="408" />
    <export preferredWidth="219" />
@@ -15,8 +15,8 @@
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library,Project,Library/Processors and Peripherals/Hard Processor Systems,Library/Processors and Peripherals/Hard Processor Components,Project/System,Library/Processors and Peripherals" />
- <window width="2578" height="1420" x="-9" y="-9" />
+   expandedCategories="Library/University Program/Audio &amp; Video,Library/Basic Functions/On Chip Memory,Library/Qsys Interconnect/Memory-Mapped Alpha,Library/Basic Functions,Library,Library/Qsys Interconnect/Memory-Mapped,Library/Qsys Interconnect,Project,Library/University Program,Library/University Program/Audio &amp; Video/Video" />
+ <window width="2560" height="1410" x="0" y="0" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
 </preferences>
