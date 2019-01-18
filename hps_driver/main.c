@@ -81,13 +81,14 @@ int main()
 		printf("Receiver-Qsys sysID Error!");
 		return 1;
 	}
-	FILE *fp = fopen("./portal.mp3", "w");
+	FILE *fp = fopen("./DigiCStream", "wb");
     FILE *log = fopen("./log", "w");
 	uint32_t tFIFOFillLevel;
 	uint64_t preTimestamp=(unsigned)time(NULL);
 	uint64_t curTimestamp;
 	uint64_t dummy;
-	int curState=STATE_WAITING_0;
+	int curState=STATE_WORKING;
+	// int curState=STATE_WAITING_0;
 	int nextState=0;
 	int8_t halfByteFF=0;
 	int8_t fullByteBuf=0;
@@ -142,7 +143,7 @@ int main()
 			// fprintf(log, "data:%08x\t%08x\t%08x\t%08x file:%d\n",tFIFOData1,tFIFOData2,tFIFOData3,tFIFOData4,tFIFOFillLevel);
 			// printf("data:%08x\t%08x\t%08x\t%08x file:%d\n",tFIFOData1,tFIFOData2,tFIFOData3,tFIFOData4,tFIFOFillLevel);
 			int i=0;
-			for(i=0;i<28;i++){
+			for(i=0;i<24;i++){
 				tHalfByte=(packet[i/2]>>(4*((i+1)%2)))&0x0f;
 				if(curState==STATE_WORKING){
 					if(!halfByteFF){
