@@ -9,12 +9,30 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
+   element HPSToFPGAResetPIO
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
+   }
    element ILC
    {
       datum _sortIndex
       {
          value = "8";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
       }
    }
    element ILC.avalon_slave
@@ -25,12 +43,43 @@
          type = "String";
       }
    }
+   element LEDControl
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
+   }
+   element LEDControl.s1
+   {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "12288";
+         type = "String";
+      }
+   }
    element ReceiverTopQsys_0
    {
       datum _sortIndex
       {
          value = "9";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
       }
    }
    element ReceiverTopQsys_0.receivermmbridge_s0
@@ -45,12 +94,25 @@
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "14";
          type = "int";
       }
       datum sopceditor_expanded
       {
          value = "1";
+         type = "boolean";
+      }
+   }
+   element TOPLevelMMBridge
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
          type = "boolean";
       }
    }
@@ -67,12 +129,25 @@
          type = "boolean";
       }
    }
+   element TransmitterTopQsys_0.txmmbridgeslave
+   {
+      datum baseAddress
+      {
+         value = "327680";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "15";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "1";
+         type = "boolean";
       }
    }
    element f2sdram_only_master
@@ -82,6 +157,11 @@
          value = "4";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
    }
    element fpga_only_master
    {
@@ -90,6 +170,11 @@
          value = "3";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
    }
    element hps_0
    {
@@ -97,6 +182,11 @@
       {
          value = "0";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
       }
    }
    element hps_0.f2h_axi_slave
@@ -114,6 +204,11 @@
          value = "2";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
    }
    element jtag_uart
    {
@@ -121,6 +216,11 @@
       {
          value = "7";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
       }
    }
    element jtag_uart.avalon_jtag_slave
@@ -136,33 +236,30 @@
          type = "String";
       }
    }
-   element led_pio
+   element reset_bridge_0
    {
       datum _sortIndex
       {
-         value = "5";
+         value = "12";
          type = "int";
       }
-   }
-   element led_pio.s1
-   {
-      datum _lockedAddress
+      datum sopceditor_expanded
       {
          value = "0";
          type = "boolean";
       }
-      datum baseAddress
-      {
-         value = "12288";
-         type = "String";
-      }
    }
-   element mm_bridge_0
+   element reset_bridge_1
    {
       datum _sortIndex
       {
-         value = "6";
+         value = "13";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
       }
    }
    element soc_system
@@ -195,6 +292,11 @@
       {
          value = "1";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
       }
    }
    element sysid_qsys.control_slave
@@ -233,10 +335,19 @@
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface name="dccclock" internal="SystemPLL.outclk0" type="clock" dir="start" />
+ <interface
+   name="hps2fpgaresetpio"
+   internal="HPSToFPGAResetPIO.external_connection"
+   type="conduit"
+   dir="end" />
  <interface name="hps_0_f2h_cold_reset_req" internal="hps_0.f2h_cold_reset_req" />
  <interface name="hps_0_f2h_debug_reset_req" internal="hps_0.f2h_debug_reset_req" />
  <interface name="hps_0_f2h_stm_hw_events" internal="hps_0.f2h_stm_hw_events" />
- <interface name="hps_0_f2h_warm_reset_req" internal="hps_0.f2h_warm_reset_req" />
+ <interface
+   name="hps_0_f2h_warm_reset_req"
+   internal="hps_0.f2h_warm_reset_req"
+   type="reset"
+   dir="end" />
  <interface
    name="hps_0_h2f_reset"
    internal="hps_0.h2f_reset"
@@ -245,7 +356,7 @@
  <interface name="hps_0_hps_io" internal="hps_0.hps_io" type="conduit" dir="end" />
  <interface
    name="led_pio_external_connection"
-   internal="led_pio.external_connection"
+   internal="LEDControl.external_connection"
    type="conduit"
    dir="end" />
  <interface name="memory" internal="hps_0.memory" type="conduit" dir="end" />
@@ -255,6 +366,11 @@
    type="conduit"
    dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="rxresetin"
+   internal="reset_bridge_1.in_reset"
+   type="reset"
+   dir="end" />
  <interface
    name="signaltapclock"
    internal="SystemPLL.outclk1"
@@ -270,6 +386,29 @@
    internal="TransmitterTopQsys_0.ofdmdaccontrol_dac_control"
    type="conduit"
    dir="end" />
+ <interface
+   name="txresetin"
+   internal="reset_bridge_0.in_reset"
+   type="reset"
+   dir="end" />
+ <module
+   name="HPSToFPGAResetPIO"
+   kind="altera_avalon_pio"
+   version="16.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="true" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="10000000" />
+  <parameter name="direction" value="Bidir" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="3" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="2" />
+ </module>
  <module
    name="ILC"
    kind="interrupt_latency_counter"
@@ -279,22 +418,36 @@
   <parameter name="INTR_TYPE" value="0" />
   <parameter name="IRQ_PORT_CNT" value="3" />
  </module>
+ <module name="LEDControl" kind="altera_avalon_pio" version="16.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="10" />
+ </module>
  <module
    name="ReceiverTopQsys_0"
    kind="ReceiverTopQsys"
    version="1.0"
    enabled="1">
-  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="9" />
   <parameter name="AUTO_CLK_CLOCK_RATE" value="100000000" />
-  <parameter name="AUTO_CLK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="9" />
   <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C6" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6_H6" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_OFDMADCCONTROL_SAMPLE_CLOCK_CLOCK_DOMAIN" value="2" />
+  <parameter name="AUTO_OFDMADCCONTROL_SAMPLE_CLOCK_CLOCK_DOMAIN" value="10" />
   <parameter name="AUTO_OFDMADCCONTROL_SAMPLE_CLOCK_CLOCK_RATE" value="10000000" />
-  <parameter name="AUTO_OFDMADCCONTROL_SAMPLE_CLOCK_RESET_DOMAIN" value="2" />
-  <parameter name="AUTO_UNIQUE_ID">soc_system_ReceiverTopQsys_0</parameter>
+  <parameter name="AUTO_OFDMADCCONTROL_SAMPLE_CLOCK_RESET_DOMAIN" value="10" />
+  <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_ReceiverTopQsys_0</parameter>
  </module>
  <module name="SystemPLL" kind="altera_pll" version="16.1" enabled="1">
   <parameter name="debug_print_output" value="false" />
@@ -500,21 +653,39 @@
   <parameter name="gui_use_locked" value="true" />
  </module>
  <module
+   name="TOPLevelMMBridge"
+   kind="altera_avalon_mm_bridge"
+   version="16.1"
+   enabled="1">
+  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
+  <parameter name="ADDRESS_WIDTH" value="10" />
+  <parameter name="DATA_WIDTH" value="32" />
+  <parameter name="LINEWRAPBURSTS" value="0" />
+  <parameter name="MAX_BURST_SIZE" value="1" />
+  <parameter name="MAX_PENDING_RESPONSES" value="4" />
+  <parameter name="PIPELINE_COMMAND" value="1" />
+  <parameter name="PIPELINE_RESPONSE" value="1" />
+  <parameter name="SYMBOL_WIDTH" value="8" />
+  <parameter name="SYSINFO_ADDR_WIDTH" value="18" />
+  <parameter name="USE_AUTO_ADDRESS_WIDTH" value="1" />
+  <parameter name="USE_RESPONSE" value="0" />
+ </module>
+ <module
    name="TransmitterTopQsys_0"
    kind="TransmitterTopQsys"
    version="1.0"
    enabled="1">
-  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="9" />
   <parameter name="AUTO_CLK_CLOCK_RATE" value="100000000" />
-  <parameter name="AUTO_CLK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="9" />
   <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C6" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6_H6" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_SAMPLE_CLK_CLOCK_DOMAIN" value="2" />
+  <parameter name="AUTO_SAMPLE_CLK_CLOCK_DOMAIN" value="10" />
   <parameter name="AUTO_SAMPLE_CLK_CLOCK_RATE" value="10000000" />
-  <parameter name="AUTO_SAMPLE_CLK_RESET_DOMAIN" value="2" />
-  <parameter name="AUTO_UNIQUE_ID">soc_system_TransmitterTopQsys_0</parameter>
+  <parameter name="AUTO_SAMPLE_CLK_RESET_DOMAIN" value="10" />
+  <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_TransmitterTopQsys_0</parameter>
  </module>
  <module name="clk_0" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
@@ -659,7 +830,7 @@
   <parameter name="F2SCLK_PERIPHCLK_FREQ" value="0" />
   <parameter name="F2SCLK_SDRAMCLK_Enable" value="false" />
   <parameter name="F2SCLK_SDRAMCLK_FREQ" value="0" />
-  <parameter name="F2SCLK_WARMRST_Enable" value="false" />
+  <parameter name="F2SCLK_WARMRST_Enable" value="true" />
   <parameter name="F2SDRAM_Type">Avalon-MM Bidirectional</parameter>
   <parameter name="F2SDRAM_Width" value="256" />
   <parameter name="F2SINTERRUPT_Enable" value="true" />
@@ -704,7 +875,7 @@
   <parameter name="H2F_AXI_CLOCK_FREQ" value="50000000" />
   <parameter name="H2F_CTI_CLOCK_FREQ" value="100" />
   <parameter name="H2F_DEBUG_APB_CLOCK_FREQ" value="100" />
-  <parameter name="H2F_LW_AXI_CLOCK_FREQ" value="50000000" />
+  <parameter name="H2F_LW_AXI_CLOCK_FREQ" value="100000000" />
   <parameter name="H2F_TPIU_CLOCK_IN_FREQ" value="100" />
   <parameter name="HARD_EMIF" value="true" />
   <parameter name="HCX_COMPAT_MODE" value="false" />
@@ -1113,37 +1284,27 @@
   <parameter name="writeBufferDepth" value="64" />
   <parameter name="writeIRQThreshold" value="8" />
  </module>
- <module name="led_pio" kind="altera_avalon_pio" version="16.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="10" />
- </module>
  <module
-   name="mm_bridge_0"
-   kind="altera_avalon_mm_bridge"
+   name="reset_bridge_0"
+   kind="altera_reset_bridge"
    version="16.1"
    enabled="1">
-  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
-  <parameter name="ADDRESS_WIDTH" value="10" />
-  <parameter name="DATA_WIDTH" value="32" />
-  <parameter name="LINEWRAPBURSTS" value="0" />
-  <parameter name="MAX_BURST_SIZE" value="1" />
-  <parameter name="MAX_PENDING_RESPONSES" value="4" />
-  <parameter name="PIPELINE_COMMAND" value="1" />
-  <parameter name="PIPELINE_RESPONSE" value="1" />
-  <parameter name="SYMBOL_WIDTH" value="8" />
-  <parameter name="SYSINFO_ADDR_WIDTH" value="18" />
-  <parameter name="USE_AUTO_ADDRESS_WIDTH" value="1" />
-  <parameter name="USE_RESPONSE" value="0" />
+  <parameter name="ACTIVE_LOW_RESET" value="1" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="10000000" />
+  <parameter name="NUM_RESET_OUTPUTS" value="1" />
+  <parameter name="SYNCHRONOUS_EDGES" value="both" />
+  <parameter name="USE_RESET_REQUEST" value="0" />
+ </module>
+ <module
+   name="reset_bridge_1"
+   kind="altera_reset_bridge"
+   version="16.1"
+   enabled="1">
+  <parameter name="ACTIVE_LOW_RESET" value="1" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="10000000" />
+  <parameter name="NUM_RESET_OUTPUTS" value="1" />
+  <parameter name="SYNCHRONOUS_EDGES" value="both" />
+  <parameter name="USE_RESET_REQUEST" value="0" />
  </module>
  <module
    name="sysid_qsys"
@@ -1165,7 +1326,7 @@
    kind="avalon"
    version="16.1"
    start="hps_0.h2f_lw_axi_master"
-   end="mm_bridge_0.s0">
+   end="TOPLevelMMBridge.s0">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
@@ -1173,7 +1334,16 @@
  <connection
    kind="avalon"
    version="16.1"
-   start="mm_bridge_0.m0"
+   start="hps_0.h2f_lw_axi_master"
+   end="TransmitterTopQsys_0.txmmbridgeslave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00050000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="TOPLevelMMBridge.m0"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00020000" />
@@ -1182,7 +1352,7 @@
  <connection
    kind="avalon"
    version="16.1"
-   start="mm_bridge_0.m0"
+   start="TOPLevelMMBridge.m0"
    end="ILC.avalon_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00030000" />
@@ -1191,15 +1361,28 @@
  <connection
    kind="avalon"
    version="16.1"
-   start="mm_bridge_0.m0"
+   start="TOPLevelMMBridge.m0"
    end="sysid_qsys.control_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x1000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
- <connection kind="avalon" version="16.1" start="mm_bridge_0.m0" end="led_pio.s1">
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="TOPLevelMMBridge.m0"
+   end="LEDControl.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x3000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="TOPLevelMMBridge.m0"
+   end="HPSToFPGAResetPIO.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1251,7 +1434,7 @@
    kind="avalon"
    version="16.1"
    start="fpga_only_master.master"
-   end="led_pio.s1">
+   end="LEDControl.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x3000" />
   <parameter name="defaultConnection" value="false" />
@@ -1262,7 +1445,7 @@
    start="clk_0.clk"
    end="hps_only_master.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="sysid_qsys.clk" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="led_pio.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="LEDControl.clk" />
  <connection
    kind="clock"
    version="16.1"
@@ -1275,7 +1458,11 @@
    version="16.1"
    start="clk_0.clk"
    end="f2sdram_only_master.clk" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="mm_bridge_0.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="clk_0.clk"
+   end="TOPLevelMMBridge.clk" />
  <connection
    kind="clock"
    version="16.1"
@@ -1291,11 +1478,6 @@
    version="16.1"
    start="clk_0.clk"
    end="hps_0.h2f_axi_clock" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="clk_0.clk"
-   end="hps_0.h2f_lw_axi_clock" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="SystemPLL.refclk" />
  <connection
    kind="clock"
@@ -1307,6 +1489,26 @@
    version="16.1"
    start="SystemPLL.outclk2"
    end="ReceiverTopQsys_0.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="SystemPLL.outclk2"
+   end="hps_0.h2f_lw_axi_clock" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="SystemPLL.outclk3"
+   end="reset_bridge_0.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="SystemPLL.outclk3"
+   end="HPSToFPGAResetPIO.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="SystemPLL.outclk3"
+   end="reset_bridge_1.clk" />
  <connection
    kind="clock"
    version="16.1"
@@ -1351,7 +1553,7 @@
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
-   end="led_pio.reset" />
+   end="LEDControl.reset" />
  <connection
    kind="reset"
    version="16.1"
@@ -1361,7 +1563,7 @@
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
-   end="mm_bridge_0.reset" />
+   end="TOPLevelMMBridge.reset" />
  <connection
    kind="reset"
    version="16.1"
@@ -1376,6 +1578,11 @@
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
+   end="HPSToFPGAResetPIO.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
    end="ReceiverTopQsys_0.reset" />
  <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="ILC.reset_n" />
  <connection
@@ -1383,6 +1590,16 @@
    version="16.1"
    start="clk_0.clk_reset"
    end="TransmitterTopQsys_0.sample_clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="reset_bridge_0.out_reset"
+   end="TransmitterTopQsys_0.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="reset_bridge_1.out_reset"
+   end="ReceiverTopQsys_0.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
 </system>

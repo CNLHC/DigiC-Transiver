@@ -440,13 +440,13 @@
   <parameter name="fifoInputInterfaceOptions" value="AVALONST_SINK" />
   <parameter name="fifoOutputInterfaceOptions" value="AVALONMM_READ" />
   <parameter name="showHiddenFeatures" value="false" />
-  <parameter name="singleClockMode" value="true" />
+  <parameter name="singleClockMode" value="false" />
   <parameter name="singleResetMode" value="false" />
   <parameter name="symbolsPerBeat" value="16" />
   <parameter name="useBackpressure" value="false" />
   <parameter name="useIRQ" value="false" />
   <parameter name="usePacket" value="false" />
-  <parameter name="useReadControl" value="false" />
+  <parameter name="useReadControl" value="true" />
   <parameter name="useRegister" value="true" />
   <parameter name="useWriteControl" value="false" />
  </module>
@@ -484,6 +484,15 @@
    end="HPSTestFIFO.out">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0060" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="ReceiverMMBridge.m0"
+   end="fifo_0.out_csr">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -540,6 +549,7 @@
    version="16.1"
    start="clk_0.clk"
    end="HPSTestFIFO.clk_in" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="fifo_0.clk_out" />
  <connection
    kind="clock"
    version="16.1"
@@ -616,6 +626,11 @@
    version="16.1"
    start="clk_0.clk_reset"
    end="HPSTestFIFO.reset_in" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="fifo_0.reset_out" />
  <connection
    kind="reset"
    version="16.1"

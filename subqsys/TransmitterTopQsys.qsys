@@ -94,6 +94,14 @@
          type = "int";
       }
    }
+   element TXMMBridge
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+   }
    element TXPackter
    {
       datum _sortIndex
@@ -102,19 +110,11 @@
          type = "int";
       }
    }
-   element TransmitterMaster
-   {
-      datum _sortIndex
-      {
-         value = "12";
-         type = "int";
-      }
-   }
    element clk_0
    {
       datum _sortIndex
       {
-         value = "14";
+         value = "13";
          type = "int";
       }
    }
@@ -130,7 +130,7 @@
    {
       datum _sortIndex
       {
-         value = "13";
+         value = "12";
          type = "int";
       }
    }
@@ -172,6 +172,11 @@
    name="sample_clk_reset"
    internal="sample_clk.clk_in_reset"
    type="reset"
+   dir="end" />
+ <interface
+   name="txmmbridgeslave"
+   internal="TXMMBridge.s0"
+   type="avalon"
    dir="end" />
  <module
    name="FFTDataAdapter"
@@ -237,7 +242,7 @@
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="4096" />
+  <parameter name="FIFO_DEPTH" value="8192" />
   <parameter name="SYMBOLS_PER_BEAT" value="1" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="0" />
@@ -280,7 +285,7 @@
   <parameter name="ENABLE_EXPLICIT_MAXCHANNEL" value="false" />
   <parameter name="ERROR_WIDTH" value="0" />
   <parameter name="EXPLICIT_MAXCHANNEL" value="0" />
-  <parameter name="FIFO_DEPTH" value="4096" />
+  <parameter name="FIFO_DEPTH" value="8192" />
   <parameter name="SYMBOLS_PER_BEAT" value="1" />
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="USE_ALMOST_FULL_IF" value="0" />
@@ -319,26 +324,30 @@
   <parameter name="SYMBOL_PER_PACKET" value="16" />
  </module>
  <module
+   name="TXMMBridge"
+   kind="altera_avalon_mm_bridge"
+   version="16.1"
+   enabled="1">
+  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
+  <parameter name="ADDRESS_WIDTH" value="10" />
+  <parameter name="DATA_WIDTH" value="32" />
+  <parameter name="LINEWRAPBURSTS" value="0" />
+  <parameter name="MAX_BURST_SIZE" value="1" />
+  <parameter name="MAX_PENDING_RESPONSES" value="4" />
+  <parameter name="PIPELINE_COMMAND" value="1" />
+  <parameter name="PIPELINE_RESPONSE" value="1" />
+  <parameter name="SYMBOL_WIDTH" value="8" />
+  <parameter name="SYSINFO_ADDR_WIDTH" value="7" />
+  <parameter name="USE_AUTO_ADDRESS_WIDTH" value="1" />
+  <parameter name="USE_RESPONSE" value="0" />
+ </module>
+ <module
    name="TXPackter"
    kind="Packet_Symbol_Width_adapter_tx"
    version="1.0"
    enabled="1">
   <parameter name="INPUT_SYMBOL_WIDTH" value="16" />
   <parameter name="OUTPUT_SYMBOL_WIDTH" value="4" />
- </module>
- <module
-   name="TransmitterMaster"
-   kind="altera_jtag_avalon_master"
-   version="16.1"
-   enabled="1">
-  <parameter name="AUTO_DEVICE" value="5CSXFC6D6F31C6" />
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6_H6" />
-  <parameter name="COMPONENT_CLOCK" value="0" />
-  <parameter name="FAST_VER" value="0" />
-  <parameter name="FIFO_DEPTHS" value="2" />
-  <parameter name="PLI_PORT" value="50000" />
-  <parameter name="USE_PLI" value="0" />
  </module>
  <module name="clk_0" kind="clock_source" version="16.1" enabled="1">
   <parameter name="clockFrequency" value="100000000" />
@@ -357,6 +366,42 @@
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="TXMMBridge.m0"
+   end="OutPutForwardBuffer.csr">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="TXMMBridge.m0"
+   end="FFTInputBuffer.csr">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="TXMMBridge.m0"
+   end="QAMOutputBuffer.csr">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="TXMMBridge.m0"
+   end="SPIBuffer.csr">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0060" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection
    kind="avalon_streaming"
    version="16.1"
@@ -427,13 +472,9 @@
  <connection
    kind="clock"
    version="16.1"
-   start="clk_0.clk"
-   end="TransmitterMaster.clk" />
- <connection
-   kind="clock"
-   version="16.1"
    start="sample_clk.clk"
    end="OutPutForwardBuffer.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="TXMMBridge.clk" />
  <connection
    kind="clock"
    version="16.1"
@@ -488,12 +529,12 @@
  <connection
    kind="reset"
    version="16.1"
-   start="clk_0.clk_reset"
-   end="TransmitterMaster.clk_reset" />
+   start="sample_clk.clk_reset"
+   end="OutPutForwardBuffer.clk_reset" />
  <connection
    kind="reset"
    version="16.1"
-   start="sample_clk.clk_reset"
+   start="clk_0.clk_reset"
    end="OutPutForwardBuffer.clk_reset" />
  <connection
    kind="reset"
@@ -509,6 +550,11 @@
    kind="reset"
    version="16.1"
    start="sample_clk.clk_reset"
+   end="OutputBuffer.out_clk_reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
    end="OutputBuffer.out_clk_reset" />
  <connection
    kind="reset"
@@ -535,6 +581,11 @@
    version="16.1"
    start="sample_clk.clk_reset"
    end="OFDMDACControl.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="TXMMBridge.reset" />
  <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="OFDMFFT.rst" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
