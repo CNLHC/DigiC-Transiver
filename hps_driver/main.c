@@ -1,9 +1,3 @@
-/*
-This program demonstrate how to use hps communicate with FPGA through light AXI Bridge.
-uses should program the FPGA by GHRD project before executing the program
-refer to user manual chapter 7 for details about the demo
-*/
-
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -13,140 +7,170 @@ refer to user manual chapter 7 for details about the demo
 #include "socal/hps.h"
 #include "socal/alt_gpio.h"
 #include "hps_0.h"
+#include <time.h>
+#include <assert.h>
+#include <stdlib.h>
+#include "RXHandle.h"
 
 
-#define HW_REGS_BASE ( ALT_STM_OFST )
-#define HW_REGS_SPAN ( 0x04000000 )
-#define HW_REGS_MASK ( HW_REGS_SPAN - 1 )
+#define HW_REGS_BASE (ALT_STM_OFST)
+#define HW_REGS_SPAN (0x04000000)
+#define HW_REGS_MASK (HW_REGS_SPAN - 1)
+#define FIFO_CSR_FILLLEVER 1
+#define H2F_TX_RESET 0
+#define H2F_RX_RESET 0
+#define H2F_TX_UNRESET 2
+#define H2F_RX_UNRESET 1
 
-int main() {
+int main()
+{
 
 	void *virtual_base;
 	int fd;
-	int loop_count;
-	int led_direction;
-	int led_mask;
-	void *h2p_lw_led_addr;
 	void *pTopSystemID;
 	void *pReceiverSystemID;
 	void *pReceiverFIFO;
-	void *pTestFIFOWrite;
-	void *pTestFIFORead;
+	void *pReceiverStatus;
+	void *H2FResetControl;
+	// void *pTestFIFOWrite;
+	// void *pTestFIFORead;
+	// pTestFIFORead =  virtual_base + ( ( unsigned long  )( ALT_LWFPGASLVS_OFST +RECEIVERTOPQSYS_0_HPSTESTFIFO_OUT_BASE) & ( unsigned long)( HW_REGS_MASK ) );
+	// pTestFIFOWrite =  virtual_base + ( ( unsigned long  )( ALT_LWFPGASLVS_OFST +RECEIVERTOPQSYS_0_HPSTESTFIFO_IN_BASE ) & ( unsigned long)( HW_REGS_MASK ) );
 
 	// map the address space for the LED registers into user space so we can interact with them.
 	// we'll actually map in the entire CSR span of the HPS since we want to access various registers within that span
 
-	if( ( fd = open( "/dev/mem", ( O_RDWR | O_SYNC ) ) ) == -1 ) {
-		printf( "ERROR: could not open \"/dev/mem\"...\n" );
-		return( 1 );
+	if ((fd = open("/dev/mem", (O_RDWR | O_SYNC))) == -1)
+	{
+		printf("ERROR: could not open \"/dev/mem\"...\n");
+		return (1);
 	}
 
-	virtual_base = mmap( NULL, HW_REGS_SPAN, ( PROT_READ | PROT_WRITE ), MAP_SHARED, fd, HW_REGS_BASE );
+	virtual_base = mmap(NULL, HW_REGS_SPAN, (PROT_READ | PROT_WRITE), MAP_SHARED, fd, HW_REGS_BASE);
 
-	if( virtual_base == MAP_FAILED ) {
-		printf( "ERROR: mmap() failed...\n" );
-		close( fd );
-		return( 1 );
+	if (virtual_base == MAP_FAILED)
+	{
+		printf("ERROR: mmap() failed...\n");
+		close(fd);
+		return (1);
 	}
-	
-	//h2p_lw_led_addr=virtual_base + ( ( unsigned long  )( ALT_LWFPGASLVS_OFST + LED_PIO_BASE ) & ( unsigned long)( HW_REGS_MASK ) );
-	
-	pTopSystemID= virtual_base + ( ( unsigned long  )( ALT_LWFPGASLVS_OFST + SYSID_QSYS_BASE) & ( unsigned long)( HW_REGS_MASK ) );
-	pReceiverSystemID = virtual_base + ( ( unsigned long  )( ALT_LWFPGASLVS_OFST + RECEIVERTOPQSYS_0_RECEIVERSYSID_BASE ) & ( unsigned long)( HW_REGS_MASK ) );
-	pTestFIFORead =  virtual_base + ( ( unsigned long  )( ALT_LWFPGASLVS_OFST +RECEIVERTOPQSYS_0_HPSTESTFIFO_OUT_BASE) & ( unsigned long)( HW_REGS_MASK ) );
-	pTestFIFOWrite =  virtual_base + ( ( unsigned long  )( ALT_LWFPGASLVS_OFST +RECEIVERTOPQSYS_0_HPSTESTFIFO_IN_BASE ) & ( unsigned long)( HW_REGS_MASK ) );
 
+	pTopSystemID = virtual_base + ((unsigned long)(ALT_LWFPGASLVS_OFST + SYSID_QSYS_BASE) & (unsigned long)(HW_REGS_MASK));
+	pReceiverSystemID = virtual_base + ((unsigned long)(ALT_LWFPGASLVS_OFST + RECEIVERTOPQSYS_0_RECEIVERSYSID_BASE) & (unsigned long)(HW_REGS_MASK));
+	pReceiverFIFO = virtual_base + ((unsigned long)(ALT_LWFPGASLVS_OFST + RECEIVERTOPQSYS_0_FIFO_0_OUT_BASE + 0) & (unsigned long)(HW_REGS_MASK));
+
+	pReceiverStatus = virtual_base + ((unsigned long)(ALT_LWFPGASLVS_OFST + RECEIVERTOPQSYS_0_FIFO_0_OUT_CSR_BASE) & (unsigned long)(HW_REGS_MASK));
+	H2FResetControl=virtual_base + ((unsigned long)(ALT_LWFPGASLVS_OFST + HPSTOFPGARESETPIO_BASE) & (unsigned long)(HW_REGS_MASK));
+
+	*(uint32_t*)H2FResetControl=H2F_RX_UNRESET|H2F_TX_UNRESET;
 	uint32_t tSysID = *((uint32_t *)pTopSystemID);
-	*((uint32_t*)pTestFIFOWrite) = 0xaabbccdd;
-	*((uint32_t*)pTestFIFOWrite) = 0xddccbbaa;
-	*((uint32_t*)pTestFIFOWrite) = 0xac;
-	printf("I/O Loop Test: 0x%x\n",*(uint32_t*)pTestFIFORead);
-	printf("I/O Loop Test: 0x%x\n",*(uint32_t*)pTestFIFORead);
-	printf("I/O Loop Test: 0x%x\n",*(uint32_t*)pTestFIFORead);
-
-	printf("Top-QSys sysID: 0x%x\n",tSysID);
-	if(tSysID!=SYSID_QSYS_ID){
+	tSysID = *((uint32_t *)pTopSystemID);
+	tSysID = *((uint32_t *)pTopSystemID);
+	printf("Top-QSys sysID: 0x%x\n", tSysID);
+	if ((uint32_t)tSysID != SYSID_QSYS_ID)
+	{
 		printf("Top-Qsys sysID Error!");
 		return 1;
 	}
 	tSysID = *((uint32_t *)pReceiverSystemID);
-	printf("Receiver-QSys sysID: 0x%x\n",tSysID);
-	if(tSysID!=RECEIVERTOPQSYS_0_RECEIVERSYSID_ID){
+	tSysID = *((uint32_t *)pReceiverSystemID);
+	tSysID = *((uint32_t *)pReceiverSystemID);
+	printf("Receiver-QSys sysID: 0x%x\n", tSysID);
+	if (tSysID != RECEIVERTOPQSYS_0_RECEIVERSYSID_ID)
+	{
 		printf("Receiver-Qsys sysID Error!");
 		return 1;
 	}
-	int i,j;
-	pReceiverFIFO = virtual_base + ( ( unsigned long  )( ALT_LWFPGASLVS_OFST + RECEIVERTOPQSYS_0_FIFO_0_BASE+0) & ( unsigned long)( HW_REGS_MASK ) );
-	for(i=0;i<RECEIVERTOPQSYS_0_FIFO_0_FIFO_DEPTH/4;i++){
-		for(j=0;j<4;j++){
-			int32_t data;
-			data=*((uint32_t*)pReceiverFIFO);
-			char tBuf[8];
-			sprintf(tBuf,"%08x",data);
-			int k  =0;
-			for(k=0;k<8;k++){
-				switch(tBuf[k]){
-					case '1':tBuf[k]='4';break;
-					case '2':tBuf[k]='8';break;
-					case '3':tBuf[k]='c';break;
-					case '4':tBuf[k]='1';break;
-					case '5':tBuf[k]='5';break;
-					case '6':tBuf[k]='9';break;
-					case '7':tBuf[k]='d';break;
-					case '8':tBuf[k]='2';break;
-					case '9':tBuf[k]='6';break;
-					case 'a':tBuf[k]='a';break;
-					case 'b':tBuf[k]='e';break;
-					case 'c':tBuf[k]='3';break;
-					case 'd':tBuf[k]='7';break;
-					case 'e':tBuf[k]='b';break;
-					case 'f':tBuf[k]='f';break;
-				}
-			}
-			printf("%s \t",tBuf);
-		}
-		printf("\n");
+	FILE *fp = fopen("./portal.mp3", "w");
+    FILE *log = fopen("./log", "w");
+	uint32_t tFIFOFillLevel;
+	uint64_t preTimestamp=(unsigned)time(NULL);
+	uint64_t curTimestamp;
+	uint64_t dummy;
+	int curState=STATE_WAITING_0;
+	int nextState=0;
+	int8_t halfByteFF=0;
+	int8_t fullByteBuf=0;
+
+	*(uint32_t*)H2FResetControl=H2F_RX_RESET|H2F_TX_RESET;
+	usleep(1000);
+	*(uint32_t*)H2FResetControl=H2F_RX_RESET|H2F_TX_UNRESET;
+	usleep(1000);
+	*(uint32_t*)H2FResetControl=H2F_RX_UNRESET|H2F_TX_UNRESET;
+
+	// printf("Status:%x %d\n",*(uint32_t*)pReceiverStatus,*(uint32_t*)pReceiverStatus);
+	tFIFOFillLevel = *(uint32_t *)pReceiverStatus;
+	while(tFIFOFillLevel!=0){
+		dummy=*((uint32_t *)pReceiverFIFO);
+		tFIFOFillLevel = *(uint32_t *)pReceiverStatus;
 	}
+	printf("FIFO Clear!\n");
 
-	// toggle the LEDs a bit
+	while (1)
+	{
+		tFIFOFillLevel = *(uint32_t *)pReceiverStatus;
+		curTimestamp=(unsigned)time(NULL);
+		if(curTimestamp - preTimestamp >6){
+			*(uint32_t*)H2FResetControl=H2F_RX_RESET|H2F_TX_RESET;
+			usleep(1000);
+			*(uint32_t*)H2FResetControl=H2F_RX_RESET|H2F_TX_UNRESET;
+			usleep(1000);
+			*(uint32_t*)H2FResetControl=H2F_RX_UNRESET|H2F_TX_UNRESET;
 
-	//loop_count = 0;
-	//led_mask = 0x01;
-	//led_direction = 0; // 0: left to right direction //*(uint32_t *)h2p_lw_led_addr = 0xAA; 
-	// while( loop_count < 60 ) {
-		
-	// 	// control led
-	// 	*(uint32_t *)h2p_lw_led_addr = ~led_mask; 
+			curState=STATE_WAITING_0;
+			preTimestamp=curTimestamp;
+			while(tFIFOFillLevel!=0){
+				dummy=*((uint32_t *)pReceiverFIFO);
+				tFIFOFillLevel = *(uint32_t *)pReceiverStatus;
+			}
+			fclose(fp);
 
-	// 	// wait 100ms
-	// 	usleep( 1000*1000 );
-		
-	// 	// update led mask
-		// 	if (led_direction == 0){
-	// 		led_mask <<= 1;
-	// 		if (led_mask == (0x01 << (LED_PIO_DATA_WIDTH-1)))
-	// 			 led_direction = 1;
-	// 	}else{
-	// 		led_mask >>= 1;
-	// 		if (led_mask == 0x01){ 
-	// 			led_direction = 0;
-	// 			loop_count++;
-	// 		}
-	// 	}
-		
-	// } // while
-	
 
+			
+			printf("Timeout! Switch to waiting_0 state\n");
+			return 0;
+		}
+		if (tFIFOFillLevel > 0)
+		{
+			uint32_t tFIFOData1 = *((uint32_t *)pReceiverFIFO);
+			uint32_t tFIFOData2 = *((uint32_t *)pReceiverFIFO);
+			uint32_t tFIFOData3 = *((uint32_t *)pReceiverFIFO);
+			uint32_t tFIFOData4 = *((uint32_t *)pReceiverFIFO);
+			uint8_t * packet  =constructPacket(tFIFOData1,tFIFOData2,tFIFOData3,tFIFOData4);
+			preTimestamp=curTimestamp;
+			uint8_t tHalfByte;
+			// fprintf(log, "data:%08x\t%08x\t%08x\t%08x file:%d\n",tFIFOData1,tFIFOData2,tFIFOData3,tFIFOData4,tFIFOFillLevel);
+			// printf("data:%08x\t%08x\t%08x\t%08x file:%d\n",tFIFOData1,tFIFOData2,tFIFOData3,tFIFOData4,tFIFOFillLevel);
+			int i=0;
+			for(i=0;i<28;i++){
+				tHalfByte=(packet[i/2]>>(4*((i+1)%2)))&0x0f;
+				if(curState==STATE_WORKING){
+					if(!halfByteFF){
+						fullByteBuf=(tHalfByte<<4)&0xF0;
+						halfByteFF=1;
+					}
+					else{
+						fullByteBuf+=tHalfByte;
+						fputc((uint8_t)fullByteBuf,fp);
+						halfByteFF=0;
+					}
+				}
+				nextState=stateTransfer(curState,tHalfByte);
+				if(curState==STATE_WAITING_15&&nextState==STATE_WORKING)
+					printf("I AM WORKING!");
+				curState=nextState;
+			}
+		}
+	}
 
 	// clean up our memory mapping and exit
-	
-	if( munmap( virtual_base, HW_REGS_SPAN ) != 0 ) {
-		printf( "ERROR: munmap() failed...\n" );
-		close( fd );
-		return( 1 );
+
+	if (munmap(virtual_base, HW_REGS_SPAN) != 0)
+	{
+		printf("ERROR: munmap() failed...\n");
+		close(fd);
+		return (1);
 	}
-
-	close( fd );
-
-	return( 0 );
+	close(fd);
+	return (0);
 }
