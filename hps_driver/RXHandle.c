@@ -53,22 +53,23 @@ int isSysFrame(uint8_t *packet)
 uint8_t *constructPacket(uint32_t data1, uint32_t data2, uint32_t data3, uint32_t data4)
 {
     //discard one byte 
-	uint8_t *head = (uint8_t *)malloc(12);
+	uint8_t *head = (uint8_t *)malloc(13);
 	head[0] = SYMBOL2BYTES(data1, 1);
 	head[1] = SYMBOL2BYTES(data1, 2);
 	head[2] = SYMBOL2BYTES(data1, 0);
 
-	head[3] = SYMBOL2BYTES(data2, 0);
-	head[4] = SYMBOL2BYTES(data2, 1);
-	head[5] = SYMBOL2BYTES(data2, 2);
-	head[6] = SYMBOL2BYTES(data2, 3);
+	head[3] = SYMBOL2BYTES(data2, 1);
+	head[4] = SYMBOL2BYTES(data2, 2);
+	head[5] = SYMBOL2BYTES(data2, 3);
 
-	head[7] = SYMBOL2BYTES(data3, 0);
-	head[8] = SYMBOL2BYTES(data3, 1);
-	head[9] = SYMBOL2BYTES(data3, 2);
-	head[10] = SYMBOL2BYTES(data3,3);
+	head[6] = SYMBOL2BYTES(data3, 0);
+	head[7] = SYMBOL2BYTES(data3, 1);
+	head[8] = SYMBOL2BYTES(data3, 2);
 
-	head[11] = SYMBOL2BYTES(data4, 3);
+	head[9] = SYMBOL2BYTES(data4, 0);
+	head[10] = SYMBOL2BYTES(data4,1);
+	head[11] = SYMBOL2BYTES(data4, 2);
+	head[12] = SYMBOL2BYTES(data4, 3);
 	// head[14] = SYMBOL2BYTES(data4, 3);
 	return head;
 }

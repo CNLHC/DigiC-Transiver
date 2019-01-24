@@ -857,7 +857,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=4096
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=4096" -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to in1|vcc -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to in1|vcc -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to in1|vcc -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to in1|gnd -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to in1|gnd -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to in1|gnd -section_id in1
@@ -1071,12 +1070,8 @@ set_global_assignment -name VERILOG_FILE DigiCTransiver.v
 set_global_assignment -name SIGNALTAP_FILE stp1.stp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[56] -to "DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|OFDM_DAC_Control:ofdmdaccontrol|asi_in0_valid" -section_id in1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to "DigiCQSys:u0|DigiCQSys_TransmitterTopQsys_0:transmittertopqsys_0|OFDM_DAC_Control:ofdmdaccontrol|asi_in0_valid" -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to in1|gnd -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to in1|vcc -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to in1|vcc -section_id in1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "soc_system:u0|signaltapclock_clk" -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to in1|gnd -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to in1|vcc -section_id in1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[57] -to "soc_system:u0|soc_system_ReceiverTopQsys_0:receivertopqsys_0|OFDM_Symbol_Sync:ofdmsymbolsync|asi_in0_data[0]" -section_id in1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[58] -to "soc_system:u0|soc_system_ReceiverTopQsys_0:receivertopqsys_0|OFDM_Symbol_Sync:ofdmsymbolsync|asi_in0_data[10]" -section_id in1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[59] -to "soc_system:u0|soc_system_ReceiverTopQsys_0:receivertopqsys_0|OFDM_Symbol_Sync:ofdmsymbolsync|asi_in0_data[11]" -section_id in1
@@ -1343,12 +1338,10 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[187] -
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[188] -to "soc_system:u0|soc_system_ReceiverTopQsys_0:receivertopqsys_0|OFDM_Symbol_Sync:ofdmsymbolsync|tMA32Accu[9]" -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to in1|vcc -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to in1|vcc -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to in1|vcc -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to in1|vcc -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to in1|vcc -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to in1|vcc -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to in1|gnd -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to in1|vcc -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to in1|gnd -section_id in1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[189] -to "soc_system:u0|soc_system_ReceiverTopQsys_0:receivertopqsys_0|OFDM_Symbol_Sync:ofdmsymbolsync|tMA32C2Accu[0]" -section_id in1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[190] -to "soc_system:u0|soc_system_ReceiverTopQsys_0:receivertopqsys_0|OFDM_Symbol_Sync:ofdmsymbolsync|tMA32C2Accu[10]" -section_id in1
@@ -2130,21 +2123,48 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[575] -
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[576] -to "soc_system:u0|soc_system_ReceiverTopQsys_0:receivertopqsys_0|soc_system_ReceiverTopQsys_0_fifo_0:fifo_0|soc_system_ReceiverTopQsys_0_fifo_0_map_avalonst_to_avalonmm:the_map_avalonst_to_avalonmm|avalonmm_data[7]" -section_id in1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[577] -to "soc_system:u0|soc_system_ReceiverTopQsys_0:receivertopqsys_0|soc_system_ReceiverTopQsys_0_fifo_0:fifo_0|soc_system_ReceiverTopQsys_0_fifo_0_map_avalonst_to_avalonmm:the_map_avalonst_to_avalonmm|avalonmm_data[8]" -section_id in1
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[578] -to "soc_system:u0|soc_system_ReceiverTopQsys_0:receivertopqsys_0|soc_system_ReceiverTopQsys_0_fifo_0:fifo_0|soc_system_ReceiverTopQsys_0_fifo_0_map_avalonst_to_avalonmm:the_map_avalonst_to_avalonmm|avalonmm_data[9]" -section_id in1
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=579" -section_id in1
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=579" -section_id in1
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=579" -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to in1|vcc -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to in1|gnd -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to in1|vcc -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to in1|gnd -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to in1|vcc -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to in1|gnd -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to in1|gnd -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to in1|gnd -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to in1|vcc -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to in1|gnd -section_id in1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to in1|gnd -section_id in1
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to in1|vcc -section_id in1
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=sld_reserved_DigiCTransiver_in1_1_3727," -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[579] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|asi_in_endofpacket" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[580] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|asi_in_ready" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[581] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|asi_in_startofpacket" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[582] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|asi_in_valid" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[583] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|aso_out_endofpacket" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[584] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|aso_out_ready" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[585] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|aso_out_startofpacket" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[586] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|aso_out_valid" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[587] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|clock_clk" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[588] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|reset_reset" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[579] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|asi_in_endofpacket" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[580] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|asi_in_ready" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[581] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|asi_in_startofpacket" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[582] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|asi_in_valid" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[583] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|aso_out_endofpacket" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[584] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|aso_out_ready" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[585] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|aso_out_startofpacket" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[586] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|aso_out_valid" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[587] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|clock_clk" -section_id in1
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[588] -to "soc_system:u0|soc_system_TransmitterTopQsys_0:transmittertopqsys_0|FFTDataAdapter:fftdataadapter|reset_reset" -section_id in1
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=589" -section_id in1
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=589" -section_id in1
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=589" -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to in1|vcc -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to in1|vcc -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to in1|gnd -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to in1|vcc -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to in1|gnd -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to in1|vcc -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to in1|gnd -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to in1|gnd -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to in1|vcc -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to in1|vcc -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to in1|gnd -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to in1|gnd -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to in1|gnd -section_id in1
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to in1|gnd -section_id in1
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=sld_reserved_DigiCTransiver_in1_1_6fce," -section_id in1
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

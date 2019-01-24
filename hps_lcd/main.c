@@ -113,13 +113,13 @@ int main() {
 		fseek(fp, 0, SEEK_END);
 		curFileSize = ftell(fp);
 		if(curFileSize>=preFileSize)
-			sprintf(hintString,"%3.1f kB/s",(double)(curFileSize-preFileSize)/1000);
+			sprintf(hintString,"%3.1f kB/s",(double)(curFileSize-preFileSize)/500);
 		preFileSize=curFileSize;
 		fclose(fp);
-		printf("%s",hintString);
+		printf("%s\n",hintString);
 		DRAW_Clear(&LcdCanvas, LCD_WHITE);
 		DRAW_PrintString(&LcdCanvas, 40, 16, hintString, LCD_BLACK, &font_16x16);
-		DRAW_PrintString(&LcdCanvas, 40,0 , "DigiC!", LCD_BLACK, &font_16x16);
+		DRAW_PrintString(&LcdCanvas, 40,0 , "BUAA-DigiC!", LCD_BLACK, &font_16x16);
 		DRAW_Refresh(&LcdCanvas);
 	}
     

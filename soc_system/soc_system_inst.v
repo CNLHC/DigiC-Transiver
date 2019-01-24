@@ -1,6 +1,8 @@
 	soc_system u0 (
 		.clk_clk                                                 (<connected-to-clk_clk>),                                                 //                                             clk.clk
 		.dccclock_clk                                            (<connected-to-dccclock_clk>),                                            //                                        dccclock.clk
+		.hps2fpgaresetpio_export                                 (<connected-to-hps2fpgaresetpio_export>),                                 //                                hps2fpgaresetpio.export
+		.hps_0_f2h_warm_reset_req_reset_n                        (<connected-to-hps_0_f2h_warm_reset_req_reset_n>),                        //                        hps_0_f2h_warm_reset_req.reset_n
 		.hps_0_h2f_reset_reset_n                                 (<connected-to-hps_0_h2f_reset_reset_n>),                                 //                                 hps_0_h2f_reset.reset_n
 		.hps_0_hps_io_hps_io_emac1_inst_TX_CLK                   (<connected-to-hps_0_hps_io_hps_io_emac1_inst_TX_CLK>),                   //                                    hps_0_hps_io.hps_io_emac1_inst_TX_CLK
 		.hps_0_hps_io_hps_io_emac1_inst_TXD0                     (<connected-to-hps_0_hps_io_hps_io_emac1_inst_TXD0>),                     //                                                .hps_io_emac1_inst_TXD0
@@ -84,12 +86,14 @@
 		.receivertopqsys_0_ofdmadccontrol_external_adc_RealData  (<connected-to-receivertopqsys_0_ofdmadccontrol_external_adc_RealData>),  //   receivertopqsys_0_ofdmadccontrol_external_adc.RealData
 		.receivertopqsys_0_ofdmadccontrol_external_adc_ImagData  (<connected-to-receivertopqsys_0_ofdmadccontrol_external_adc_ImagData>),  //                                                .ImagData
 		.reset_reset_n                                           (<connected-to-reset_reset_n>),                                           //                                           reset.reset_n
+		.rxresetin_reset_n                                       (<connected-to-rxresetin_reset_n>),                                       //                                       rxresetin.reset_n
 		.signaltapclock_clk                                      (<connected-to-signaltapclock_clk>),                                      //                                  signaltapclock.clk
 		.transmittertopqsys_0_externalspi_export_0_mosi          (<connected-to-transmittertopqsys_0_externalspi_export_0_mosi>),          //       transmittertopqsys_0_externalspi_export_0.mosi
 		.transmittertopqsys_0_externalspi_export_0_nss           (<connected-to-transmittertopqsys_0_externalspi_export_0_nss>),           //                                                .nss
 		.transmittertopqsys_0_externalspi_export_0_miso          (<connected-to-transmittertopqsys_0_externalspi_export_0_miso>),          //                                                .miso
 		.transmittertopqsys_0_externalspi_export_0_sclk          (<connected-to-transmittertopqsys_0_externalspi_export_0_sclk>),          //                                                .sclk
 		.transmittertopqsys_0_ofdmdaccontrol_dac_control_chadata (<connected-to-transmittertopqsys_0_ofdmdaccontrol_dac_control_chadata>), // transmittertopqsys_0_ofdmdaccontrol_dac_control.chadata
-		.transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata (<connected-to-transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata>)  //                                                .chbdata
+		.transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata (<connected-to-transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata>), //                                                .chbdata
+		.txresetin_reset_n                                       (<connected-to-txresetin_reset_n>)                                        //                                       txresetin.reset_n
 	);
 

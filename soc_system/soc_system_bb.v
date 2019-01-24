@@ -2,6 +2,8 @@
 module soc_system (
 	clk_clk,
 	dccclock_clk,
+	hps2fpgaresetpio_export,
+	hps_0_f2h_warm_reset_req_reset_n,
 	hps_0_h2f_reset_reset_n,
 	hps_0_hps_io_hps_io_emac1_inst_TX_CLK,
 	hps_0_hps_io_hps_io_emac1_inst_TXD0,
@@ -85,16 +87,20 @@ module soc_system (
 	receivertopqsys_0_ofdmadccontrol_external_adc_RealData,
 	receivertopqsys_0_ofdmadccontrol_external_adc_ImagData,
 	reset_reset_n,
+	rxresetin_reset_n,
 	signaltapclock_clk,
 	transmittertopqsys_0_externalspi_export_0_mosi,
 	transmittertopqsys_0_externalspi_export_0_nss,
 	transmittertopqsys_0_externalspi_export_0_miso,
 	transmittertopqsys_0_externalspi_export_0_sclk,
 	transmittertopqsys_0_ofdmdaccontrol_dac_control_chadata,
-	transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata);	
+	transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata,
+	txresetin_reset_n);	
 
 	input		clk_clk;
 	output		dccclock_clk;
+	inout	[1:0]	hps2fpgaresetpio_export;
+	input		hps_0_f2h_warm_reset_req_reset_n;
 	output		hps_0_h2f_reset_reset_n;
 	output		hps_0_hps_io_hps_io_emac1_inst_TX_CLK;
 	output		hps_0_hps_io_hps_io_emac1_inst_TXD0;
@@ -178,6 +184,7 @@ module soc_system (
 	input	[13:0]	receivertopqsys_0_ofdmadccontrol_external_adc_RealData;
 	input	[13:0]	receivertopqsys_0_ofdmadccontrol_external_adc_ImagData;
 	input		reset_reset_n;
+	input		rxresetin_reset_n;
 	output		signaltapclock_clk;
 	input		transmittertopqsys_0_externalspi_export_0_mosi;
 	input		transmittertopqsys_0_externalspi_export_0_nss;
@@ -185,4 +192,5 @@ module soc_system (
 	input		transmittertopqsys_0_externalspi_export_0_sclk;
 	output	[13:0]	transmittertopqsys_0_ofdmdaccontrol_dac_control_chadata;
 	output	[13:0]	transmittertopqsys_0_ofdmdaccontrol_dac_control_chbdata;
+	input		txresetin_reset_n;
 endmodule

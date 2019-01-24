@@ -3,19 +3,19 @@
  <debug showDebugMenu="0" />
  <systemtable
    filter="TransmitterTopQsys.clk OR TransmitterTopQsys.ofdmdaccontrol_sample_clock OR TransmitterTopQsys.outputbuffer_out_clk OR TransmitterTopQsys.outputforwardbuffer_clk"
-   showClockDomains="1"
-   showResetDomains="0">
+   showClockDomains="0"
+   showResetDomains="1">
   <columns>
-   <connections preferredWidth="127" />
-   <irq preferredWidth="63" />
+   <connections preferredWidth="287" />
+   <irq preferredWidth="34" />
    <name preferredWidth="408" />
    <export preferredWidth="219" />
    <inputclock preferredWidth="249" />
    <description preferredWidth="341" />
   </columns>
  </systemtable>
- <library expandedCategories="Project,Library" />
- <window width="2560" height="1076" x="-230" y="342" />
+ <library expandedCategories="Library,Project" />
+ <window width="1920" height="1057" x="0" y="0" />
  <hdlexample language="VERILOG" />
  <generation greybox="0" simulation="NONE" block_symbol_file="1" />
 </preferences>

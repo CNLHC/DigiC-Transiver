@@ -18,7 +18,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -185,7 +185,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -245,7 +245,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -258,7 +258,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -817,7 +817,7 @@
   <parameter name="ENABLE_USER_ECC" value="false" />
   <parameter name="EXPORT_AFI_HALF_CLK" value="false" />
   <parameter name="EXTRA_SETTINGS" value="" />
-  <parameter name="F2H_AXI_CLOCK_FREQ" value="50000000" />
+  <parameter name="F2H_AXI_CLOCK_FREQ" value="100000000" />
   <parameter name="F2H_SDRAM0_CLOCK_FREQ" value="50000000" />
   <parameter name="F2H_SDRAM1_CLOCK_FREQ" value="100" />
   <parameter name="F2H_SDRAM2_CLOCK_FREQ" value="100" />
@@ -872,7 +872,7 @@
   <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_SPIM1_SCLK_OUT" value="100" />
   <parameter name="GPIO_Enable">No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,Yes,No,No,Yes,Yes,No,No,Yes,No,No,No,Yes,No,No,No,No,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No</parameter>
   <parameter name="GP_Enable" value="false" />
-  <parameter name="H2F_AXI_CLOCK_FREQ" value="50000000" />
+  <parameter name="H2F_AXI_CLOCK_FREQ" value="100000000" />
   <parameter name="H2F_CTI_CLOCK_FREQ" value="100" />
   <parameter name="H2F_DEBUG_APB_CLOCK_FREQ" value="100" />
   <parameter name="H2F_LW_AXI_CLOCK_FREQ" value="100000000" />
@@ -1467,17 +1467,7 @@
    kind="clock"
    version="16.1"
    start="clk_0.clk"
-   end="hps_0.f2h_axi_clock" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="clk_0.clk"
    end="hps_0.f2h_sdram0_clock" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="clk_0.clk"
-   end="hps_0.h2f_axi_clock" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="SystemPLL.refclk" />
  <connection
    kind="clock"
@@ -1489,6 +1479,16 @@
    version="16.1"
    start="SystemPLL.outclk2"
    end="ReceiverTopQsys_0.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="SystemPLL.outclk2"
+   end="hps_0.f2h_axi_clock" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="SystemPLL.outclk2"
+   end="hps_0.h2f_axi_clock" />
  <connection
    kind="clock"
    version="16.1"

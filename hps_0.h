@@ -55,7 +55,7 @@
 #define SYSID_QSYS_SPAN 8
 #define SYSID_QSYS_END 0x1007
 #define SYSID_QSYS_ID 2899645186
-#define SYSID_QSYS_TIMESTAMP 1547687389
+#define SYSID_QSYS_TIMESTAMP 1547887571
 
 /*
  * Macros for device 'LEDControl', class 'altera_avalon_pio'
@@ -148,7 +148,7 @@
 #define RECEIVERTOPQSYS_0_RECEIVERSYSID_SPAN 8
 #define RECEIVERTOPQSYS_0_RECEIVERSYSID_END 0x40047
 #define RECEIVERTOPQSYS_0_RECEIVERSYSID_ID 591751049
-#define RECEIVERTOPQSYS_0_RECEIVERSYSID_TIMESTAMP 1547687389
+#define RECEIVERTOPQSYS_0_RECEIVERSYSID_TIMESTAMP 1547887571
 
 /*
  * Macros for device 'ReceiverTopQsys_0_HPSTestFIFO_in', class 'altera_avalon_fifo'
@@ -236,6 +236,50 @@
 #define RECEIVERTOPQSYS_0_FIFO_0_OUT_USE_READ_CONTROL 1
 #define RECEIVERTOPQSYS_0_FIFO_0_OUT_USE_REGISTER 1
 #define RECEIVERTOPQSYS_0_FIFO_0_OUT_USE_WRITE_CONTROL 0
+
+/*
+ * Macros for device 'TransmitterTopQsys_0_FFTInputBuffer', class 'altera_avalon_sc_fifo'
+ * The macros are prefixed with 'TRANSMITTERTOPQSYS_0_FFTINPUTBUFFER_'.
+ * The prefix is the slave descriptor.
+ */
+#define TRANSMITTERTOPQSYS_0_FFTINPUTBUFFER_COMPONENT_TYPE altera_avalon_sc_fifo
+#define TRANSMITTERTOPQSYS_0_FFTINPUTBUFFER_COMPONENT_NAME TransmitterTopQsys_0_FFTInputBuffer
+#define TRANSMITTERTOPQSYS_0_FFTINPUTBUFFER_BASE 0x50000
+#define TRANSMITTERTOPQSYS_0_FFTINPUTBUFFER_SPAN 32
+#define TRANSMITTERTOPQSYS_0_FFTINPUTBUFFER_END 0x5001f
+
+/*
+ * Macros for device 'TransmitterTopQsys_0_OutPutForwardBuffer', class 'altera_avalon_sc_fifo'
+ * The macros are prefixed with 'TRANSMITTERTOPQSYS_0_OUTPUTFORWARDBUFFER_'.
+ * The prefix is the slave descriptor.
+ */
+#define TRANSMITTERTOPQSYS_0_OUTPUTFORWARDBUFFER_COMPONENT_TYPE altera_avalon_sc_fifo
+#define TRANSMITTERTOPQSYS_0_OUTPUTFORWARDBUFFER_COMPONENT_NAME TransmitterTopQsys_0_OutPutForwardBuffer
+#define TRANSMITTERTOPQSYS_0_OUTPUTFORWARDBUFFER_BASE 0x50020
+#define TRANSMITTERTOPQSYS_0_OUTPUTFORWARDBUFFER_SPAN 32
+#define TRANSMITTERTOPQSYS_0_OUTPUTFORWARDBUFFER_END 0x5003f
+
+/*
+ * Macros for device 'TransmitterTopQsys_0_QAMOutputBuffer', class 'altera_avalon_sc_fifo'
+ * The macros are prefixed with 'TRANSMITTERTOPQSYS_0_QAMOUTPUTBUFFER_'.
+ * The prefix is the slave descriptor.
+ */
+#define TRANSMITTERTOPQSYS_0_QAMOUTPUTBUFFER_COMPONENT_TYPE altera_avalon_sc_fifo
+#define TRANSMITTERTOPQSYS_0_QAMOUTPUTBUFFER_COMPONENT_NAME TransmitterTopQsys_0_QAMOutputBuffer
+#define TRANSMITTERTOPQSYS_0_QAMOUTPUTBUFFER_BASE 0x50040
+#define TRANSMITTERTOPQSYS_0_QAMOUTPUTBUFFER_SPAN 32
+#define TRANSMITTERTOPQSYS_0_QAMOUTPUTBUFFER_END 0x5005f
+
+/*
+ * Macros for device 'TransmitterTopQsys_0_SPIBuffer', class 'altera_avalon_sc_fifo'
+ * The macros are prefixed with 'TRANSMITTERTOPQSYS_0_SPIBUFFER_'.
+ * The prefix is the slave descriptor.
+ */
+#define TRANSMITTERTOPQSYS_0_SPIBUFFER_COMPONENT_TYPE altera_avalon_sc_fifo
+#define TRANSMITTERTOPQSYS_0_SPIBUFFER_COMPONENT_NAME TransmitterTopQsys_0_SPIBuffer
+#define TRANSMITTERTOPQSYS_0_SPIBUFFER_BASE 0x50060
+#define TRANSMITTERTOPQSYS_0_SPIBUFFER_SPAN 32
+#define TRANSMITTERTOPQSYS_0_SPIBUFFER_END 0x5007f
 
 
 #endif /* _ALTERA_HPS_0_H_ */

@@ -55,14 +55,14 @@ preplace inst soc_system.hps_only_master.fifo -pg 1
 preplace inst soc_system.hps_0.axi_ocram -pg 1
 preplace inst soc_system.hps_0.sdmmc -pg 1
 preplace inst soc_system.TransmitterTopQsys_0.externalSPI -pg 1
-preplace inst soc_system.sysid_qsys -pg 1 -lvl 3 -y 720
+preplace inst soc_system.sysid_qsys -pg 1 -lvl 3 -y 710
 preplace inst soc_system.f2sdram_only_master.transacto -pg 1
 preplace inst soc_system.ReceiverTopQsys_0.OFDMADCControl -pg 1
 preplace inst soc_system.hps_only_master.jtag_phy_embedded_in_jtag_master -pg 1
 preplace inst soc_system.TransmitterTopQsys_0.SPIPacketer -pg 1
 preplace inst soc_system.hps_only_master.p2b -pg 1
 preplace inst soc_system.hps_only_master.clk_src -pg 1
-preplace inst soc_system.SystemPLL -pg 1 -lvl 3 -y 820
+preplace inst soc_system.SystemPLL -pg 1 -lvl 3 -y 850
 preplace inst soc_system.f2sdram_only_master.b2p_adapter -pg 1
 preplace inst soc_system.hps_0.rstmgr -pg 1
 preplace inst soc_system.hps_0.arm_gic_0 -pg 1
@@ -124,29 +124,29 @@ preplace inst soc_system.f2sdram_only_master.b2p -pg 1
 preplace inst soc_system.fpga_only_master.b2p -pg 1
 preplace inst soc_system.hps_0.bridges -pg 1
 preplace inst soc_system.ReceiverTopQsys_0.HPSTestFIFO -pg 1
-preplace netloc INTERCONNECT<net_container>soc_system</net_container>(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)HPSToFPGAResetPIO.s1,(MASTER)fpga_only_master.master,(SLAVE)ILC.avalon_slave,(MASTER)TOPLevelMMBridge.m0,(SLAVE)sysid_qsys.control_slave,(SLAVE)LEDControl.s1) 1 1 4 510 500 900 670 1380 730 1620
+preplace netloc FAN_IN<net_container>soc_system</net_container>(SLAVE)jtag_uart.irq,(MASTER)hps_0.f2h_irq0,(MASTER)ILC.irq) 1 2 2 880 430 1320
+preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)TransmitterTopQsys_0.txmmbridgeslave,(SLAVE)TOPLevelMMBridge.s0,(SLAVE)ReceiverTopQsys_0.receivermmbridge_s0,(MASTER)hps_0.h2f_lw_axi_master) 1 1 3 490 920 NJ 840 1420
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)hps_0.memory,(SLAVE)soc_system.memory) 1 0 3 NJ 380 NJ 380 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)soc_system.reset) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)TransmitterTopQsys_0.clk,(SLAVE)ReceiverTopQsys_0.clk,(MASTER)SystemPLL.outclk2,(SLAVE)hps_0.h2f_lw_axi_clock) 1 1 3 490 940 960 930 1320
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)hps_0.h2f_lw_axi_clock,(MASTER)SystemPLL.outclk2,(SLAVE)TransmitterTopQsys_0.clk,(SLAVE)ReceiverTopQsys_0.clk) 1 1 3 450 960 960 960 1320
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.rxresetin,(SLAVE)reset_bridge_1.in_reset) 1 0 4 NJ 1200 NJ 1200 NJ 1200 NJ
-preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)TransmitterTopQsys_0.sample_clk,(SLAVE)HPSToFPGAResetPIO.clk,(SLAVE)reset_bridge_0.clk,(MASTER)SystemPLL.outclk3,(SLAVE)ReceiverTopQsys_0.ofdmadccontrol_sample_clock,(SLAVE)reset_bridge_1.clk) 1 1 3 510 980 NJ 980 1340
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)TransmitterTopQsys_0.ofdmdaccontrol_dac_control,(SLAVE)soc_system.transmittertopqsys_0_ofdmdaccontrol_dac_control) 1 0 2 NJ 1070 NJ
-preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)ReceiverTopQsys_0.receivermmbridge_s0,(SLAVE)TOPLevelMMBridge.s0,(MASTER)hps_0.h2f_lw_axi_master,(SLAVE)TransmitterTopQsys_0.txmmbridgeslave) 1 1 3 470 690 NJ 690 1400
-preplace netloc INTERCONNECT<net_container>soc_system</net_container>(SLAVE)LEDControl.reset,(SLAVE)HPSToFPGAResetPIO.reset,(SLAVE)ILC.reset_n,(SLAVE)TOPLevelMMBridge.reset,(MASTER)reset_bridge_1.out_reset,(SLAVE)TransmitterTopQsys_0.sample_clk_reset,(SLAVE)fpga_only_master.clk_reset,(SLAVE)hps_only_master.clk_reset,(SLAVE)f2sdram_only_master.clk_reset,(SLAVE)ReceiverTopQsys_0.reset,(SLAVE)jtag_uart.reset,(MASTER)clk_0.clk_reset,(MASTER)reset_bridge_0.out_reset,(SLAVE)sysid_qsys.reset,(SLAVE)SystemPLL.reset,(SLAVE)TransmitterTopQsys_0.reset) 1 1 4 450 920 920 950 1420 970 1620
-preplace netloc FAN_IN<net_container>soc_system</net_container>(MASTER)hps_0.f2h_irq0,(MASTER)ILC.irq,(SLAVE)jtag_uart.irq) 1 2 2 880 430 1380
 preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)soc_system.dccclock,(MASTER)SystemPLL.outclk0) 1 3 2 NJ 890 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.hps2fpgaresetpio,(SLAVE)HPSToFPGAResetPIO.external_connection) 1 0 4 NJ 830 NJ 900 NJ 810 NJ
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)HPSToFPGAResetPIO.external_connection,(SLAVE)soc_system.hps2fpgaresetpio) 1 0 4 NJ 700 NJ 700 NJ 800 NJ
+preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)fpga_only_master.clk,(SLAVE)sysid_qsys.clk,(SLAVE)TOPLevelMMBridge.clk,(SLAVE)hps_only_master.clk,(SLAVE)hps_0.f2h_sdram0_clock,(SLAVE)LEDControl.clk,(SLAVE)ILC.clk,(SLAVE)hps_0.h2f_axi_clock,(SLAVE)f2sdram_only_master.clk,(MASTER)clk_0.clk,(SLAVE)jtag_uart.clk,(SLAVE)hps_0.f2h_axi_clock,(SLAVE)SystemPLL.refclk) 1 1 3 410 680 940 650 NJ
+preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)f2sdram_only_master.master,(SLAVE)hps_0.f2h_sdram0_data) 1 2 1 980
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.led_pio_external_connection,(SLAVE)LEDControl.external_connection) 1 0 3 NJ 600 NJ 600 NJ
-preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)f2sdram_only_master.clk,(SLAVE)hps_only_master.clk,(SLAVE)sysid_qsys.clk,(SLAVE)fpga_only_master.clk,(MASTER)clk_0.clk,(SLAVE)hps_0.f2h_sdram0_clock,(SLAVE)hps_0.f2h_axi_clock,(SLAVE)LEDControl.clk,(SLAVE)TOPLevelMMBridge.clk,(SLAVE)hps_0.h2f_axi_clock,(SLAVE)ILC.clk,(SLAVE)jtag_uart.clk,(SLAVE)SystemPLL.refclk) 1 1 3 410 720 940 650 N
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.memory,(SLAVE)hps_0.memory) 1 0 3 NJ 350 NJ 350 NJ
 preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(MASTER)hps_only_master.master,(SLAVE)hps_0.f2h_axi_slave) 1 2 1 960
 preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)SystemPLL.outclk1,(MASTER)soc_system.signaltapclock) 1 3 2 NJ 910 NJ
+preplace netloc INTERCONNECT<net_container>soc_system</net_container>(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)sysid_qsys.control_slave,(MASTER)TOPLevelMMBridge.m0,(MASTER)fpga_only_master.master,(SLAVE)HPSToFPGAResetPIO.s1,(SLAVE)LEDControl.s1,(SLAVE)ILC.avalon_slave) 1 1 4 490 620 900 700 1400 730 1640
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)hps_0.f2h_warm_reset_req,(SLAVE)soc_system.hps_0_f2h_warm_reset_req) 1 0 3 NJ 330 NJ 330 NJ
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.receivertopqsys_0_ofdmadccontrol_external_adc,(SLAVE)ReceiverTopQsys_0.ofdmadccontrol_external_adc) 1 0 2 NJ 790 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.hps_0_hps_io,(SLAVE)hps_0.hps_io) 1 0 3 NJ 350 NJ 350 NJ
-preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.hps_0_f2h_warm_reset_req,(SLAVE)hps_0.f2h_warm_reset_req) 1 0 3 NJ 330 NJ 330 NJ
+preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.hps_0_hps_io,(SLAVE)hps_0.hps_io) 1 0 3 NJ 370 NJ 370 NJ
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.transmittertopqsys_0_externalspi_export_0,(SLAVE)TransmitterTopQsys_0.externalspi_export_0) 1 0 2 NJ 1050 NJ
 preplace netloc EXPORT<net_container>soc_system</net_container>(MASTER)soc_system.hps_0_h2f_reset,(MASTER)hps_0.h2f_reset) 1 3 2 NJ 340 NJ
 preplace netloc EXPORT<net_container>soc_system</net_container>(SLAVE)soc_system.txresetin,(SLAVE)reset_bridge_0.in_reset) 1 0 4 NJ 1260 NJ 1260 NJ 1260 NJ
-preplace netloc POINT_TO_POINT<net_container>soc_system</net_container>(SLAVE)hps_0.f2h_sdram0_data,(MASTER)f2sdram_only_master.master) 1 2 1 980
-levelinfo -pg 1 0 200 1770
-levelinfo -hier soc_system 210 240 700 1130 1470 1640
+preplace netloc INTERCONNECT<net_container>soc_system</net_container>(SLAVE)jtag_uart.reset,(SLAVE)hps_only_master.clk_reset,(MASTER)reset_bridge_0.out_reset,(MASTER)clk_0.clk_reset,(SLAVE)LEDControl.reset,(MASTER)reset_bridge_1.out_reset,(SLAVE)fpga_only_master.clk_reset,(SLAVE)HPSToFPGAResetPIO.reset,(SLAVE)ReceiverTopQsys_0.reset,(SLAVE)TransmitterTopQsys_0.sample_clk_reset,(SLAVE)TransmitterTopQsys_0.reset,(SLAVE)f2sdram_only_master.clk_reset,(SLAVE)sysid_qsys.reset,(SLAVE)TOPLevelMMBridge.reset,(SLAVE)SystemPLL.reset,(SLAVE)ILC.reset_n) 1 1 4 430 720 920 980 1440 1160 1640
+preplace netloc FAN_OUT<net_container>soc_system</net_container>(SLAVE)reset_bridge_1.clk,(SLAVE)reset_bridge_0.clk,(SLAVE)TransmitterTopQsys_0.sample_clk,(MASTER)SystemPLL.outclk3,(SLAVE)HPSToFPGAResetPIO.clk,(SLAVE)ReceiverTopQsys_0.ofdmadccontrol_sample_clock) 1 1 3 470 900 NJ 820 1340
+levelinfo -pg 1 0 200 1790
+levelinfo -hier soc_system 210 240 700 1130 1490 1660

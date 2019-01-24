@@ -86,3 +86,4 @@ OFDMCPAdder/*
 stp1.csv
 stp1.csv
 soc_system/*
+soc_system/soc_system_inst.v
